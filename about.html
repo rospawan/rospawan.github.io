@@ -6,7 +6,7 @@
     
     <title>About Me | Rospawan Lab</title>
     
-    <meta name="description" content="About Ali Rospawan — background, interests, and contact information.">
+    <meta name="description" content="About Ali Rospawan — PhD researcher in Electrical Engineering at National Chung Hsing University, Taiwan, specializing in intelligent control systems, fuzzy neural networks, and industrial automation.">
 
     <style>
         /* ================= Base Setup ================= */
@@ -50,19 +50,6 @@
             border: 6px solid var(--primary-color);
             display: block;
         }
-        .profile-photo-placeholder {
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 5rem;
-            font-weight: 800;
-            border: 6px solid var(--primary-color);
-        }
         .profile-info h1 {
             font-size: 2.8rem;
             font-weight: 800;
@@ -80,8 +67,9 @@
             font-size: 1.05rem;
             color: #555;
             line-height: 1.7;
-            margin: 0;
+            margin: 0 0 12px 0;
         }
+        .profile-info p:last-child { margin-bottom: 0; }
 
         /* ================= Bento Cards ================= */
         .bento-grid {
@@ -131,28 +119,34 @@
             margin-bottom: 10px;
         }
 
-        /* ================= Timeline Items ================= */
+        /* ================= Timeline ================= */
         .timeline-row {
             border-left: 4px solid var(--primary-color);
             padding: 8px 0 8px 20px;
             margin-bottom: 18px;
         }
-        .timeline-row:last-child {
-            margin-bottom: 0;
-        }
+        .timeline-row:last-child { margin-bottom: 0; }
         .timeline-date {
             color: var(--accent-gold);
             font-size: 0.9rem;
             font-weight: bold;
             margin-bottom: 4px;
         }
-        .timeline-text {
+        .timeline-text { font-size: 1.02rem; color: #333; line-height: 1.45;}
+        .timeline-text strong { color: #111; display: block; margin-bottom: 2px;}
+        .timeline-text .sub { color: #777; font-size: 0.95rem; }
+
+        /* ================= Language / Skill Row ================= */
+        .skill-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #E0E0E0;
             font-size: 1.02rem;
-            color: #333;
         }
-        .timeline-text strong {
-            color: #111;
-        }
+        .skill-row:last-child { border-bottom: none; }
+        .skill-row .level { color: var(--accent-gold); font-weight: 600; font-size: 0.95rem; }
 
         /* ================= Contact ================= */
         .contact-row {
@@ -160,21 +154,23 @@
             align-items: center;
             gap: 12px;
             padding: 10px 0;
-            font-size: 1.05rem;
+            font-size: 1.02rem;
             color: #333;
+            border-bottom: 1px dashed #E0E0E0;
         }
+        .contact-row:last-child { border-bottom: none; }
         .contact-row strong {
             color: var(--primary-color);
-            min-width: 80px;
+            min-width: 110px;
+            font-size: 0.95rem;
         }
         .contact-row a {
             color: var(--accent-gold);
             text-decoration: none;
             font-weight: 500;
+            word-break: break-all;
         }
-        .contact-row a:hover {
-            text-decoration: underline;
-        }
+        .contact-row a:hover { text-decoration: underline; }
 
         /* ================= Footer ================= */
         footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #D1E0D7; font-size: 0.95rem; }
@@ -192,11 +188,10 @@
                 gap: 25px;
                 text-align: center;
             }
-            .profile-photo, .profile-photo-placeholder {
+            .profile-photo {
                 width: 200px;
                 height: 200px;
                 margin: 0 auto;
-                font-size: 3.5rem;
             }
             .profile-info h1 { font-size: 2rem; }
             .profile-info .tagline { font-size: 1.05rem; }
@@ -204,6 +199,9 @@
             .bento-grid { grid-template-columns: 1fr; gap: 20px; }
             .bento-item { padding: 25px 20px; border-radius: 12px; }
             .bento-title { font-size: 1.35rem; }
+
+            .contact-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+            .contact-row strong { min-width: auto; }
         }
     </style>
 </head>
@@ -223,78 +221,172 @@
     <div class="container">
 
         <!-- ============ PROFILE HERO ============ -->
-        <!-- To use a real photo: replace the <div class="profile-photo-placeholder"> line below
-             with: <img src="images/profile.jpg" alt="Ali Rospawan" class="profile-photo">
-             (upload your photo to the images/ folder first) -->
         <div class="profile-hero">
-            <!-- <div class="profile-photo-placeholder">AR</div> -->
             <img src="images/about/profile.jpeg" alt="Ali Rospawan" class="profile-photo">
             <div class="profile-info">
                 <h1>Ali Rospawan</h1>
-                <p class="tagline">Researcher · Engineer · Lifelong Learner</p>
-                <p>Welcome to my corner of the internet. I'm Ali Rospawan — write a short, friendly paragraph here about who you are, what you do, and what you care about. Two or three sentences is plenty. This is the first thing people read, so make it memorable.</p>
+                <p class="tagline">PhD Researcher · Electrical Engineer · Lecturer</p>
+                <p>I'm an electrical engineer and PhD researcher at National Chung Hsing University, Taiwan, with over six years of industry experience in PLC programming, industrial automation, and machinery design.</p>
+                <p>My research sits at the intersection of <strong>advanced control systems</strong>, <strong>AI-driven fuzzy neural networks</strong>, and <strong>industrial applications</strong> — from extrusion barrels in plastic injection molding to semiconductor heating ovens.</p>
             </div>
         </div>
 
-        <!-- ============ BENTO CARDS: ABOUT + EDUCATION ============ -->
+        <!-- ============ ROW 1: ABOUT + EDUCATION ============ -->
         <div class="bento-grid">
 
             <div class="bento-item">
                 <span class="tag">About Me</span>
-                <h2 class="bento-title">A little more about me</h2>
-                <p>Use this space to go deeper. Where are you from? What are you currently working on? What problems excite you?</p>
-                <p>You can talk about your professional background, your research interests, your hobbies — anything that helps a visitor understand who you are beyond the one-liner at the top.</p>
+                <h2 class="bento-title">A Little More About Me</h2>
+                <p>I'm currently pursuing my PhD in Electrical Engineering at National Chung Hsing University under Prof. Ching-Chih Tsai, while also serving as a Lecturer in the Department of Electronics Engineering at Politeknik Manufaktur Negeri Bangka Belitung in Indonesia, where I teach Electronic Circuit Applications and Robotics.</p>
+                <p>Before returning to academia, I spent over six years in industry as an Electrical Design and Automation Engineer, designing and troubleshooting automation systems for manufacturing. That hands-on background shapes how I approach research today — I'm drawn to control problems that have real, deployable industrial value.</p>
+                <p>Outside the lab I serve as Chair of the IEEE National Chung Hsing University Student Branch and the IEEE SMC Society NCHU Chapter, and as Secretary of the Chinese Institute of Electrical Engineering Taichung Chapter.</p>
             </div>
 
             <div class="bento-item">
-                <span class="tag">Background</span>
-                <h2 class="bento-title">Education & Experience</h2>
+                <span class="tag">Education</span>
+                <h2 class="bento-title">Academic Background</h2>
                 
                 <div class="timeline-row">
-                    <div class="timeline-date">2024 – Present</div>
-                    <div class="timeline-text"><strong>Current Role / Degree</strong><br>Institution / Company name</div>
+                    <div class="timeline-date">09/2023 – Present</div>
+                    <div class="timeline-text">
+                        <strong>Ph.D. in Electrical Engineering</strong>
+                        <span class="sub">National Chung Hsing University, Taiwan · GPA 4.08/4.3</span>
+                    </div>
                 </div>
                 <div class="timeline-row">
-                    <div class="timeline-date">2022 – 2024</div>
-                    <div class="timeline-text"><strong>Previous Role / Degree</strong><br>Institution / Company name</div>
+                    <div class="timeline-date">09/2021 – 07/2023</div>
+                    <div class="timeline-text">
+                        <strong>M.Sc. in Electrical Engineering</strong>
+                        <span class="sub">National Chung Hsing University, Taiwan · GPA 4.15/4.3</span>
+                    </div>
                 </div>
                 <div class="timeline-row">
-                    <div class="timeline-date">2018 – 2022</div>
-                    <div class="timeline-text"><strong>Earlier Role / Degree</strong><br>Institution / Company name</div>
+                    <div class="timeline-date">09/2017 – 08/2020</div>
+                    <div class="timeline-text">
+                        <strong>B.S. in Electrical Engineering</strong>
+                        <span class="sub">President University, Indonesia · GPA 3.55/4.0</span>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-date">07/2012 – 09/2015</div>
+                    <div class="timeline-text">
+                        <strong>A.A.S. in Electronics Engineering</strong>
+                        <span class="sub">Politeknik Manufaktur Negeri Bangka Belitung, Indonesia · GPA 3.40/4.0</span>
+                    </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- ============ BENTO CARDS: INTERESTS + CONTACT ============ -->
+        <!-- ============ ROW 2: RESEARCH INTERESTS + EXPERIENCE ============ -->
         <div class="bento-grid">
 
             <div class="bento-item">
-                <span class="tag">Interests</span>
-                <h2 class="bento-title">What I'm Into</h2>
+                <span class="tag">Research</span>
+                <h2 class="bento-title">Research Interests</h2>
                 <ul>
-                    <li>Research interest #1 — short description</li>
-                    <li>Research interest #2 — short description</li>
-                    <li>Research interest #3 — short description</li>
-                    <li>Something fun outside of work</li>
+                    <li><strong>Intelligent Control Systems</strong> — adaptive PID, fractional-order, and sliding-mode control for nonlinear industrial systems</li>
+                    <li><strong>Fuzzy Neural Networks</strong> — recurrent fuzzy, broad learning systems, and polynomial fuzzy models</li>
+                    <li><strong>Industrial Automation</strong> — temperature control of extrusion barrels and semiconductor heating ovens</li>
+                    <li><strong>Autonomous Mobile Robots</strong> — trajectory tracking, cooperative localization, and visual SLAM for omnidirectional AMRs</li>
+                    <li><strong>AI for Sensing</strong> — vision pipelines from RGB to depth maps and 3D point clouds for robotics</li>
                 </ul>
             </div>
 
             <div class="bento-item">
+                <span class="tag">Experience</span>
+                <h2 class="bento-title">Selected Experience</h2>
+                
+                <div class="timeline-row">
+                    <div class="timeline-date">06/2025 – Present</div>
+                    <div class="timeline-text">
+                        <strong>Lecturer</strong>
+                        <span class="sub">Politeknik Manufaktur Negeri Bangka Belitung, Indonesia</span>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-date">07/2025 – 11/2025</div>
+                    <div class="timeline-text">
+                        <strong>AI System Development Intern</strong>
+                        <span class="sub">Industrial Technology Research Institute (ITRI), Taiwan</span>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-date">07/2021 – Present</div>
+                    <div class="timeline-text">
+                        <strong>Research & Teaching Assistant</strong>
+                        <span class="sub">National Chung Hsing University, Taiwan</span>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-date">11/2018 – 08/2023</div>
+                    <div class="timeline-text">
+                        <strong>Electrical Design Engineer</strong>
+                        <span class="sub">PT. Shinmei Industry Indonesia</span>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-date">07/2016 – 11/2018</div>
+                    <div class="timeline-text">
+                        <strong>Automation Engineer Supervisor</strong>
+                        <span class="sub">PT. KIT Megadaya Engineering, Indonesia</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ============ ROW 3: LANGUAGES + CONTACT ============ -->
+        <div class="bento-grid">
+
+            <div class="bento-item">
+                <span class="tag">Skills</span>
+                <h2 class="bento-title">Languages & Tools</h2>
+                
+                <div class="skill-row">
+                    <span>Bahasa Indonesia</span>
+                    <span class="level">Native</span>
+                </div>
+                <div class="skill-row">
+                    <span>English</span>
+                    <span class="level">Professional · TOEFL ITP 573</span>
+                </div>
+                <div class="skill-row">
+                    <span>Japanese · 日本語</span>
+                    <span class="level">JLPT N3</span>
+                </div>
+                <div class="skill-row">
+                    <span>Chinese · 中文</span>
+                    <span class="level">A2 Beginner</span>
+                </div>
+
+                <p style="margin-top: 22px; margin-bottom: 8px;"><strong style="color: var(--primary-color);">Software & Tools</strong></p>
+                <p style="margin: 0;">AutoCAD · SolidWorks · Unidraf7 · PLC programming · MATLAB · Python</p>
+            </div>
+
+            <div class="bento-item">
                 <span class="tag">Get in Touch</span>
-                <h2 class="bento-title">Contact</h2>
+                <h2 class="bento-title">Contact & Profiles</h2>
                 
                 <div class="contact-row">
                     <strong>Email</strong>
-                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                    <a href="mailto:alirospawan34@gmail.com">alirospawan34@gmail.com</a>
                 </div>
                 <div class="contact-row">
-                    <strong>GitHub</strong>
-                    <a href="https://github.com/rospawan" target="_blank">github.com/rospawan</a>
+                    <strong>Google Scholar</strong>
+                    <a href="https://scholar.google.com/citations?user=oFUWGWoAAAAJ" target="_blank">scholar.google.com</a>
+                </div>
+                <div class="contact-row">
+                    <strong>ResearchGate</strong>
+                    <a href="https://www.researchgate.net/profile/Ali-Rospawan" target="_blank">researchgate.net/Ali-Rospawan</a>
                 </div>
                 <div class="contact-row">
                     <strong>LinkedIn</strong>
-                    <a href="https://linkedin.com/in/your-handle" target="_blank">linkedin.com/in/your-handle</a>
+                    <a href="https://www.linkedin.com/in/alirospawan/" target="_blank">linkedin.com/in/alirospawan</a>
+                </div>
+                <div class="contact-row">
+                    <strong>ORCID</strong>
+                    <a href="https://orcid.org/0000-0001-5667-2269" target="_blank">0000-0001-5667-2269</a>
                 </div>
                 <div class="contact-row">
                     <strong>Location</strong>
