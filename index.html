@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>連德軒 (Der-Hsien Danny Lien) | DHLab - 陽明交大電子所 NYCU</title>
+    
+    <meta name="description" content="國立陽明交通大學(NYCU)電子研究所連德軒教授(Prof. Der-Hsien Lien, Danny Lien)帶領的 DHLab 研究團隊。專注於半導體、電子材料等前瞻研究。">
+    
+    <meta name="keywords" content="交大電子,陽明交大,連德軒,DHLab,Danny Lien,Der-Hsien Lien,半導體研究,NYCU">
+
+    <style>
+        /* ================= 基礎設定 ================= */
+        :root { 
+            --bg-color: #F5F4F0; 
+            --primary-color: #2C4C3B; 
+            --secondary-color: #3A634D;
+            --accent-gold: #B87500;
+            --text-color: #333333; 
+        }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
+        
+        /* ================= 導覽列 ================= */
+        header { background-color: var(--primary-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: #FFFFFF; text-decoration: none; }
+        nav { display: flex; gap: 20px; }
+        nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding-bottom: 5px; transition: 0.3s;}
+        nav a:hover, .nav-active { border-bottom: 2px solid #FFFFFF; }
+
+        /* ================= 佈局容器 ================= */
+        .container { max-width: 1200px; margin: 50px auto 100px; padding: 0 20px; }
+        
+        /* ================= Bento 卡片共通設計 ================= */
+        .bento-item { background: #fff; border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; position: relative; }
+        .bento-item:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+
+        .tag { font-size: 0.85rem; font-weight: bold; padding: 6px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; align-self: flex-start; }
+        .bento-title { font-size: 1.8rem; font-weight: 800; color: #111; margin-top: 0; margin-bottom: 20px; line-height: 1.3; }
+        .bento-desc { font-size: 1.05rem; color: #555; margin-bottom: 30px; line-height: 1.7; flex: 1;}
+        .pillar-link { color: var(--accent-gold); text-decoration: none; font-weight: bold; font-size: 1rem; }
+        .pillar-link:hover { text-decoration: underline; }
+
+        /* ================= 極簡兩欄式排版 (上方照片與新聞) ================= */
+        .two-col-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; margin-bottom: 30px; }
+        
+        /* ================= 首頁精簡版 Research 區塊 ================= */
+        .research-bento { padding: 35px 40px; margin-bottom: 0; } 
+        .research-bento .bento-title { font-size: 1.8rem; margin-bottom: 20px; }
+        .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
+        
+        .research-item { 
+            background: #FAFCFB; 
+            border: 2px solid #EAEAEA; 
+            border-left: 6px solid var(--primary-color); 
+            padding: 25px; 
+            border-radius: 12px; 
+            transition: all 0.3s; 
+        }
+        .research-item:hover { 
+            border-color: var(--primary-color); 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 15px rgba(44,76,59,0.08); 
+        }
+        .research-item h3 { 
+            color: var(--primary-color); 
+            font-size: 1.25rem; 
+            font-weight: 800; 
+            margin-top: 0; 
+            margin-bottom: 15px; 
+            line-height: 1.3; 
+        }
+        .research-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .research-item p { 
+            font-size: 1.05rem; 
+            color: #555; 
+            line-height: 1.6; 
+            margin: 0; 
+            text-align: justify; 
+        }
+
+        /* ================= 輪播圖 (Carousel) ================= */
+        .carousel-wrapper { position: relative; width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 25px; background: #EAEAEA; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .carousel-track-container { width: 100%; height: 320px; position: relative; overflow: hidden; }
+        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; height: 100%; }
+        .carousel-slide { min-width: 100%; height: 100%; position: relative; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        .slide-caption { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%); color: white; padding: 40px 20px 30px 20px; font-size: 1.05rem; font-weight: 500; text-align: center; box-sizing: border-box; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); pointer-events: none; }
+
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: none; cursor: pointer; padding: 12px 15px; font-size: 18px; font-weight: bold; z-index: 10; border-radius: 6px; transition: 0.3s; }
+        .carousel-btn:hover { background: rgba(0,0,0,0.8); }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+        
+        .dot-container { position: absolute; bottom: 10px; left: 0; width: 100%; text-align: center; z-index: 10; }
+        .dot { cursor: pointer; height: 8px; width: 8px; margin: 0 4px; background-color: rgba(255,255,255,0.4); border-radius: 50%; display: inline-block; transition: 0.3s; box-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+        .dot.active, .dot:hover { background-color: #fff; transform: scale(1.2); }
+
+        /* ================= 緊湊版 滾動式最新消息清單 ================= */
+        .news-wrapper { height: 500px; overflow-y: auto; padding-right: 15px; }
+        .news-wrapper::-webkit-scrollbar { width: 6px; }
+        .news-wrapper::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .news-wrapper::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        .news-wrapper::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+        .news-list { list-style: none; padding: 0; margin: 0; }
+        .news-item { border-bottom: 1px dashed #E0E0E0; padding: 12px 0; }
+        .news-item:first-child { padding-top: 5px; }
+        .news-item:last-child { border-bottom: none; padding-bottom: 0;}
+        
+        .news-date { color: var(--accent-gold); font-size: 0.9rem; font-weight: bold; margin-bottom: 3px; }
+        .news-text { font-size: 1rem; color: #333; line-height: 1.5; }
+        
+        .name-highlight { color: #A93226; font-weight: bold; }
+        .journal-link { color: #0056b3; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+        .journal-link:hover { color: #003d82; text-decoration: underline; }
+
+        /* ================= RWD 手機版適應 (精緻化微整型) ================= */
+        @media (max-width: 900px) {
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+            
+            /* 整體容器留白調整 */
+            .container { margin-top: 25px; padding: 0 15px; }
+            .two-col-grid { grid-template-columns: 1fr; gap: 20px; }
+            .research-grid { grid-template-columns: 1fr; gap: 15px; }
+            
+            /* 卡片瘦身：大幅減少 padding，把螢幕空間還給文字 */
+            .bento-item { padding: 25px 20px; border-radius: 12px; }
+            .research-bento { padding: 25px 20px; }
+            .research-item { padding: 20px; }
+            
+            /* 標題字體縮小，避免手機版視覺過重 */
+            .bento-title { font-size: 1.45rem; margin-bottom: 15px; }
+            .research-bento .bento-title { font-size: 1.45rem; }
+            .research-item h3 { font-size: 1.15rem; margin-bottom: 12px; }
+            
+            /* 壓縮高度，降低手機滑動的疲勞感 */
+            .carousel-track-container { height: 220px; }
+            .news-wrapper { height: 300px; }
+        }
+
+        /* ================= Footer ================= */
+        footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #D1E0D7; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">DHLab</a>
+        <nav>
+            <a href="index.html" class="nav-active">HOME</a> 
+            <a href="member.html">MEMBER</a> 
+            <a href="publications.html">PUBLICATIONS</a> 
+            <a href="research.html">RESEARCH</a> 
+            <a href="activity.html">ACTIVITY</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <div class="two-col-grid">
+            
+            <div class="bento-item">
+                <span class="tag" style="background: #EAF0EC; color: var(--primary-color);">Join Our Team</span>
+                <h2 class="bento-title">Life at DHLab</h2>
+                
+                <div class="carousel-wrapper" id="carousel-activity">
+                    <button class="carousel-btn prev-btn">❮</button>
+                    <div class="carousel-track-container">
+                        <div class="carousel-track">
+                            <div class="carousel-slide"><img src="images/home/activity1.png" alt="Activity 1"><div class="slide-caption">DHLab at the 2025 Annual Physics Conference</div></div>
+                            <div class="carousel-slide"><img src="images/home/activity2.png" alt="Activity 2"><div class="slide-caption">2025 實驗室尾牙聚餐</div></div>
+                            <div class="carousel-slide"><img src="images/home/activity3.png" alt="Activity 3"><div class="slide-caption">2024 實驗室耶誕交換禮物</div></div>
+                            <div class="carousel-slide"><img src="images/home/activity4.png" alt="Activity 4"><div class="slide-caption">2024 代表深耕中心參訪 NIMS (日本物質材料研究機構)</div></div>
+                            <div class="carousel-slide"><img src="images/home/activity5.png" alt="Activity 5"><div class="slide-caption">DHLab Group Photo: 2024</div></div>
+                            <div class="carousel-slide"><img src="images/home/activity6.png" alt="Activity 6"><div class="slide-caption">2024 實驗室尾牙聚餐</div></div>
+                            <div class="carousel-slide"><img src="images/home/activity7.png" alt="Activity 7"><div class="slide-caption">2023 參訪 Georgia Institute of Technology</div></div>
+                            <div class="carousel-slide"><img src="images/home/activity8.png" alt="Activity 8"><div class="slide-caption">2023 與朱教授實驗室籃球友誼賽</div></div>
+                            <div class="carousel-slide"><img src="images/home/activity9.png" alt="Activity 9"><div class="slide-caption">2022 實驗室首屆碩士班畢業</div></div>
+                            <div class="carousel-slide"><img src="images/home/activity10.jpg" alt="Activity 10"><div class="slide-caption">DHLab Group Photo: 2022</div></div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn next-btn">❯</button>
+                    <div class="dot-container"></div>
+                </div>
+                
+                <div class="bento-desc">
+                    <strong>DHLab (Principal Investigator: Prof. Der-Hsien Danny Lien 連德軒)</strong> is located at the Institute of Electronics, National Yang Ming Chiao Tung University (交大電子所 NYCU). <br><br>
+                    We welcome highly motivated <strong>Ph.D. students</strong> and <strong>Postdoctoral Fellows</strong> to join our research team. Proactive candidates are encouraged to contact us.
+                </div>
+                <a href="member.html" class="pillar-link">Meet the Team ➜</a>
+            </div>
+
+            <div class="bento-item" style="background: #FAFCFB; border: 1px solid #EAEAEA;">
+                <span class="tag" style="background: var(--primary-color); color: #fff;">Latest News</span>
+                <h2 class="bento-title">Lab Updates</h2>
+                
+                <div class="news-wrapper">
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <div class="news-date">2026</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">曾柏翰</span> 完成博士口試，畢業將至加州柏克萊大學擔任博士後研究員。</div>
+                        </li>                        
+                        <li class="news-item">                            
+                            <div class="news-date">2026</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">曾柏翰</span> 研究成果發表於 <a href="https://pubs.acs.org/doi/10.1021/acsnano.5c21838" target="_blank" class="journal-link">ACS Nano</a>！</div>
+                        </li>                        
+                        <li class="news-item">
+                            <div class="news-date">2026</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">潘奕佑</span> 研究成果發表於 <a href="https://pubs.acs.org/doi/10.1021/acs.nanolett.5c06228" target="_blank" class="journal-link">Nano Letters</a>！</div>
+                        </li>                        
+                        <li class="news-item">
+                            <div class="news-date">2026</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">王崧存 李愷崴</span> 研究成果發表於 <a href="https://www.nature.com/articles/s41699-026-00686-1" target="_blank" class="journal-link">npj 2D Materials and Applications</a>！</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2026</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">林子傑</span> 研究成果發表於 <a href="https://pubs.acs.org/doi/full/10.1021/acsami.5c20018" target="_blank" class="journal-link">ACS Applied Materials & Interfaces</a>！</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2026</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">潘奕佑</span> 完成博士口試，畢業任職於台積電 (TSMC)。</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2026</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">翁子婷</span> 獲選 NIMS 國際合作研究生計畫 (ICGP) 獎學金。</div>
+                        </li>
+                        
+                        <li class="news-item">
+                            <div class="news-date">2025</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">陳世傑</span> 研究成果發表於 <a href="https://pubs.acs.org/doi/full/10.1021/acsnano.4c11846" target="_blank" class="journal-link">ACS Nano</a>！</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2025</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">潘奕佑</span> 研究成果發表於 <a href="https://pubs.acs.org/doi/10.1021/acs.nanolett.4c05333" target="_blank" class="journal-link">Nano Letters</a>！</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2025</div>
+                            <div class="news-text">恭賀 本實驗室榮獲美光創新獎 (Micron Innovation Award)。</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2025</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">黃昶彰</span> 獲得陽明交通大學電子所碩士班獎學金。</div>
+                        </li>
+
+                        <li class="news-item">
+                            <div class="news-date">2024</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">張祐誠</span> 研究成果發表於 <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202413212" target="_blank" class="journal-link">Advanced Materials</a>！</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2024</div>
+                            <div class="news-text">恭賀 本實驗室榮獲 2024 年國研院研發服務平台亮點成果獎。</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2024</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">曾柏翰</span> 獲得龍門計畫補助，前往加州柏克萊大學 (UC Berkeley)。</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2024</div>
+                            <div class="news-text">恭賀<span class="name-highlight">張祐誠</span>、<span class="name-highlight">翁子婷</span> 獲得 2024 台積電博士獎學金。</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2024</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">曾柏翰</span> 獲得陽明交通大學電機學院博士班獎學金。</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2024</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">曾柏翰</span>、<span class="name-highlight">張祐誠</span> 獲得 FMS 2024 國際材料科學前沿研討會優秀壁報獎。</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2024</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">曾柏翰</span> 獲得 112 年度學生優良研究成果獎。</div>
+                        </li>
+
+                        <li class="news-item">
+                            <div class="news-date">2023</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">陳世傑</span>、<span class="name-highlight">王崧存</span> 獲得陽明交通大學產創學院優秀博士獎學金。</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2023</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">Tanveer Ahmed</span> 獲得 2023 中技社科技獎學金 (CTCI Foundation Scholarship)。</div>
+                        </li>
+
+                        <li class="news-item">
+                            <div class="news-date">2022</div>
+                            <div class="news-text">恭賀 <span class="name-highlight">林子傑</span> 獲得陽明交通大學電機學院博士班獎學金。</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bento-item research-bento">
+            <span class="tag" style="background: var(--primary-color); color: #fff; margin-bottom: 15px;">Research Focus</span>
+            <h2 class="bento-title">Our Research Highlights</h2>
+            
+            <div class="research-grid">
+                
+                <div class="research-item">
+                    <h3>Monolithic 3D Electronics & Innovations</h3>
+                    <img src="images/home/messageImage_1775113162125_0.jpg" alt="Monolithic 3D Electronics">
+                    <p>Developing advanced processing techniques for monolithic 3D integration and BEOL applications. We bridge academic discovery with industrial manufacturability through industrial collaborations.</p>
+                </div>
+                
+                <div class="research-item">
+                    <h3>Semiconductor Physics in 2D Limits</h3>
+                    <img src="images/home/messageImage_1775112861322_0.jpg" alt="Semiconductor Physics in 2D Limits">
+                    <p>Exploring fundamental physics at ultimate thickness limits. We focus on carrier dynamics, exciton behavior, and novel transport mechanisms in scaled systems beyond conventional limitations.</p>
+                </div>
+
+            </div>
+            
+            <a href="research.html" class="pillar-link">Discover More Research Details ➜</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <h3 style="color: #fff; margin-top: 0; font-size: 1.5rem;">Contact Us</h3>
+        <p>Email: dhlien@nycu.edu.tw | Tel: (886) 3571-2121 Ext. 54137</p>
+        <p style="margin-top: 40px; opacity: 0.5; font-size: 0.8rem;">© 2026 DHLab. National Yang Ming Chiao Tung University.</p>
+    </footer>
+
+    <script>
+        function setupCarousel(wrapperId) {
+            const wrapper = document.getElementById(wrapperId);
+            if(!wrapper) return;
+
+            const track = wrapper.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextButton = wrapper.querySelector('.next-btn');
+            const prevButton = wrapper.querySelector('.prev-btn');
+            const dotContainer = wrapper.querySelector('.dot-container');
+            
+            let currentIndex = 0;
+            let autoPlayInterval;
+
+            function stopAutoPlay() {
+                if (autoPlayInterval) {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = null;
+                }
+            }
+
+            slides.forEach((_, index) => {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => { 
+                    stopAutoPlay(); 
+                    goToSlide(index); 
+                });
+                dotContainer.appendChild(dot);
+            });
+
+            const dots = Array.from(dotContainer.children);
+
+            function goToSlide(index) {
+                if (index < 0) index = slides.length - 1;
+                if (index >= slides.length) index = 0;
+                
+                track.style.transform = 'translateX(-' + (index * 100) + '%)';
+                
+                dots.forEach(dot => dot.classList.remove('active'));
+                if(dots[index]) dots[index].classList.add('active');
+                
+                currentIndex = index;
+            }
+
+            nextButton.addEventListener('click', () => { 
+                stopAutoPlay(); 
+                goToSlide(currentIndex + 1); 
+            });
+            
+            prevButton.addEventListener('click', () => { 
+                stopAutoPlay(); 
+                goToSlide(currentIndex - 1); 
+            });
+
+            autoPlayInterval = setInterval(() => { goToSlide(currentIndex + 1); }, 4000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupCarousel('carousel-activity');
+        });
+    </script>
+</body>
+</html>

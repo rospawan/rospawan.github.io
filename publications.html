@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="robots" content="noindex">
+
+    <title>Publications & Patents | DHLab 連德軒教授 - 陽明交大電子所 NYCU</title>
+    
+    <style>
+        /* ================= 基礎設定 ================= */
+        :root { 
+            --bg-color: #F5F4F0; 
+            --primary-color: #2C4C3B; 
+            --secondary-color: #3A634D;
+            --text-color: #333333; 
+            --accent-color: #1A3626;
+            --badge-bg: #EAF0EC;
+            --badge-gold: #FFF5E5;
+            --badge-gold-text: #B87500;
+        }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        
+        /* ================= 電腦版專屬 80% 縮放 ================= */
+        @media (min-width: 1024px) {
+            body {
+                zoom: 0.8; 
+                -moz-transform: scale(0.8); 
+                -moz-transform-origin: top center;
+            }
+        }
+
+        /* ================= 導覽列 ================= */
+        header { background-color: var(--primary-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: #FFFFFF; text-decoration: none; }
+        nav { display: flex; gap: 20px; }
+        nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding-bottom: 5px; transition: 0.3s;}
+        nav a:hover { border-bottom: 2px solid #FFFFFF; }
+        
+        @media (max-width: 900px) {
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+        }
+
+        /* ================= 共通排版 ================= */
+        .container { max-width: 1050px; margin: 50px auto; padding: 0 20px; }
+        h2.section-title { color: var(--primary-color); text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 40px; font-size: 2.2rem; }
+        h3.category-title { color: var(--primary-color); border-left: 5px solid var(--primary-color); padding-left: 15px; margin-top: 50px; margin-bottom: 20px; font-size: 1.6rem; background: linear-gradient(to right, #eef2f0, transparent); padding-top: 5px; padding-bottom: 5px; }
+        
+        /* ================= Cover Gallery 專用樣式 (折疊設計) ================= */
+        details.cover-gallery-wrapper {
+            margin: 0 0 40px 0;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        details.cover-gallery-wrapper summary {
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            list-style: none; /* 隱藏原生箭頭 */
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #FAFCFB;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        /* 隱藏 Safari/Chrome 原生箭頭 */
+        details.cover-gallery-wrapper summary::-webkit-details-marker { display: none; }
+        details.cover-gallery-wrapper summary:hover { background-color: var(--badge-bg); }
+        
+        /* 自訂展開/收合的加減號圖示 */
+        details.cover-gallery-wrapper summary::after {
+            content: "＋"; 
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        details[open].cover-gallery-wrapper summary::after { content: "－"; }
+        
+        /* 展開後的內容區塊 */
+        .cover-gallery-container {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #EAEAEA;
+        }
+        .cover-gallery-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+        .cover-gallery-img:hover { transform: scale(1.01); }
+
+        /* ================= 極簡期刊風清單設計 ================= */
+        .pub-list { 
+            display: flex; 
+            flex-direction: column; 
+            background: #fff;
+            padding: 10px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        
+        .pub-item { 
+            display: flex; 
+            flex-direction: column;
+            padding: 25px 20px; 
+            margin: 0 -20px; 
+            border-bottom: 1px solid #EAEAEA; 
+            border-radius: 10px; 
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+        }
+        .pub-item:last-child { border-bottom: none; }
+        
+        .pub-item:hover {
+            background-color: #FAFCFB; 
+            box-shadow: 0 10px 25px rgba(44, 76, 59, 0.08); 
+            transform: translateY(-3px); 
+            border-bottom-color: transparent; 
+            z-index: 10;
+        }
+
+        .pub-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 25%;
+            height: 50%;
+            width: 4px;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            opacity: 0;
+            transform: scaleY(0);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .pub-item:hover::before {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+        
+        @media (min-width: 768px) {
+            .pub-item { flex-direction: row; align-items: center; justify-content: space-between; gap: 30px;}
+            .pub-content { flex: 1; }
+            .pub-actions { flex: 0 0 auto; }
+        }
+
+        .pub-title { 
+            font-weight: 700; 
+            color: var(--accent-color); 
+            font-size: 1.15rem; 
+            margin-bottom: 6px; 
+            line-height: 1.3; 
+            transition: color 0.3s ease; 
+        }
+        
+        .pub-item:hover .pub-title { color: var(--primary-color); }
+        .pub-authors { color: #555; font-size: 0.95rem; margin-bottom: 4px; line-height: 1.4;}
+        .pi-name { font-weight: bold; color: var(--primary-color); }
+        .pub-venue { font-size: 0.95rem; color: #222; }
+        .journal-name { font-style: italic; font-weight: 700; color: var(--primary-color); }
+        .pub-year { font-weight: bold; color: #000; }
+
+        .media-list { font-size: 0.85rem; color: #666; margin: 10px 0 0 15px; padding-left: 15px; border-left: 2px solid #ddd; list-style-type: none; }
+        .media-list li { margin-bottom: 4px; }
+        .media-list li::before { content: "📰 "; }
+
+        /* ================= 閱讀文章按鈕 ================= */
+        .pub-actions { margin-top: 10px; }
+        .btn-read { 
+            display: inline-flex; 
+            align-items: center;
+            padding: 6px 16px; 
+            background-color: transparent; 
+            color: var(--primary-color); 
+            border: 1.5px solid var(--primary-color); 
+            border-radius: 30px; 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            transition: all 0.2s ease; 
+            white-space: nowrap;
+        }
+        .btn-read:hover { background-color: var(--primary-color); color: #fff; transform: translateX(3px); }
+
+        /* ================= 視覺化標籤 ================= */
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 8px; vertical-align: middle; }
+        .badge-cover { background-color: var(--badge-gold); color: var(--badge-gold-text); border: 1px solid #FFE4B5; }
+        .badge-media { background-color: var(--badge-bg); color: var(--primary-color); border: 1px solid #D1E0D7; }
+
+        .patent-number { font-family: 'Courier New', Courier, monospace; background: #f4f4f4; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; font-weight: bold; color: #444;}
+
+        footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #D1E0D7; font-size: 0.95rem; margin-top: 50px;}
+
+        /* ================= RWD 手機版適應 ================= */
+        @media (max-width: 850px) {
+            .container { margin-top: 25px; padding: 0 15px; }
+            h2.section-title { font-size: 1.6rem; margin-bottom: 25px; }
+            h3.category-title { font-size: 1.3rem; margin-top: 30px; margin-bottom: 15px; }
+            
+            .pub-list { padding: 5px 15px; }
+            .pub-item { padding: 20px 15px; margin: 0 -15px; }
+            
+            .pub-title { font-size: 1.05rem; }
+            .pub-authors { font-size: 0.9rem; }
+            .pub-venue { font-size: 0.9rem; }
+            
+            .pub-actions { margin-top: 15px; display: flex; justify-content: flex-start; }
+            .badge { display: block; margin-left: 0; margin-top: 5px; width: fit-content; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">DHLab</a>
+        <nav>
+            <a href="index.html">HOME</a> 
+            <a href="member.html">MEMBER</a> 
+            <a href="publications.html" style="border-bottom: 2px solid #FFFFFF;">PUBLICATIONS</a>
+            <a href="research.html">RESEARCH</a> 
+            <a href="activity.html">ACTIVITY</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Publications & Patents</h2>
+
+        <h3 class="category-title">Publications</h3>
+        
+        <div class="pub-list" id="main-pub-list">
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Reversible Thickness Engineering in Amorphous In<sub>2</sub>O<sub>3</sub> Transistors<span class="badge badge-cover">★ Featured on Cover</span></div>
+                    <div class="pub-authors">Y.-Y. Pan, C.-H. Hsu, Robert Tseng, S.-T. Wang, Y.-C. Chang, S.-C. Chen, Takashi Kimura, Y.-W. Lan, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">Nano Letters</span>, <span class="pub-year">2026</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/10.1021/acs.nanolett.5c06228" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Dimensional Scaling Effect in Percolative Oxide Semiconductor Transistors</div>
+                    <div class="pub-authors">R. Tseng, Y.-H. Kuo, Y.-Y. Pan, Z.-H. Li, S.-T. Wang, C.-F. Chen, S.-T. Lo, Y.-C. Chang, Y.-J. Wu, S.-C. Chen, C.-C. Kuo, C.-C. Wang, C.-H. Wu, W.-H. Lu, X. Bao, N. T. P. Thao, E. Minamitan, A. Javey, C.-L. Lin, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, <span class="pub-year">2026</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/10.1021/acsnano.5c21838" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Suppression of Hysteresis in Ultrathin Tellurium Transistors</div>
+                    <div class="pub-authors">S.-T. Wang, K.-W. Li, T.-T. Weng, Y.-C. Chang, C.-C. Chung, C.-H. Lo, S.-C. Chen, T. Ahmed, C.-F. Chen, C.-Y. Chang, S.-T. Lo, Y.-F. Lin, T. Y. T. Hung, C. C. Cheng, I. P. Radu, Y.-L. Chueh, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">npj 2D Materials and Applications</span>, <span class="pub-year">2026</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/s41699-026-00686-1" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Origin of Threshold Voltage Instabilities in Indium Oxide Transistors <span class="badge badge-cover">★ Featured on Cover</span></div>
+                    <div class="pub-authors">T.-J. Lin, S.-C. Chen, Y.-T. Lee, S.-L. Cheng, R. Tseng, S.-T. Wang, Y.-C. Chang, Y.-Y. Pan, C. Y. Chang, T.-T. Chou, C.-H. Lin, C.-S. Ku, C.-L. Lin, P.-T. Liu, H. Kim, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">ACS Applied Materials & Interfaces</span>, <span class="pub-year">2026</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acsami.5c20018" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Enhanced Crystallinity of P‐Type 2D Tellurium Thin Films by Pulsed Laser Annealing Process and Its Applications on High‐Performance Photodetectors and High‐Sensitivity Gas Sensors</div>
+                    <div class="pub-authors">C.-H. Lo, C.-C. Chung, P.-H. Wang, P.-H. Wu, Y.-J. Lin, S.-T. Wang, C.-J. Hsu, S. Jeon, W.-H. Hung, C.-H. Shen, <span class="pi-name">D.-H. Lien*</span>, Y.-L. Chueh</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Functional Materials</span>, e16546, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/adfm.202516546" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Electronic Impact of High-Energy Metal Deposition on Ultrathin Oxide Semiconductors <span class="badge badge-cover">★ Featured on Cover</span></div>
+                    <div class="pub-authors">Y.-Y. Pan, M.-J. Kuo, S.-C. Chen, T. Ahmed, R. Tseng, C.-C. Kei, T.-T. Chou, C.-C. Shih, W.-Y. Woon, S. S. Liao, C. Chen, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">Nano Letters</span>, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/10.1021/acs.nanolett.4c05333" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">HfO<sub>2</sub> Memristor-Based Flexible Radio-Frequency Switches</div>
+                    <div class="pub-authors">S. C. Chen, Y. T. Yang, Y. C. Tseng, K.D. Chiou... C. H. Chien, C. N. Kuo, Y. T. Cheng, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 19, 704−711, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acsnano.4c11846" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">A PSPI/PSEP/PSPI Nanocomposite Polymer Interposer Technology for Wireless Edge-AI Microsystem Integration</div>
+                    <div class="pub-authors">Y. C. Chang, T. Y. You, Y. C. Tseng, S. C. Chen, P. C. Tseng, Y.-T. Cheng, C.-N. Kuo, <span class="pi-name">D.-H. Lien</span>, C. T. M. Wu, Y. T. Yang</div>
+                    <div class="pub-venue"><span class="journal-name">International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers)</span>, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://ieeexplore.ieee.org/abstract/document/11109785" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Homo-Channel WSe<sub>2</sub> n/pFETs with High Performance and On/Off Ratio Using Tunable Doping</div>
+                    <div class="pub-authors">K. H. Chiu, W. C. Wu, H. Y. Huang, J. H. Chih, Y. C. Chang, S. T. Wang, H. Y. Chen, C. Y. Lin, <span class="pi-name">D. H. Lien</span>, C. Hu, C. H. Chien</div>
+                    <div class="pub-venue"><span class="journal-name">Symposium on VLSI Technology and Circuits</span>, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://ieeexplore.ieee.org/abstract/document/11074883" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Deep‐UV silicon polaritonic metasurfaces for enhancing biomolecule autofluorescence and two‐dimensional material double‐resonance raman scattering</div>
+                    <div class="pub-authors">B. R. Lee, M. F. Chiang, P. Y. Ho, C. M. Chang, Z. Y. Chiao, S. C. Chen, <span class="pi-name">D.-H. Lien</span>, J.-S. Huang, P.-Y. Hsiao</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Functional Materials</span>, 35 (14), <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adfm.202570083" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Electrical Control of Electroluminescence in 2D Semiconductor Light Emitting Device through Synchronous Injection of Electrons and Holes</div>
+                    <div class="pub-authors">J. S. Konthoujam, Y. S. Lin, Z. Z. Chen, B. X. Huang, S.-T. Wang, T.-T. Weng, <span class="pi-name">D.-H. Lien</span>, W.-H. Hung</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Materials Technologies</span>, 10 (7), <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/admt.202401743" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Improving the thermal stability of indium oxide n-type field-effect transistors</div>
+                    <div class="pub-authors">C. S. Huang, C. C. Shih, W. W. Tsai, W. Y. Woon, <span class="pi-name">D.-H. Lien</span>, C. H. Chien</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Applied Materials & Interfaces</span>, 17 (3), 5078-5085, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acsami.4c18435" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Breaking the Trade-Off Between Mobility and On–Off Ratio in Oxide Transistors</div>
+                    <div class="pub-authors">Y.-C. Chang, S.-T. Wang, Y.-T. Lee... C.-L. Lin, J. Y.-C. Sun, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">Adv. Mater.</span>, 2413212, <span class="pub-year">2024</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adma.202413212" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Emerging 2D Materials and van der Waals Heterostructures for Advanced NIR, SWIR, and MWIR Emitters<span class="badge badge-cover">★ Featured on Cover</span></div>
+                    <div class="pub-authors">P.-L. Chen, T. Ahmed, C. Kuo, C.-C. Lu, <span class="pi-name">D.-H. Lien*</span>, C.-H. Liu</div>
+                    <div class="pub-venue"><span class="journal-name">Small Methods</span>, 2401550, <span class="pub-year">2024</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/smtd.202401550" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Suppressing threshold voltage drift in sub-2 nm In<sub>2</sub>O<sub>3</sub> transistors with improved thermal stability</div>
+                    <div class="pub-authors">K. KH. Lin, L.-C. Teng, T-T. Weng... C.-H. Chien and <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">IEEE Electron Device Letters</span>, 45, 60, <span class="pub-year">2024</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://ieeexplore.ieee.org/abstract/document/10330598" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Tailoring Electronic Properties of Colloidal Quantum Dots for Efficient Optoelectronics</div>
+                    <div class="pub-authors">T. Ahmed, H. C. Kuo, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Photonics Research</span>, 5 (4), 2300216, <span class="pub-year">2024</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adpr.202300216" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Wide-range and area-selective threshold voltage tunability in ultrathin indium oxide transistors <span class="badge badge-media">Highlighted in media</span></div>
+                    <div class="pub-authors">R. Tseng, S.-T. Wang... W.-Y. Woon, S. S. Liao, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">Nature Communications</span>, 14, 5243, <span class="pub-year">2023</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/s41467-023-41041-y" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Reversible charge transfer doping in atomically-thin In<sub>2</sub>O<sub>3</sub> by viologens <span class="badge badge-cover">★ Featured on Cover</span></div>
+                    <div class="pub-authors">S.-T. Wang, Y.-L. Lin... J.-T. Chen*, and <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">ACS Applied Materials & Interfaces</span>, 16, 5302, <span class="pub-year">2023</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acsami.3c15809" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Multitask Learning for Automated Sleep Staging and Wearable Technology Integration</div>
+                    <div class="pub-authors">H.-Y. Chih, T. Ahmed, A. P. Chiu, Y.-T. Liu, H.-F. Kuo, A.C. Yang, and <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Intelligent Systems</span>, 2300270, <span class="pub-year">2023</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/aisy.202300270" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Toward Perfect Surfaces of Transition Metal Dichalcogenides with Ion Bombardment and Annealing Treatment</div>
+                    <div class="pub-authors">W.-H. Chen... Y.-J. Hsu, <span class="pi-name">D.-H. Lien</span>, C. Hu, J.-P. Chou, M.-F. L., C.-L. Lin</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Appl. Mater. Interfaces</span>, 15, 16153-16161, <span class="pub-year">2023</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acsami.2c21150" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Bright and Efficient Light-Emitting Devices Based on Two-Dimensional Transition Metal Dichalcogenides</div>
+                    <div class="pub-authors">T. Ahmed, J. Zha, K. KH Lin, H.-C. Kuo, C. Tan, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Materials</span>, 2208054, <span class="pub-year">2023</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adma.202208054" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Economical Silicon Nanowire Growth via Cooling Controlled Solid–Liquid–Solid Mechanism</div>
+                    <div class="pub-authors">T. Nguyen, C. H. Hsu, <span class="pi-name">D.-H. Lien</span>, Y. S. Su</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Materials Interfaces</span>, 2202247, <span class="pub-year">2023</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/admi.202202247" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">The Impact of Hot Carrier Injection-Induced Device Degradation for Lower-Power FinFETs</div>
+                    <div class="pub-authors">Y.L. Chen... <span class="pi-name">D.-H. Lien</span>, W.C. Lin... D. Godfrey, C.-H. Wu</div>
+                    <div class="pub-venue"><span class="journal-name">Journal of Electronic Materials</span>, 52 (2), 1391-1399, <span class="pub-year">2023</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://link.springer.com/article/10.1007/s11664-022-10087-x" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Superacid Treatment on Transition Metal Dichalcogenides</div>
+                    <div class="pub-authors">D. Kiriya, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">Nano Express</span>, 3, 034002, <span class="pub-year">2022</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://iopscience.iop.org/article/10.1088/2632-959X/ac87c2/meta" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Bright Mid-Wave Infrared Resonant Cavity Light-Emitting Diodes Based on Black Phosphorus</div>
+                    <div class="pub-authors">N. Gupta, H. Kim, N. S. Azar, S. Z. Uddin, <span class="pi-name">D.-H. Lien</span>, KB Crozier, A Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Nano Letters</span>, 22, 1294-1301, <span class="pub-year">2022</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acs.nanolett.1c04557" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Defect Inspection Techniques in SiC</div>
+                    <div class="pub-authors">P. C. Chen, W. C. Miao, T. Ahmed, Y. Y. Pan, C. L. Lin, S. C. Chen, H. C. Kuo, <span class="pi-name">D.-H. Lien*</span></div>
+                    <div class="pub-venue"><span class="journal-name">Nanoscale Research Letters</span>, 17 (1), 1-17, <span class="pub-year">2022</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://link.springer.com/article/10.1186/s11671-022-03672-w" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Infrared Photodetectors Based on 2D Materials and Nanophotonics</div>
+                    <div class="pub-authors">J. Zha, M. Luo, M. Ye, T. Ahmed, X. Yu, <span class="pi-name">D.-H. Lien</span>, Q. He, D. Lei, J. C. Ho, J. Bullock, K. B. Crozier, C. Tan</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Functional Materials</span>, 32, 2111970, <span class="pub-year">2022</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adfm.202111970" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Study of InGaZnO Thin Film Transistors With Dual Treatment of Pre-Oxidation ZrO2 High-κ Dielectric and Post-Oxidation InGaZnO Channel by Neutral Beam System</div>
+                    <div class="pub-authors">C. H. Wu, S. Y. Lin, W. C. Chung, K. M. Chang, P. T. Liu, <span class="pi-name">D.-H. Lien</span>, Y. H. Lin</div>
+                    <div class="pub-venue"><span class="journal-name">Journal of Nanoelectronics and Optoelectronics</span>, <span class="pub-year">2022</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.ingentaconnect.com/contentone/asp/jno/2021/00000016/00000011/art00007" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Recent Advances in Two-Dimensional Quantum Dots and Their Applications</div>
+                    <div class="pub-authors">K. J. Singh, T. Ahmed... <span class="pi-name">D. H. Lien</span>, S.-C. Chen, Y.-L. Chueh, H.-C. Kuo</div>
+                    <div class="pub-venue"><span class="journal-name">Nanomaterials</span>, 6, 1549, <span class="pub-year">2021</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.mdpi.com/2079-4991/11/6/1549" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Actively variable spectrum optoelectronics with black phosphorus</div>
+                    <div class="pub-authors">H. Kim, S. Z. Uddin, <span class="pi-name">D. H. Lien</span>, M. Yeh, N. S. Azar... K. B. Crozier, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Nature</span>, 596, 232–237, <span class="pub-year">2021</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/s41586-021-03701-1" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Shape-controlled single-crystal growth of InP at low temperatures down to 220 °C</div>
+                    <div class="pub-authors">M. Hettick, H. Li, <span class="pi-name">D. H. Lien</span>, M. Yeh, T.-Y. Yang, M. Amani... A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Proceedings of the National Academy of Sciences (PNAS)</span>, 117 (2) 902-906, <span class="pub-year">2020</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.pnas.org/doi/abs/10.1073/pnas.1915786117" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Evaporated tellurium thin films for p-type field-effect transistors and circuits <span class="badge badge-media">Highlighted in News & Views</span></div>
+                    <div class="pub-authors">C. Zhao, C. Tan, <span class="pi-name">D. H. Lien</span>, X. Song, M. Amani, M. Hettick... A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Nature Nanotechnology</span>, 15, 53–58, <span class="pub-year">2020</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/s41565-019-0585-9" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Deterministic Assembly of Arrays of Lithographically Defined WS<sub>2</sub> and MoS<sub>2</sub> Monolayer Features Directly From Multilayer Sources...</div>
+                    <div class="pub-authors">V. Nguyen, H. Gramling, C. Towle, W. Li, <span class="pi-name">D. H. Lien</span>, H. Kim... H. Taylor</div>
+                    <div class="pub-venue"><span class="journal-name">Journal of Micro and Nano-Manufacturing</span>, 7(4), 041006, <span class="pub-year">2020</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://asmedigitalcollection.asme.org/micronanomanufacturing/article/7/4/041006/1065887/Deterministic-Assembly-of-Arrays-of" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Centimeter-Scale and Visible Wavelength Monolayer Light-Emitting Devices</div>
+                    <div class="pub-authors">J. Cho, M. Amani, <span class="pi-name">D.-H. Lien</span>, H. Kim, M. Yeh, V. Wang, C. Tan, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Functional Materials</span>, 30 (6), 1907941, <span class="pub-year">2020</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adfm.201907941" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Multiplexed Electroluminescent Device for Emission from Long-Wave Infrared to Ultraviolet Wavelength</div>
+                    <div class="pub-authors">Y. Zhao,§ Vivian Wang,§ <span class="pi-name">D. H. Lien,§</span> A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Nature Electronics</span>, 3, 612–621, <span class="pub-year">2020</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/s41928-020-0459-z" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Neutral Exciton Diffusion in Monolayer MoS<sub>2</sub></div>
+                    <div class="pub-authors">S. Z. Uddin, H. Kim, M. Lorenzon, M. Yeh, <span class="pi-name">D. H. Lien</span>, E. S. Barnard... A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 14, 13433–13440, <span class="pub-year">2020</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acsnano.0c05305" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Evaporated Se<sub>x</sub>Te<sub>1-x</sub> Thin Films with Tunable Bandgaps for Short-Wave Infrared Photodetectors</div>
+                    <div class="pub-authors">C. Tan, M. Amani, C. Zhao, M. Hettick, X. Song, <span class="pi-name">D. H. Lien</span>, H. Li... A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Materials</span>, 32, 2001329, <span class="pub-year">2020</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adma.202001329" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Substrate-Dependent Exciton Diffusion and Annihilation in Chemically Treated MoS<sub>2</sub> and WS<sub>2</sub></div>
+                    <div class="pub-authors">A. J. Goodman,§ <span class="pi-name">D.-H. Lien,§</span> G. H. Ahn, L. L. Spiegel, M. Amani, A. P. Willard, A. Javey, W. A. Tisdale</div>
+                    <div class="pub-venue"><span class="journal-name">The Journal of Physical Chemistry C</span>, <span class="pub-year">2020</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acs.jpcc.0c04000" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Electrical Suppression of Non-Radiative Recombination Pathways by Electrostatic Doping in Monolayer Semiconductors <span class="badge badge-media">Highlighted in media</span></div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, S. Z. Uddin, M. Yeh, M. Amani, J. W. Ager, E. Yablonovitch and A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Science</span>, 364, 468–471, <span class="pub-year">2019</span>.</div>
+                    <ul class="media-list">
+                        <li>"You Don’t Have to Be Perfect for TMDCs to Shine Bright", DOE News</li>
+                        <li>"Electrostatic doping improves 2D semiconductor performance", Chemistry World</li>
+                    </ul>
+                </div>
+                <div class="pub-actions"><a href="https://www.science.org/doi/10.1126/science.aaw8053" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Scanning Probe Lithography Patterning of Monolayer Semiconductors and Its Application for Quantifying Edge Recombination</div>
+                    <div class="pub-authors">P. Zhao, R. Wang, <span class="pi-name">D. H. Lien</span>, Y. Zhao, H. Kim, J. Cho, G. H. Ahn, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Materials</span>, 1900136, <span class="pub-year">2019</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adma.201900136" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Optical and electrical properties of two-dimensional palladium diselenide</div>
+                    <div class="pub-authors">G. Zhang, M. Amani, A. Chaturvedi, C. Tan, J. Bullock, X. Song, H. Kim, <span class="pi-name">D. H. Lien</span>, M. C. Scott, H. Zhang, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Applied Physics Letters</span>, 114, 253102, <span class="pub-year">2019</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.semanticscholar.org/paper/Optical-and-electrical-properties-of-palladium-Zhang-Amani/96c502888bcd60ddd33b4537ffc3db84e5d0c23e" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Bright electroluminescence in ambient conditions from WSe<sub>2</sub> p-n diodes using pulsed injection</div>
+                    <div class="pub-authors">K. Han, G. H. Ahn, J. Cho, <span class="pi-name">D. H. Lien</span>, M. Amani, S. B. Desai... A. Javey, M. C. Wu</div>
+                    <div class="pub-venue"><span class="journal-name">Applied Physics Letters</span>, 115, 011103, <span class="pub-year">2019</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.researchgate.net/publication/334150562_Bright_electroluminescence_in_ambient_conditions_from_WSe_2_p-n_diodes_using_pulsed_injection" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Increasing photoluminescence quantum yield by nanophotonic design of quantum-confined halide perovskite nanowire arrays</div>
+                    <div class="pub-authors">D. Zhang, L. Gu, Q. Zhang, Y. Lin, <span class="pi-name">D. H. Lien</span>, M. Kam, S. Poddar, E. Garnett, A. Javey, Z. Fan</div>
+                    <div class="pub-venue"><span class="journal-name">Nano Letters</span>, 19, 2850-2857, <span class="pub-year">2019</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acs.nanolett.8b04887" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Dip Coating Passivation of Crystalline Silicon by Lewis Acids</div>
+                    <div class="pub-authors">W. Ji, Y. Zhao, H. M. Fahad, J. Bullock, T. Allen, <span class="pi-name">D. H. Lien</span>, S. De Wolf, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 13, 3723−3729, <span class="pub-year">2019</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acsnano.9b01038" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Synthetic WSe<sub>2</sub> monolayers with high photoluminescence quantum yield</div>
+                    <div class="pub-authors">H. Kim, G. H. Ahn, J. Cho, M. Amani, J. P. Mastandrea... <span class="pi-name">D. H. Lien</span>, Y. Zhao... A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Science Advances</span>, 5, eaau4728, <span class="pub-year">2019</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.science.org/doi/full/10.1126/sciadv.aau4728" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Large-Area and Bright Pulsed Electroluminescence in Monolayer Semiconductors <span class="badge badge-media">Highlighted in media</span></div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, M. Amani, S. B. Desai, G. H. Ahn, K. Han, J. H. He, J. W. Ager, M. C. Wu, and A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Nature Communications</span>, 9, 1129, <span class="pub-year">2018</span>.</div>
+                    <ul class="media-list">
+                        <li>"Atomically thin light-emitting device opens the possibility for 'invisible' displays", Science Daily / Physics.org</li>
+                        <li>"'Invisible' display: Cal researchers design atomically-thin, light-emitting device", UPI.com</li>
+                        <li>"Atoms-Thick Light Emitting Device Promises the Advent of Transparent Displays", Berkeley News</li>
+                    </ul>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/s41467-018-03218-8" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Resonance-Enhanced Absorption in Hollow Nanoshell Spheres with Omnidirectional Detection, High Responsivity and Speed <span class="badge badge-cover">★ Featured on Cover</span></div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, Z. Dong, J. R. D. Retamal, H. P. Wang, T. C. Wei, D. Wang, J. H. He, Y. Cui</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Materials</span>, 1801972, <span class="pub-year">2018</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adma.201801972" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Self-Powered Nanodevices for Fast UV Detection and Energy Harvesting using Core-Shell Nanowire Geometry</div>
+                    <div class="pub-authors">C. H. Lin,§ H. C. Fu,§ <span class="pi-name">D. H. Lien,§</span> C. Y. Hsu, J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Nano Energy</span>, 51, 294-299, <span class="pub-year">2018</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.sciencedirect.com/science/article/pii/S2211285518304609" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">360° Omnidirectional, Printable and Transparent UV Photodetectors for Flexible Electronics</div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, H. P. Wang, S. B. Chen, Y. C. Chi, C. L Wu, G. R. Lin, Y. C. Liao and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">npj Flexible Electronics</span>, 2, 19, <span class="pub-year">2018</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/s41528-018-0032-2" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">A Nanostructuring Method to Decouple Electrical and Thermal Transport through the Formation of Electrically Triggered Conductive Nanofilaments</div>
+                    <div class="pub-authors">R. Durán Retamal, C.F. Kang, <span class="pi-name">D. H. Lien</span>, W.C. Kuo, Z.Y. Juang... Y. Wu, and J.H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Materials</span>, 30, 1870243, <span class="pub-year">2018</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adma.201705385" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Highly reliable superhydrophobic protection for organic field-effect transistors by fluoroalkylsilane-coated TiO<sub>2</sub> nanoparticles</div>
+                    <div class="pub-authors">D. Yoo, Y. Kim, M. Min, G. H. Ahn, <span class="pi-name">D. H. Lien</span>, J. Jang, H. Jeong... A. Javey, T. Lee</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 12, 11062-11069, <span class="pub-year">2018</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acsnano.8b05224" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Extremely reduced dielectric confinement in two-dimensional hybrid perovskites with large polar organics</div>
+                    <div class="pub-authors">B. Cheng, T.-Y. Li, P. Maity, P.-C. Wei, D. Nordlund... <span class="pi-name">D. H. Lien</span>... J.-H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Communications Physics</span>, 1, 80, <span class="pub-year">2018</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/s42005-018-0082-8" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Methylxanthine drug monitoring with wearable sweat sensors</div>
+                    <div class="pub-authors">L.-C. Tai, W. Gao, M. Chao, M. Bariya... H. M. Fahad, <span class="pi-name">D. H. Lien</span>, H. Ota, G. Cho, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Materials</span>, 30, 1707442, <span class="pub-year">2018</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adma.201707442" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Highly Stable Near-Unity Photoluminescence Yield in Monolayer MoS<sub>2</sub> by Fluoropolymer Encapsulation and Superacid Treatment</div>
+                    <div class="pub-authors">H. Kim,§ <span class="pi-name">D. H. Lien,§</span> M. Amani, J. W. Ager, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 11, 5179-5185, <span class="pub-year">2017</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acsnano.7b02521" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Strain-engineered growth of two-dimensional materials</div>
+                    <div class="pub-authors">G. H. Ahn, M. Amani, H. Rasool, <span class="pi-name">D. H. Lien</span>, J. P. Mastandrea... A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Nature Communications</span>, 8, 608, <span class="pub-year">2017</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/s41467-017-00516-5" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Measuring the Edge Recombination Velocity of Monolayer Semiconductors</div>
+                    <div class="pub-authors">P. Zhao, M. Amani, <span class="pi-name">D. H. Lien</span>, G. H. Ahn, D. Kiriya... D. C. Chrzan, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Nano Letters</span>, 17, 5356–5360, <span class="pub-year">2017</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acs.nanolett.7b01770" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Improved photoswitching response times of MoS<sub>2</sub> field-effect transistors by stacking p-type copper phthalocyanine layer</div>
+                    <div class="pub-authors">J. Pak, M. Min, K. Cho, <span class="pi-name">D. H. Lien</span>, G. H. Ahn, J. Jang, D. Yoo, S. Chung, A. Javey, and T. Lee</div>
+                    <div class="pub-venue"><span class="journal-name">Appl. Phys. Lett.</span>, 109, 183502, <span class="pub-year">2016</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.aip.org/aip/apl/article/109/18/183502/32031" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">High Luminescence Efficiency in MoS<sub>2</sub> Grown by Chemical Vapor Deposition</div>
+                    <div class="pub-authors">M. Amani, R. A. Burke, X. Ji, P. Zhao, <span class="pi-name">D. H. Lien</span>, P. Taheri... M. Dubey, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 10, 6535–6541, <span class="pub-year">2016</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acsnano.6b03443" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Increased Optoelectronic Quality and Uniformity of Hydrogenated p-InP Thin Films</div>
+                    <div class="pub-authors">H. P. Wang, C. M. Sutter-Fella, P. Lobaccaro, M. Hettick... <span class="pi-name">D. H. Lien</span>... J.-H. He, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Chemistry of Materials</span>, 28, 4602–4607, <span class="pub-year">2016</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acs.chemmater.6b01257" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Wearable Microsensor Array for Multiplexed Heavy Metal Monitoring of Body Fluids <span class="badge badge-cover">★ ACS Editors' Choice & Cover</span></div>
+                    <div class="pub-authors">W. Gao, H. Y. Y. Nyein, Z. Shahpar... J. Bullock, Y. Zeng, <span class="pi-name">D. H. Lien</span>, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Sensors</span>, 1, 866–874, <span class="pub-year">2016</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acssensors.6b00287" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Recombination Kinetics and Effects of Superacid Treatment in Sulfur- and Selenium-Based Transition Metal Dichalcogenides</div>
+                    <div class="pub-authors">M. Amani, P. Taheri, R. Addou, G. H. Ahn, D. Kiriya, <span class="pi-name">D. H. Lien</span>... R. M. Wallace, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Nano Letters</span>, 16, 2786–2791, <span class="pub-year">2016</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/acs.nanolett.6b00536" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Dual-functional Resistive Random Access Memory based on the Push-Pull Mechanism of Oxygen Ions</div>
+                    <div class="pub-authors">Y. J. Huang, S. C. Chao, <span class="pi-name">D. H. Lien</span>, C. Y. Wen, J. H. He, S. C. Lee</div>
+                    <div class="pub-venue"><span class="journal-name">Scientific Reports</span>, 6, 23945, <span class="pub-year">2016</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/srep23945" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">A Wearable Integrated Sensor Array for Perspiration Analysis <span class="badge badge-media">Highlighted in media >10</span></div>
+                    <div class="pub-authors">W. Gao, S. Emaminejad... D. Kiriya, <span class="pi-name">D. H. Lien</span>, G. A. Brooks, R. W. Davis, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Nature</span>, 529, 509–514, <span class="pub-year">2016</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/nature16521" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Monolithic 3D CMOS using Layered Semiconductors</div>
+                    <div class="pub-authors">A. B. Sachid, M. Tosun, S. B. Desai, C. Y. Hsu, <span class="pi-name">D. H. Lien</span>... Y. L. Chueh, C. M. Hu, A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Adv. Mater.</span>, 28, 2547–2554, <span class="pub-year">2016</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://doi.org/10.1002/adma.201505113" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Near-Unity Photoluminescence Quantum Yield in MoS<sub>2</sub> <span class="badge badge-media">Highlighted in media</span></div>
+                    <div class="pub-authors">M. Amani,§ <span class="pi-name">D. H. Lien,§</span> D. Kiriya,§ J. Xiao, A. Azcatl... X. Zhang, E. Yablonovitch, and A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Science</span>, 350, 1065, <span class="pub-year">2015</span>.</div>
+                    <ul class="media-list">
+                        <li>"Coming to a monitor near you: a defect-free, molecule-thick film", UC Berkeley News</li>
+                        <li>"Technology Tackling Climate Change", EE Times</li>
+                        <li>"Conquering the Monolayer-Defect Problem", Optics and Photonics News</li>
+                        <li>NSF & DOE Office of Science front page</li>
+                    </ul>
+                </div>
+                <div class="pub-actions"><a href="https://www.science.org/doi/full/10.1126/science.aad2114" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Surface Effect in Metal Oxide-Based Nanoscale Devices <span class="badge badge-media">Invited Review Paper</span></div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, J. R. D. Retamal, J. J. Ke, C.F. Kang and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Nanoscale</span>, 7, 19874, <span class="pub-year">2015</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.rsc.org/en/content/articlelanding/2015/nr/c5nr06494e/unauth" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Engineering Light Outcoupling in 2D Materials</div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, J. S. Kang, M. Amani, K. Chen... S.C. Lee, J.H. He and A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Nano Letters</span>, 15, 1356, <span class="pub-year">2015</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/nl504632u" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Inkjet-Printed Transparent Nanowire Thin Film Features for UV Photodetectors</div>
+                    <div class="pub-authors">S.P. Chen, J.R.D. Retamal, <span class="pi-name">D. H. Lien</span>, J.H. He, Y.C. Liao</div>
+                    <div class="pub-venue"><span class="journal-name">RSC Adv.</span>, 5, 70707-70712, <span class="pub-year">2015</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.rsc.org/en/content/articlehtml/2015/ra/c5ra12617g" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">MoS<sub>2</sub> Heterojunctions by Thickness Modulation</div>
+                    <div class="pub-authors">M. Tosun, D. Fu, S. B. Desai, C. Ko, J. S. Kang, <span class="pi-name">D. H. Lien</span>, M. Najmzadeh... A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">Scientific Reports</span>, 5, 10990, <span class="pub-year">2015</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/srep10990" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Shape-Dependent Light Harvesting of 3-D Gold Nanocrystals on Bulk Heterojunction Solar Cells</div>
+                    <div class="pub-authors">W. H. Tseng, C. Y. Chiu... <span class="pi-name">D. H. Lien</span>... M. Huang, P. T. Chou</div>
+                    <div class="pub-venue"><span class="journal-name">J. Phys. Chem. A</span>, 119, 7554-7564, <span class="pub-year">2015</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/jp512192e" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">A Fully Transparent Resistive Memory for Extremely Harsh Environments</div>
+                    <div class="pub-authors">P. K. Yang, C. H. Ho, <span class="pi-name">D. H. Lien</span>, J. R. Durán Retamal... C. I. Wu and Jr-Hau He</div>
+                    <div class="pub-venue"><span class="journal-name">Scientific Reports</span>, 5, 15087, <span class="pub-year">2015</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/srep15087" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Dual-Gated MoS<sub>2</sub>/WSe<sub>2</sub> van der Waals Tunnel Diodes and Transistors</div>
+                    <div class="pub-authors">T. Roy, M. Tosun, X. Cao, H. Fang, <span class="pi-name">D. H. Lien</span>, P. Zhao, Y. L. Chueh, J. Guo, and A. Javey</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 9, 2071, <span class="pub-year">2015</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/nn507278b" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Harsh Photovoltaics using InGaN/GaN Multiple Quantum Well Schemes</div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, Y-H Hsiao, S-G Yang, M-L Tsai, T-C Wei, S. C. Lee, and J-H He</div>
+                    <div class="pub-venue"><span class="journal-name">Nano Energy</span>, 11, 104-109, <span class="pub-year">2015</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.sciencedirect.com/science/article/pii/S2211285514200140" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Paper Memory by All-Printing Technology <span class="badge badge-media">Highlighted Paper</span></div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, Z. K. Kuo, T. H. Huang, S. C. Lee, Y. C. Liao, and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Digest of Symposium on VLSI Technology</span>, 978-1-4799-3332, <span class="pub-year">2014</span>.</div>
+                    <ul class="media-list">
+                        <li>"Memory Cells Built on Paper" IEEE SPECTRUM / Communications of ACM</li>
+                        <li>"Fine prints and gigabits of data: on paper" EE Times Europe</li>
+                    </ul>
+                </div>
+                <div class="pub-actions"><a href="https://ieeexplore.ieee.org/abstract/document/6894364" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">All-Printed Paper Memory <span class="badge badge-media">Top 20 Most Read</span></div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, Z. K. Kuo, T. H. Huang, S. C. Lee, Y. C. Liao, and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 8, 7613–7619, <span class="pub-year">2014</span>.</div>
+                    <ul class="media-list">
+                        <li>"Researchers Print Electronic Memory On Paper" Chemical & Engineering News (C&EN)</li>
+                        <li>"Foldable PC Memory 3D Printed on Normal Paper," SOFTPEDIA</li>
+                    </ul>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/nn501231z" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Photon Management in Nanostructured Solar Cells <span class="badge badge-media">Invited Review</span></div>
+                    <div class="pub-authors">H. P. Wang, <span class="pi-name">D. H. Lien</span>, M. L. Tsai, C. A. Lin, H. C. Chang, K. Y. Lai, J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">J. Mater. Chem. C.</span> 2, 3144-3171, <span class="pub-year">2014</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.rsc.org/en/content/articlelanding/2014/tc/c3tc32067g/unauth" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Low-resistivity C54-TiSi<sub>2</sub> as a sidewall-confinement nanoscale electrode for three-dimensional vertical resistive memory</div>
+                    <div class="pub-authors">J. R. D. Retamal, C.F. Kang, P.K. Yang, C.P. Lee, <span class="pi-name">D. H. Lien</span>, C.H. Ho, J.H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Appl. Phys. Lett.</span>, 105, 182101, <span class="pub-year">2014</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.semanticscholar.org/paper/Low-resistivity-C54-TiSi2-as-a-sidewall-confinement-Retamal-Kang/483b834b75c00ea52e5f217224d3a20c9dce365d" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">A Broadband and Omnidirectional Light-Harvesting Scheme Employing Nanospheres on Si Solar Cells</div>
+                    <div class="pub-authors">G. J. Lin, H. P. Wang, <span class="pi-name">D. H. Lien</span>, P. H. Fu, H. C. Chang... K. Y. Lai, and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Nano Energy</span>, 6, 36-43, <span class="pub-year">2014</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.sciencedirect.com/science/article/pii/S2211285514000330" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">See-Through Ga<sub>2</sub>O<sub>3</sub> Solar-Blind Photodetectors for Use in Harsh Environments</div>
+                    <div class="pub-authors">T. C. Wei, D. S. Tsai, P. Ravadgar, J. J. Ke, M. L. Tsai, <span class="pi-name">D. H. Lien</span>... and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">IEEE J. Select. Topics Quantum Elect.</span>, 6, 3802006, <span class="pub-year">2014</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://ieeexplore.ieee.org/abstract/document/6809845" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Concurrent Improvement in Photogain and Recovery Time of a Single Metal Oxide Nanowire through Enhancing Surface Band Bending via Incorporating Nanoscale Heterojunction</div>
+                    <div class="pub-authors">J. R. D. Retamal, C. Y. Chen, <span class="pi-name">D. H. Lien</span>, M. R. S. Huang, C. A. Lin, C. P. Liu, and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Photonics</span>, 1, 354-359, <span class="pub-year">2014</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/ph4001108" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">[Resistive memory for harsh electronics: Immunity to surface effect and high corrosion resistance via surface modification]</div>
+                    <div class="pub-authors">T. H. Huang, P. K. Yang, <span class="pi-name">D. H. Lien</span>, C. F. Kang, M. L. Tsai, and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Scientific Reports</span>, 4, 4402, <span class="pub-year">2014</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/srep04402" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Trilayered MoS<sub>2</sub> Metal-Semiconductor-Metal Photodetectors: Photogain and Radiation Resistance</div>
+                    <div class="pub-authors">D. S. Tasi, <span class="pi-name">D. H. Lien</span>, M. L. Tasi, S. H. Su... L. J. Li and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">IEEE J. Select. Topics Quantum Elect.</span>, 20, 3800206, <span class="pub-year">2014</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://ieeexplore.ieee.org/document/6553644" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Few Layer MoS<sub>2</sub> with Broadband High Photogain and Fast Optical Switching for Use in Harsh Environments</div>
+                    <div class="pub-authors">D. S. Tsai, K. K. Liu, <span class="pi-name">D. H. Lien</span>, M. L. Tsai, C. F. Kang, C. A. Lin, L. J. Li, J. H. He*</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 7, 3905, <span class="pub-year">2013</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/nn305301b" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Light Extraction Enhancement with Radiation Pattern Shaping of Light Emitting Diodes by Waveguiding Syringe-Like Nanorods with Optical Impedance-Matching Tapered Tips <span class="badge badge-cover">★ Featured on Cover</span></div>
+                    <div class="pub-authors">Y. H. Hsiao, C. Y. Chen, L. C. Huang, G. J. Lin, <span class="pi-name">D. H. Lien</span>, J. J. Huang, and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Nanoscale</span>, 6, 2624-2628, <span class="pub-year">2013</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.rsc.org/en/content/articlelanding/2014/nr/c3nr05226e/unauth" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">An Efficient Light Extraction Scheme for GaN-Based Light-Emitting Diodes Employing a Hierarchical Structure Consisting of p-GaN Microdomes and SiO<sub>2</sub> Nanorods</div>
+                    <div class="pub-authors">C. H. Ho, Y. H. Hsiao, <span class="pi-name">D. H. Lien</span>, K. Y. Lai, C. C. Sun, and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Appl. Phys. Lett.</span>, 103, 161104, <span class="pub-year">2013</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.researchgate.net/publication/260691981_Enhanced_light-extraction_from_hierarchical_surfaces_consisting_of_p-GaN_microdomes_and_SiO2_nanorods_for_GaN-based_light-emitting_diodes" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">An energy-harvesting scheme employing CuGaSe<sub>2</sub> quantum dot-modified ZnO buffer layers for drastic conversion efficiency enhancement in inorganic–organic hybrid solar cells <span class="badge badge-cover">★ Featured on Cover</span></div>
+                    <div class="pub-authors">C. R. Ho, M. L. Tasi, H. J. Jhuo, <span class="pi-name">D. H. Lien</span>, C. A. Lin, S. H. Tsai, T. C. Wei... and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Nanoscale</span>, 5, 6189, <span class="pub-year">2013</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.rsc.org/en/content/articlelanding/2013/nr/c3nr34155k/unauth" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Solar-blind Photodetectors for Harsh Electronics</div>
+                    <div class="pub-authors">D.S. Tsai, W.C. Lien, <span class="pi-name">D. H. Lien</span>, K.M. Chen, M.L. Tsai, D.G. Senesky... and J.H. He*</div>
+                    <div class="pub-venue"><span class="journal-name">Scientific Reports</span>, 4, 2628, <span class="pub-year">2013</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.nature.com/articles/srep02628" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Ultrasound thermal mapping based on a hybrid method combining cross-correlation and zero-crossing tracking</div>
+                    <div class="pub-authors">C. W. Huang, <span class="pi-name">D. H. Lien</span>, B. T. Chen, Jay Shieh, P. H. Tsui, C. S. Chen and W. S. Chen</div>
+                    <div class="pub-venue"><span class="journal-name">J. Acoust. Soc. Am.</span>, 134, 1530, <span class="pub-year">2013</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.researchgate.net/publication/255713746_Ultrasound_thermal_mapping_based_on_a_hybrid_method_combining_cross-correlation_and_zero-crossing_tracking" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Probing Surface Band Bending of Surface-Engineered Metal Oxide Nanowires</div>
+                    <div class="pub-authors">C. Y. Chen, J. R. D. Retamal, I. W. Wu, <span class="pi-name">D. H. Lien</span>, M. W. Chen, Y. Ding, Y. L. Chueh, C. I. Wu, and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 6, 9366, <span class="pub-year">2012</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/nn205097e" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Critical Capillary Absorption of Current-Melted Silver Nanodroplets into Multiwalled Carbon Nanotubes</div>
+                    <div class="pub-authors">Y. S. Chen, Y. C. Chang, S. C. Wang, L. Y. Chen, <span class="pi-name">D. H. Lien</span>, L. J. Chen, and C. S. Chang</div>
+                    <div class="pub-venue"><span class="journal-name">Small</span>, 8, 2158, <span class="pub-year">2012</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://onlinelibrary.wiley.com/doi/10.1002/smll.201200393" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Hierarchical Structures Consisting of SiO<sub>2</sub> Nanorods and p-GaN Microdomes for Efficiently Harvesting Solar Energy...</div>
+                    <div class="pub-authors">C. H. Ho, <span class="pi-name">D. H. Lien</span>, H. C. Chang, C. A. Lin, C. F. Kang, M. K. Hsing, K. Y. Lai, and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Nanoscale</span>, 4, 7346, <span class="pub-year">2012</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.rsc.org/en/content/articlelanding/2012/nr/c2nr32746e/unauth" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">A Supersensitive, Ultrafast, and Broadband Light-Harvesting Scheme Employing Carbon Nanotube/TiO<sub>2</sub> Core-Shell Nanowire Geometry</div>
+                    <div class="pub-authors">C. Y. Hsu,§ <span class="pi-name">D. H. Lien,§</span> S. Y. Lu, C. Y. Chen, C. F. Kang, W. K. Hsu, and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 6, 6687, <span class="pub-year">2012</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/nn3011625" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">4H-SiC Metal-Semiconductor-Metal Ultraviolet Photodetectors in Operation of 450°C</div>
+                    <div class="pub-authors">W. C. Lien, D. S. Tasi, <span class="pi-name">D. H. Lien</span>, D. G. Senesky, J. H. He and A. P. Pisano</div>
+                    <div class="pub-venue"><span class="journal-name">IEEE Electron Dev. Lett.</span>, 33, 1586, <span class="pub-year">2012</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://ieeexplore.ieee.org/abstract/document/6329395" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Temperature Mapping Technique Based on Ultrasound Signal Analysis</div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, J. C. Wang, C. C. Chang, C. N. Chen and W. S. Chen</div>
+                    <div class="pub-venue"><span class="journal-name">Phys. Med. Biol.</span>, 37, S153, <span class="pub-year">2011</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.umbjournal.org/article/S0301-5629(11)01025-8/fulltext" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Direct-current nanogenerator based on ZnO nanotube arrays</div>
+                    <div class="pub-authors">Y. Xi, <span class="pi-name">D. H. Lien</span>, R. S. Yang, C. Xu and C. G. Hu</div>
+                    <div class="pub-venue"><span class="journal-name">Phys. Status Solidi</span>, 5, 77, <span class="pub-year">2011</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/pssr.201004466" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Enhanced Recovery Speed of Nanostructured ZnO Photodetectors Using Nanobelt Networks</div>
+                    <div class="pub-authors">C. Y. Chen, M. W. Chen, C. Y. Hsu, <span class="pi-name">D. H. Lien</span>, M. J. Chen, and J. H. He*</div>
+                    <div class="pub-venue"><span class="journal-name">IEEE J. Select. Topics Quantum Elect.</span>, 18, 1807, <span class="pub-year">2011</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://ieeexplore.ieee.org/abstract/document/6202317" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Single ZnO Micro-/Nanowire Photodetector by Piezo-phototronic Effect</div>
+                    <div class="pub-authors">Q. Yang, X. Guo, W. H. Wang, Y. Zhang, S. Xu, <span class="pi-name">D. H. Lien</span>, and Zhong Lin Wang</div>
+                    <div class="pub-venue"><span class="journal-name">ACS Nano</span>, 4, 6285, <span class="pub-year">2010</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.acs.org/doi/full/10.1021/nn1022878" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Resonance frequency shift of a carbon nanotube with a silver nanoparticle adsorbed at various positions</div>
+                    <div class="pub-authors">S. C. Wang, Y. C. Chang, <span class="pi-name">D. H. Lien</span>, Tung Hsu, and C. S. Chang</div>
+                    <div class="pub-venue"><span class="journal-name">Appl. Phys. Lett.</span>, 97, 133105, <span class="pub-year">2010</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.researchgate.net/publication/257964948_Resonance_frequency_shift_of_a_carbon_nanotube_with_a_silver_nanoparticle_adsorbed_at_various_positions" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Photoconductive enhancement of single ZnO nanowire through localized Schottky effects</div>
+                    <div class="pub-authors">M. W. Chen, C. Y. Chen, <span class="pi-name">D. H. Lien</span>, Yong Ding and J. H. He</div>
+                    <div class="pub-venue"><span class="journal-name">Optics Express</span>, 18, 14836, <span class="pub-year">2010</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-18-14-14836&id=202882" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Single-InN-Nanowire Nanogenerator with Upto 1 V Output Voltage</div>
+                    <div class="pub-authors">C. T. Huang, Jinhui Song, C. M. Tsai, W. F. Lee, <span class="pi-name">D. H. Lien</span>, Zhiyuan Gao, Yue Hao, L-J Chen and Zhong Lin Wang</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Materials</span>, 22, 4008–4013, <span class="pub-year">2010</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adma.201000981" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Strain promoted conductivity of doped carbon nanotubes</div>
+                    <div class="pub-authors">H. F. Kuo, C. T Hsu, <span class="pi-name">D. H. Lien</span>, S. H. Syue, Y. S. Kao, C. C. Li, Y. F. Li, W. Chin, S. C. Chang, B. Y. Wei</div>
+                    <div class="pub-venue"><span class="journal-name">Appl. Phys. Lett.</span>, 93, 223111, <span class="pub-year">2008</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.aip.org/aip/apl/article-abstract/93/22/223111/131497/Strain-promoted-conductivity-of-doped-carbon?redirectedFrom=fulltext" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Gas sensing improvement of carbon nanotubes by NH<sub>4</sub>OH–flash treatment: a nondestructive purification technique</div>
+                    <div class="pub-authors">H. F. Kuo, <span class="pi-name">D. H. Lien</span>, W. K. Hsu, N. H. Taia, S. C. Chang</div>
+                    <div class="pub-venue"><span class="journal-name">J. Mater. Chem.</span>, 17, 3581, <span class="pub-year">2007</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.rsc.org/en/content/articlelanding/2007/jm/b710000k/unauth" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Nondipolar liquid migration on carbon nanotube films at low field</div>
+                    <div class="pub-authors">H. F. Kuo, <span class="pi-name">D. H. Lien</span> and W. K. Hsu</div>
+                    <div class="pub-venue"><span class="journal-name">Appl. Phys. Lett.</span>, 89, 044109, <span class="pub-year">2006</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://www.researchgate.net/publication/252107294_Nondipolar_liquid_migration_on_carbon_nanotube_films_at_low_field" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Segmentation of single-walled carbon nanotubes by camera flash</div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, H. F. Kuo, W. K. Hsu and N. H. Tai</div>
+                    <div class="pub-venue"><span class="journal-name">Appl. Phys. Lett.</span>, 88, 093113, <span class="pub-year">2006</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://pubs.aip.org/aip/apl/article-abstract/88/9/093113/331694/Segmentation-of-single-walled-carbon-nanotubes-by" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Photocurrent amplification at carbon nanotube-metal contacts</div>
+                    <div class="pub-authors"><span class="pi-name">D. H. Lien</span>, W. K. Hsu, H-W Zan, N. H. Tai and C. H. Tsai</div>
+                    <div class="pub-venue"><span class="journal-name">Advanced Materials</span>, 18, 98- 103, <span class="pub-year">2006</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adma.200500912" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+        </div> 
+
+        <h3 class="category-title" style="margin-top: 0;">Cover Gallery</h3>
+        <div class="cover-gallery-container">
+            <a href="images/publications/cover_gallery.png" target="_blank" title="Click to view full size">
+                <img src="images/publications/cover_gallery_re.png" alt="DHLab Featured Covers" class="cover-gallery-img" style="cursor: zoom-in;">
+            </a>
+        </div>
+        
+        <h3 class="category-title">Patents</h3>
+        <div class="pub-list">
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Micro light-emitting diodes</div>
+                    <div class="pub-venue">US patent, Appl. No. <span class="patent-number">18239330</span></div>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Vertically stacked light-emitting diode structure</div>
+                    <div class="pub-venue">US patent, Appl. No. <span class="patent-number">18373488</span></div>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Method for passivation/repairing defects on semiconductor surfaces</div>
+                    <div class="pub-venue">US Patent, US Patent App. <span class="patent-number">15/294,707</span></div>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">All-printed paper memory</div>
+                    <div class="pub-venue">US Patent, US Patent App. <span class="patent-number">14/986,380</span></div>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">High-Precision Ultrasound Temperature Mapping</div>
+                    <div class="pub-venue">Taiwan Patent, No. <span class="patent-number">I-443319</span></div>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Ultrasound Temperature Mapping System and Method</div>
+                    <div class="pub-venue">US Patent, US Patent App. <span class="patent-number">13/418,702</span></div>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Transient Electroluminescence Device</div>
+                    <div class="pub-venue">US Patent, US Patent App. No. <span class="patent-number">62/636,670</span></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <footer>
+        <p>© 2026 DHLab. National Yang Ming Chiao Tung University.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>DHLab | Awards</title>
+    <style>
+        /* ================= 基礎設定 ================= */
+        :root { 
+            --bg-color: #F8F9FA; 
+            --primary-color: #2C4C3B; 
+            --secondary-color: #3A634D;
+            --text-color: #333333; 
+            --card-bg: #FFFFFF;
+        }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        
+        /* ================= 導覽列 ================= */
+        header { background-color: var(--primary-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: #FFFFFF; text-decoration: none; }
+        nav { display: flex; gap: 20px; }
+        nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding-bottom: 5px; transition: 0.3s;}
+        nav a:hover { border-bottom: 2px solid #FFFFFF; }
+        
+        /* ================= 共通排版 ================= */
+        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+        h2.section-title { color: var(--primary-color); text-align: center; font-size: 2.2rem; margin-bottom: 70px; letter-spacing: 1px; }
+
+        /* ================= 頂級高冷感時間軸 ================= */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 50px; }
+        
+        /* 極簡引導線 */
+        .timeline::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 20px; 
+            height: 100%; 
+            width: 2px; 
+            background: #E5E7EB; 
+        }
+
+        .timeline-item { 
+            position: relative; 
+            margin-bottom: 60px; 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* 時間軸節點：平時是低調的小灰點 */
+        .timeline-item::before { 
+            content: ''; 
+            position: absolute; 
+            top: 8px; 
+            left: -34px; 
+            width: 10px; 
+            height: 10px; 
+            background: #D1D5DB; 
+            border: 3px solid var(--bg-color); 
+            border-radius: 50%; 
+            z-index: 2; 
+            transition: all 0.4s ease;
+        }
+
+        .timeline-year { 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            color: #9CA3AF; 
+            margin-bottom: 12px; 
+            display: inline-block; 
+            transition: color 0.4s ease;
+        }
+
+        /* 卡片本體 */
+        .timeline-content { 
+            position: relative;
+            background: var(--card-bg); 
+            padding: 35px 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02), 0 10px 15px rgba(0, 0, 0, 0.03); 
+            border: 1px solid #F3F4F6;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        /* 隱藏的左側科技感發光線條 (Precision Trace) */
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0; 
+            left: 0;
+            width: 4px;
+            height: 0%;
+            background: var(--primary-color);
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ================= 🔥 特效核心：劇院級絕對對焦 ================= */
+        /* 當滑鼠進入整個時間軸區域時，所有節點稍微變暗 */
+        .timeline:hover .timeline-item {
+            opacity: 0.4;
+            transform: scale(0.98);
+            filter: grayscale(80%);
+        }
+
+        /* 當滑鼠指到「特定卡片」時，該卡片完全高亮並浮現 */
+        .timeline .timeline-item:hover {
+            opacity: 1;
+            transform: scale(1.02);
+            filter: grayscale(0%);
+            z-index: 10;
+        }
+
+        /* 懸停時：節點變色放大 */
+        .timeline-item:hover::before {
+            background: var(--primary-color);
+            transform: scale(1.5);
+            box-shadow: 0 0 0 4px rgba(44, 76, 59, 0.1);
+        }
+
+        /* 懸停時：年份變色 */
+        .timeline-item:hover .timeline-year {
+            color: var(--primary-color);
+        }
+
+        /* 懸停時：卡片左側光束展開、產生高質感懸浮陰影 */
+        .timeline-item:hover .timeline-content {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-color: transparent;
+        }
+        .timeline-item:hover .timeline-content::before {
+            height: 100%;
+        }
+
+        /* ================= 內容排版細節 ================= */
+        .award-group { position: relative; z-index: 2; margin-bottom: 25px; }
+        .award-group:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .award-group:not(:last-child) { border-bottom: 1px solid #F3F4F6; padding-bottom: 25px; }
+
+        .award-title { font-weight: 700; font-size: 1.25rem; color: #111827; margin-bottom: 6px; }
+        .award-desc { font-size: 0.95rem; color: #4B5563; margin-bottom: 0; line-height: 1.6; }
+        
+        .award-link { display: inline-block; margin-top: 10px; font-size: 0.9rem; color: var(--secondary-color); text-decoration: none; font-weight: 600; transition: 0.2s;}
+        .award-link:hover { color: var(--primary-color); text-decoration: underline; }
+
+        /* ================= 極簡相簿按鈕 ================= */
+        .view-photo-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 15px;
+            padding: 6px 0;
+            font-size: 0.9rem;
+            color: #6B7280;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .view-photo-btn::after { /* 按鈕底線特效 */
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        .view-photo-btn:hover { color: var(--primary-color); }
+        .view-photo-btn:hover::after { width: 100%; }
+        .view-photo-btn.active { color: var(--primary-color); }
+        .view-photo-btn.active::after { width: 100%; }
+
+        .award-gallery {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, margin-top 0.3s ease;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center; 
+        }
+        .award-gallery.expanded { max-height: 500px; margin-top: 20px; }
+        
+        .gallery-img {
+            height: 120px; 
+            width: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: zoom-in;
+            border: 1px solid #F3F4F6;
+            transition: all 0.3s ease;
+        }
+        .gallery-img:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* ================= 燈箱效果 ================= */
+        #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: zoom-out; backdrop-filter: blur(5px); }
+        #lightbox img { max-width: 90%; max-height: 90%; border-radius: 4px; box-shadow: 0 0 40px rgba(0,0,0,0.5); object-fit: contain; }
+        .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 50px; cursor: pointer; transition: 0.3s;}
+        .close-lightbox:hover { transform: scale(1.1); color: #E5E7EB;}
+
+        footer { background-color: #F3F4F6; padding: 40px 20px; margin-top: 80px; text-align: center; color: #6B7280; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">DHLab</a>
+        <nav>
+            <a href="index.html">HOME</a> 
+            <a href="member.html">MEMBER</a> 
+            <a href="publications.html">PUBLICATIONS</a>
+            <a href="research.html">RESEARCH</a> 
+            <a href="awards.html" style="border-bottom: 2px solid #FFFFFF;">AWARDS</a> 
+            <a href="activity.html">ACTIVITY</a>
+        </nav>
+    </header>
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged Photo">
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Honors & Awards</h2>
+
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-content">
+                    <div class="award-group">
+                        <div class="award-title">Simon M. Sze Junior Chair Professor</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-content">
+                    <div class="award-group">
+                        <div class="award-title">Yushan Young Scholar (2nd term)</div>
+                        <div class="award-desc">Supported by the Ministry of Education (MOE)</div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+                    <div class="award-group">
+                        <div class="award-title">Micron Innovation Award</div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <div class="award-group">
+                        <div class="award-title">NARLabs R&D Platform Excellence Award</div>
+                        <div class="award-desc">Research and application of atomically thin oxide semiconductors</div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2022</div>
+                <div class="timeline-content">
+                    <div class="award-group">
+                        <div class="award-title">International Association of Advanced Materials (IAAM) Fellow</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-content">
+                    <div class="award-group">
+                        <div class="award-title">Outstanding Young Scholar</div>
+                        <div class="award-desc">The Electronics Device and Materials Association (EDMA)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2020</div>
+                <div class="timeline-content">
+                    <div class="award-group">
+                        <div class="award-title">Yushan Young Scholar</div>
+                        <div class="award-desc">Supported by the Ministry of Education (MOE)</div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+                    <div class="award-group">
+                        <div class="award-title">ASPEED Junior Chair Professor</div>
+                        <div class="award-desc">Supported by ASPEED TECHNOLOGY INC.</div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2016</div>
+                <div class="timeline-content">
+                    <div class="award-group">
+                        <div class="award-title">First Prize of the Lam Research Award</div>
+                        <div class="award-desc">Lam Research Corporation, Fremont, CA, U.S.A<br>An award granted for cultivated excellent technology researcher</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2015</div>
+                <div class="timeline-content">
+                    <div class="award-group">
+                        <div class="award-title">IEEE EDS PhD Fellowship</div>
+                        <div class="award-desc">IEEE Electron Devices Society<br>The winner of the award in 2015</div>
+                        <a href="http://eds.ieee.org/phd-student-fellowship-program-awards.html" target="_blank" class="award-link">View Official Award Page ➜</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 DHLab. National Yang Ming Chiao Tung University.</p>
+    </footer>
+
+    <script>
+        function togglePhotos(btn) {
+            const gallery = btn.nextElementSibling;
+            
+            if (gallery.children.length === 0) {
+                alert("Photos will be updated soon!");
+                return;
+            }
+
+            gallery.classList.toggle('expanded');
+            btn.classList.toggle('active');
+            
+            if (gallery.classList.contains('expanded')) {
+                if (!btn.hasAttribute('data-original-text')) {
+                    btn.setAttribute('data-original-text', btn.innerHTML);
+                }
+                btn.innerHTML = 'Close Photos ✖';
+            } else {
+                btn.innerHTML = btn.getAttribute('data-original-text');
+            }
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+    </script>
+</body>
+</html>
