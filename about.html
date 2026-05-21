@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>About Me | Rospawan Lab</title>
+    
+    <meta name="description" content="About Ali Rospawan — background, interests, and contact information.">
+
+    <style>
+        /* ================= Base Setup ================= */
+        :root { 
+            --bg-color: #F5F4F0; 
+            --primary-color: #2C4C3B; 
+            --secondary-color: #3A634D;
+            --accent-gold: #B87500;
+            --text-color: #333333; 
+        }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
+        
+        /* ================= Header / Nav ================= */
+        header { background-color: var(--primary-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: #FFFFFF; text-decoration: none; }
+        nav { display: flex; gap: 20px; }
+        nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding-bottom: 5px; transition: 0.3s;}
+        nav a:hover, .nav-active { border-bottom: 2px solid #FFFFFF; }
+
+        /* ================= Container ================= */
+        .container { max-width: 1100px; margin: 50px auto 100px; padding: 0 20px; }
+        
+        /* ================= Profile Hero ================= */
+        .profile-hero {
+            background: #fff;
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .profile-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #EAEAEA;
+            border: 6px solid var(--primary-color);
+            display: block;
+        }
+        .profile-photo-placeholder {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 5rem;
+            font-weight: 800;
+            border: 6px solid var(--primary-color);
+        }
+        .profile-info h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #111;
+            margin: 0 0 8px 0;
+            line-height: 1.1;
+        }
+        .profile-info .tagline {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin: 0 0 20px 0;
+        }
+        .profile-info p {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ================= Bento Cards ================= */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .bento-item { 
+            background: #fff; 
+            border-radius: 16px; 
+            padding: 40px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04); 
+            transition: transform 0.3s, box-shadow 0.3s; 
+        }
+        .bento-item:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+        }
+        .tag { 
+            font-size: 0.85rem; 
+            font-weight: bold; 
+            padding: 6px 16px; 
+            border-radius: 20px; 
+            display: inline-block; 
+            margin-bottom: 20px; 
+            background: #EAF0EC; 
+            color: var(--primary-color); 
+        }
+        .bento-title { 
+            font-size: 1.6rem; 
+            font-weight: 800; 
+            color: #111; 
+            margin-top: 0; 
+            margin-bottom: 20px; 
+        }
+        .bento-item p, .bento-item li {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        .bento-item ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .bento-item li {
+            margin-bottom: 10px;
+        }
+
+        /* ================= Timeline Items ================= */
+        .timeline-row {
+            border-left: 4px solid var(--primary-color);
+            padding: 8px 0 8px 20px;
+            margin-bottom: 18px;
+        }
+        .timeline-row:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-date {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .timeline-text {
+            font-size: 1.02rem;
+            color: #333;
+        }
+        .timeline-text strong {
+            color: #111;
+        }
+
+        /* ================= Contact ================= */
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 1.05rem;
+            color: #333;
+        }
+        .contact-row strong {
+            color: var(--primary-color);
+            min-width: 80px;
+        }
+        .contact-row a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact-row a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= Footer ================= */
+        footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #D1E0D7; font-size: 0.95rem; }
+
+        /* ================= Mobile ================= */
+        @media (max-width: 900px) {
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+            
+            .container { margin-top: 25px; padding: 0 15px; }
+            
+            .profile-hero {
+                grid-template-columns: 1fr;
+                padding: 30px 25px;
+                gap: 25px;
+                text-align: center;
+            }
+            .profile-photo, .profile-photo-placeholder {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+                font-size: 3.5rem;
+            }
+            .profile-info h1 { font-size: 2rem; }
+            .profile-info .tagline { font-size: 1.05rem; }
+            
+            .bento-grid { grid-template-columns: 1fr; gap: 20px; }
+            .bento-item { padding: 25px 20px; border-radius: 12px; }
+            .bento-title { font-size: 1.35rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Rospawan Lab</a>
+        <nav>
+            <a href="index.html">HOME</a> 
+            <a href="about.html" class="nav-active">ABOUT ME</a>
+            <a href="member.html">MEMBER</a> 
+            <a href="publications.html">PUBLICATIONS</a> 
+            <a href="research.html">RESEARCH</a> 
+            <a href="activity.html">ACTIVITY</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <!-- ============ PROFILE HERO ============ -->
+        <!-- To use a real photo: replace the <div class="profile-photo-placeholder"> line below
+             with: <img src="images/profile.jpg" alt="Ali Rospawan" class="profile-photo">
+             (upload your photo to the images/ folder first) -->
+        <div class="profile-hero">
+            <div class="profile-photo-placeholder">AR</div>
+            <div class="profile-info">
+                <h1>Ali Rospawan</h1>
+                <p class="tagline">Researcher · Engineer · Lifelong Learner</p>
+                <p>Welcome to my corner of the internet. I'm Ali Rospawan — write a short, friendly paragraph here about who you are, what you do, and what you care about. Two or three sentences is plenty. This is the first thing people read, so make it memorable.</p>
+            </div>
+        </div>
+
+        <!-- ============ BENTO CARDS: ABOUT + EDUCATION ============ -->
+        <div class="bento-grid">
+
+            <div class="bento-item">
+                <span class="tag">About Me</span>
+                <h2 class="bento-title">A little more about me</h2>
+                <p>Use this space to go deeper. Where are you from? What are you currently working on? What problems excite you?</p>
+                <p>You can talk about your professional background, your research interests, your hobbies — anything that helps a visitor understand who you are beyond the one-liner at the top.</p>
+            </div>
+
+            <div class="bento-item">
+                <span class="tag">Background</span>
+                <h2 class="bento-title">Education & Experience</h2>
+                
+                <div class="timeline-row">
+                    <div class="timeline-date">2024 – Present</div>
+                    <div class="timeline-text"><strong>Current Role / Degree</strong><br>Institution / Company name</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-date">2022 – 2024</div>
+                    <div class="timeline-text"><strong>Previous Role / Degree</strong><br>Institution / Company name</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-date">2018 – 2022</div>
+                    <div class="timeline-text"><strong>Earlier Role / Degree</strong><br>Institution / Company name</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ============ BENTO CARDS: INTERESTS + CONTACT ============ -->
+        <div class="bento-grid">
+
+            <div class="bento-item">
+                <span class="tag">Interests</span>
+                <h2 class="bento-title">What I'm Into</h2>
+                <ul>
+                    <li>Research interest #1 — short description</li>
+                    <li>Research interest #2 — short description</li>
+                    <li>Research interest #3 — short description</li>
+                    <li>Something fun outside of work</li>
+                </ul>
+            </div>
+
+            <div class="bento-item">
+                <span class="tag">Get in Touch</span>
+                <h2 class="bento-title">Contact</h2>
+                
+                <div class="contact-row">
+                    <strong>Email</strong>
+                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                </div>
+                <div class="contact-row">
+                    <strong>GitHub</strong>
+                    <a href="https://github.com/rospawan" target="_blank">github.com/rospawan</a>
+                </div>
+                <div class="contact-row">
+                    <strong>LinkedIn</strong>
+                    <a href="https://linkedin.com/in/your-handle" target="_blank">linkedin.com/in/your-handle</a>
+                </div>
+                <div class="contact-row">
+                    <strong>Location</strong>
+                    <span>Taichung, Taiwan</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <h3 style="color: #fff; margin-top: 0; font-size: 1.5rem;">Rospawan Lab</h3>
+        <p>© 2026 Ali Rospawan. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
