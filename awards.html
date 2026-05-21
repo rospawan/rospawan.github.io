@@ -1,34 +1,37 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DHLab | Awards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awards | Rospawan Lab</title>
+    <meta name="description" content="Honors and awards received by Ali Rospawan, PhD researcher at National Chung Hsing University, Taiwan.">
+    
     <style>
-        /* ================= 基礎設定 ================= */
+        /* ================= Base Setup ================= */
         :root { 
             --bg-color: #F8F9FA; 
             --primary-color: #2C4C3B; 
             --secondary-color: #3A634D;
+            --accent-gold: #B87500;
             --text-color: #333333; 
             --card-bg: #FFFFFF;
         }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         
-        /* ================= 導覽列 ================= */
+        /* ================= Header / Nav ================= */
         header { background-color: var(--primary-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: #FFFFFF; text-decoration: none; }
         nav { display: flex; gap: 20px; }
         nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding-bottom: 5px; transition: 0.3s;}
-        nav a:hover { border-bottom: 2px solid #FFFFFF; }
+        nav a:hover, .nav-active { border-bottom: 2px solid #FFFFFF; }
         
-        /* ================= 共通排版 ================= */
+        /* ================= Layout ================= */
         .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
-        h2.section-title { color: var(--primary-color); text-align: center; font-size: 2.2rem; margin-bottom: 70px; letter-spacing: 1px; }
+        h2.section-title { color: var(--primary-color); text-align: center; font-size: 2.2rem; margin-bottom: 20px; letter-spacing: 1px; }
+        .section-subtitle { text-align: center; color: #6B7280; font-size: 1.05rem; margin-bottom: 70px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-        /* ================= 頂級高冷感時間軸 ================= */
+        /* ================= Timeline ================= */
         .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 50px; }
-        
-        /* 極簡引導線 */
         .timeline::before { 
             content: ''; 
             position: absolute; 
@@ -44,8 +47,6 @@
             margin-bottom: 60px; 
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        /* 時間軸節點：平時是低調的小灰點 */
         .timeline-item::before { 
             content: ''; 
             position: absolute; 
@@ -69,7 +70,6 @@
             transition: color 0.4s ease;
         }
 
-        /* 卡片本體 */
         .timeline-content { 
             position: relative;
             background: var(--card-bg); 
@@ -80,8 +80,6 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
         }
-
-        /* 隱藏的左側科技感發光線條 (Precision Trace) */
         .timeline-content::before {
             content: '';
             position: absolute;
@@ -93,35 +91,26 @@
             transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ================= 🔥 特效核心：劇院級絕對對焦 ================= */
-        /* 當滑鼠進入整個時間軸區域時，所有節點稍微變暗 */
+        /* ================= Hover focus effect ================= */
         .timeline:hover .timeline-item {
             opacity: 0.4;
             transform: scale(0.98);
             filter: grayscale(80%);
         }
-
-        /* 當滑鼠指到「特定卡片」時，該卡片完全高亮並浮現 */
         .timeline .timeline-item:hover {
             opacity: 1;
             transform: scale(1.02);
             filter: grayscale(0%);
             z-index: 10;
         }
-
-        /* 懸停時：節點變色放大 */
         .timeline-item:hover::before {
             background: var(--primary-color);
             transform: scale(1.5);
             box-shadow: 0 0 0 4px rgba(44, 76, 59, 0.1);
         }
-
-        /* 懸停時：年份變色 */
         .timeline-item:hover .timeline-year {
             color: var(--primary-color);
         }
-
-        /* 懸停時：卡片左側光束展開、產生高質感懸浮陰影 */
         .timeline-item:hover .timeline-content {
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
             border-color: transparent;
@@ -130,18 +119,35 @@
             height: 100%;
         }
 
-        /* ================= 內容排版細節 ================= */
+        /* ================= Award Items ================= */
         .award-group { position: relative; z-index: 2; margin-bottom: 25px; }
         .award-group:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
         .award-group:not(:last-child) { border-bottom: 1px solid #F3F4F6; padding-bottom: 25px; }
 
-        .award-title { font-weight: 700; font-size: 1.25rem; color: #111827; margin-bottom: 6px; }
+        .award-title { font-weight: 700; font-size: 1.25rem; color: #111827; margin-bottom: 6px; line-height: 1.4; }
+        .award-title .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: var(--accent-gold);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 12px;
+            margin-right: 8px;
+            vertical-align: middle;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .award-title .badge.gold { background: #D4A017; }
+        .award-title .badge.silver { background: #9CA3AF; }
+        .award-title .badge.bronze { background: #B87333; }
+        
         .award-desc { font-size: 0.95rem; color: #4B5563; margin-bottom: 0; line-height: 1.6; }
+        .award-desc .venue { color: #374151; font-weight: 500; }
         
         .award-link { display: inline-block; margin-top: 10px; font-size: 0.9rem; color: var(--secondary-color); text-decoration: none; font-weight: 600; transition: 0.2s;}
         .award-link:hover { color: var(--primary-color); text-decoration: underline; }
 
-        /* ================= 極簡相簿按鈕 ================= */
+        /* ================= Photo gallery (collapsible) ================= */
         .view-photo-btn {
             display: inline-flex;
             align-items: center;
@@ -156,7 +162,7 @@
             transition: all 0.3s ease;
             position: relative;
         }
-        .view-photo-btn::after { /* 按鈕底線特效 */
+        .view-photo-btn::after {
             content: '';
             position: absolute;
             bottom: 2px;
@@ -193,13 +199,28 @@
         }
         .gallery-img:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
-        /* ================= 燈箱效果 ================= */
+        /* ================= Lightbox ================= */
         #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: zoom-out; backdrop-filter: blur(5px); }
         #lightbox img { max-width: 90%; max-height: 90%; border-radius: 4px; box-shadow: 0 0 40px rgba(0,0,0,0.5); object-fit: contain; }
         .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 50px; cursor: pointer; transition: 0.3s;}
         .close-lightbox:hover { transform: scale(1.1); color: #E5E7EB;}
 
-        footer { background-color: #F3F4F6; padding: 40px 20px; margin-top: 80px; text-align: center; color: #6B7280; font-size: 0.95rem; }
+        footer { background-color: var(--primary-color); padding: 40px 20px 20px; margin-top: 80px; text-align: center; color: #D1E0D7; font-size: 0.95rem; }
+
+        /* ================= Mobile ================= */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+            .container { margin: 30px auto; }
+            .timeline { padding-left: 35px; }
+            .timeline::before { left: 12px; }
+            .timeline-item::before { left: -28px; }
+            .timeline-content { padding: 25px 22px; }
+            .award-title { font-size: 1.1rem; }
+            .award-title .badge { display: inline-block; margin-bottom: 4px; }
+            h2.section-title { font-size: 1.7rem; }
+            .timeline:hover .timeline-item { opacity: 1; filter: none; transform: none; }
+        }
     </style>
 </head>
 <body>
@@ -210,9 +231,9 @@
             <a href="index.html">HOME</a> 
             <a href="about.html">ABOUT ME</a>
             <a href="member.html">MEMBER</a> 
-            <a href="publications.html">PUBLICATIONS</a>
-            <a href="research.html">RESEARCH</a> 
-            <a href="awards.html" style="border-bottom: 2px solid #FFFFFF;">AWARDS</a> 
+            <a href="publications.html">PUBLICATIONS</a> 
+            <a href="research.html">RESEARCH</a>
+            <a href="awards.html" class="nav-active">AWARDS</a>
             <a href="activity.html">ACTIVITY</a>
         </nav>
     </header>
@@ -224,102 +245,123 @@
 
     <div class="container">
         <h2 class="section-title">Honors & Awards</h2>
+        <p class="section-subtitle">Recognition received for research contributions, best paper awards, and scholarships across international conferences and institutions.</p>
 
         <div class="timeline">
             
-            <div class="timeline-item">
-                <div class="timeline-year">2026</div>
-                <div class="timeline-content">
-                    <div class="award-group">
-                        <div class="award-title">Simon M. Sze Junior Chair Professor</div>
-                    </div>
-                </div>
-            </div>
-
+            <!-- ============ 2025 ============ -->
             <div class="timeline-item">
                 <div class="timeline-year">2025</div>
                 <div class="timeline-content">
+
                     <div class="award-group">
-                        <div class="award-title">Yushan Young Scholar (2nd term)</div>
-                        <div class="award-desc">Supported by the Ministry of Education (MOE)</div>
+                        <div class="award-title">Full Scholarship Recipient — IEEE Academia-Industry Summer School (AISS)</div>
+                        <div class="award-desc"><span class="venue">Held by IEEE Systems, Man, and Cybernetics Society at Swinburne University of Technology, Hawthorn VIC, Australia</span></div>
                         <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
                         <div class="award-gallery"></div>
                     </div>
+
                     <div class="award-group">
-                        <div class="award-title">Micron Innovation Award</div>
+                        <div class="award-title"><span class="badge silver">2ND PLACE</span>Best Student Paper Award</div>
+                        <div class="award-desc"><span class="venue">2025 International Conference on Fuzzy Theory and Its Applications (iFUZZY 2025)</span></div>
                         <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
                         <div class="award-gallery"></div>
                     </div>
+
+                    <div class="award-group">
+                        <div class="award-title">Honorary Mention — Best Presentation Award</div>
+                        <div class="award-desc"><span class="venue">2025 International Conference on Advanced Robotics and Intelligent Systems (ARIS 2025), Taichung, Taiwan</span></div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+
+                    <div class="award-group">
+                        <div class="award-title">Session 4 Best Presentation Award</div>
+                        <div class="award-desc"><span class="venue">2025 International Conference on System Science and Engineering (ICSSE 2025), Chiang Mai, Thailand</span></div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+
+                    <div class="award-group">
+                        <div class="award-title"><span class="badge bronze">3RD PLACE</span>Semiconductor Technology Research Field</div>
+                        <div class="award-desc"><span class="venue">2025 National Chung Hsing University Scientific Paper Competition, Taichung, Taiwan</span></div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+
                 </div>
             </div>
 
+            <!-- ============ 2024 ============ -->
             <div class="timeline-item">
                 <div class="timeline-year">2024</div>
                 <div class="timeline-content">
+
                     <div class="award-group">
-                        <div class="award-title">NARLabs R&D Platform Excellence Award</div>
-                        <div class="award-desc">Research and application of atomically thin oxide semiconductors</div>
+                        <div class="award-title"><span class="badge gold">1ST PLACE</span>Best Student Paper Award Winner</div>
+                        <div class="award-desc"><span class="venue">2024 IEEE International Conference on Systems, Man, and Cybernetics (IEEE SMC 2024), Kuching, Malaysia</span></div>
                         <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
                         <div class="award-gallery"></div>
                     </div>
+
+                    <div class="award-group">
+                        <div class="award-title"><span class="badge gold">1ST PLACE</span>Engineering Technology Research Field</div>
+                        <div class="award-desc"><span class="venue">2024 Scientific Paper Competition of National Chung Hsing University, Taichung, Taiwan</span></div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+
+                    <div class="award-group">
+                        <div class="award-title"><span class="badge bronze">3RD PLACE</span>Best Paper Award</div>
+                        <div class="award-desc"><span class="venue">FUZZY 2024 Conference, Nangan Township, Taiwan</span></div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+
                 </div>
             </div>
 
+            <!-- ============ 2023 ============ -->
+            <div class="timeline-item">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-content">
+
+                    <div class="award-group">
+                        <div class="award-title"><span class="badge gold">1ST PLACE</span>Best Master Thesis Award</div>
+                        <div class="award-desc"><span class="venue">Taiwan Fuzzy Systems Association (TFSA), 2023</span></div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+
+                    <div class="award-group">
+                        <div class="award-title"><span class="badge silver">2ND PLACE</span>Best Student Paper Award</div>
+                        <div class="award-desc"><span class="venue">2023 International Conference on Fuzzy Theory and Its Applications (iFuzzy 2023)</span></div>
+                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
+                        <div class="award-gallery"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ============ 2022 ============ -->
             <div class="timeline-item">
                 <div class="timeline-year">2022</div>
                 <div class="timeline-content">
-                    <div class="award-group">
-                        <div class="award-title">International Association of Advanced Materials (IAAM) Fellow</div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="timeline-item">
-                <div class="timeline-year">2021</div>
-                <div class="timeline-content">
                     <div class="award-group">
-                        <div class="award-title">Outstanding Young Scholar</div>
-                        <div class="award-desc">The Electronics Device and Materials Association (EDMA)</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">2020</div>
-                <div class="timeline-content">
-                    <div class="award-group">
-                        <div class="award-title">Yushan Young Scholar</div>
-                        <div class="award-desc">Supported by the Ministry of Education (MOE)</div>
+                        <div class="award-title">Best Conference Paper Award</div>
+                        <div class="award-desc"><span class="venue">2022 International Conference on Advanced Robotics and Intelligent Systems (ARIS 2022)</span></div>
                         <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
                         <div class="award-gallery"></div>
                     </div>
+
                     <div class="award-group">
-                        <div class="award-title">ASPEED Junior Chair Professor</div>
-                        <div class="award-desc">Supported by ASPEED TECHNOLOGY INC.</div>
+                        <div class="award-title">Best Paper Award</div>
+                        <div class="award-desc"><span class="venue">2022 Workshop on Consumer Electronics (WCE) · 2022 民生電子研討會，最佳論文獎</span></div>
                         <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
                         <div class="award-gallery"></div>
                     </div>
-                </div>
-            </div>
 
-            <div class="timeline-item">
-                <div class="timeline-year">2016</div>
-                <div class="timeline-content">
-                    <div class="award-group">
-                        <div class="award-title">First Prize of the Lam Research Award</div>
-                        <div class="award-desc">Lam Research Corporation, Fremont, CA, U.S.A<br>An award granted for cultivated excellent technology researcher</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">2015</div>
-                <div class="timeline-content">
-                    <div class="award-group">
-                        <div class="award-title">IEEE EDS PhD Fellowship</div>
-                        <div class="award-desc">IEEE Electron Devices Society<br>The winner of the award in 2015</div>
-                        <a href="http://eds.ieee.org/phd-student-fellowship-program-awards.html" target="_blank" class="award-link">View Official Award Page ➜</a>
-                    </div>
                 </div>
             </div>
 
@@ -327,7 +369,8 @@
     </div>
 
     <footer>
-        <p>© 2026 DHLab. National Yang Ming Chiao Tung University.</p>
+        <h3 style="color: #fff; margin-top: 0; font-size: 1.5rem;">Rospawan Lab</h3>
+        <p>© 2026 Ali Rospawan. All rights reserved.</p>
     </footer>
 
     <script>
@@ -335,7 +378,7 @@
             const gallery = btn.nextElementSibling;
             
             if (gallery.children.length === 0) {
-                alert("Photos will be updated soon!");
+                alert("Photos will be added soon!");
                 return;
             }
 
