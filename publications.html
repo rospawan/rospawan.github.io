@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Publications | Rospawan Lab</title>
+    
+    <meta name="description" content="Selected publications by Ali Rospawan in intelligent control systems, fuzzy neural networks, broad learning systems, autonomous mobile robots, and industrial automation.">
+
+    <style>
+        /* ================= Base Setup ================= */
+        :root { 
+            --bg-color: #F5F4F0; 
+            --primary-color: #2C4C3B; 
+            --secondary-color: #3A634D;
+            --accent-gold: #B87500;
+            --text-color: #333333;
+            --badge-bg: #EAF0EC;
+            --badge-gold: #FFF5E5;
+            --badge-gold-text: #B87500;
+            --badge-q1: #EAF0EC;
+            --badge-q1-text: #2C4C3B;
+            --badge-q2: #F0EBE0;
+            --badge-q2-text: #8B6914;
+            --badge-q4: #F0F0F0;
+            --badge-q4-text: #555;
+            --badge-sinta: #E8EBF5;
+            --badge-sinta-text: #3F4D8C;
+            --badge-award: #FFEBEB;
+            --badge-award-text: #A93226;
+            --badge-poster: #FFF1E5;
+            --badge-poster-text: #B85C00;
+        }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        
+        /* ================= Header / Nav ================= */
+        header { background-color: var(--primary-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: #FFFFFF; text-decoration: none; }
+        nav { display: flex; gap: 20px; }
+        nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding-bottom: 5px; transition: 0.3s;}
+        nav a:hover, .nav-active { border-bottom: 2px solid #FFFFFF; }
+        
+        @media (max-width: 900px) {
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+        }
+
+        /* ================= Layout ================= */
+        .container { max-width: 1050px; margin: 50px auto 100px; padding: 0 20px; }
+        h2.section-title { color: var(--primary-color); text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 16px; font-size: 2.2rem; }
+        .intro { text-align: center; color: #555; font-size: 1.05rem; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.7;}
+        .intro a { color: var(--accent-gold); font-weight: 600; text-decoration: none; }
+        .intro a:hover { text-decoration: underline; }
+        
+        /* ================= Stats Bar ================= */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        .stat-item { text-align: center; }
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+
+        h3.category-title { 
+            color: var(--primary-color); 
+            border-left: 5px solid var(--primary-color); 
+            padding: 5px 0 5px 15px; 
+            margin-top: 50px; 
+            margin-bottom: 8px; 
+            font-size: 1.6rem; 
+            background: linear-gradient(to right, #eef2f0, transparent);
+        }
+        .category-note {
+            color: #777;
+            font-size: 0.92rem;
+            margin: 0 0 18px 5px;
+            font-style: italic;
+        }
+
+        /* ================= Publication Items ================= */
+        .pub-list { 
+            background: #fff;
+            border-radius: 12px;
+            padding: 10px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .pub-item { 
+            position: relative;
+            padding: 25px 0 25px 20px;
+            border-bottom: 1px solid #F0F0F0;
+            transition: all 0.3s ease;
+        }
+        .pub-item:last-child { border-bottom: none; }
+        .pub-item::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--primary-color);
+            transition: height 0.3s ease;
+        }
+        .pub-item:hover::before { height: calc(100% - 50px); }
+        .pub-item:hover .pub-title { color: var(--primary-color); }
+        
+        @media (min-width: 768px) {
+            .pub-item { display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 30px; }
+            .pub-content { flex: 1; min-width: 0; }
+            .pub-actions { flex: 0 0 auto; }
+        }
+        
+        .pub-title { 
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+        .pub-authors { color: #555; font-size: 0.95rem; margin-bottom: 4px; line-height: 1.5;}
+        .pi-name { font-weight: bold; color: var(--primary-color); }
+        .pub-venue { font-size: 0.95rem; color: #222; }
+        .journal-name { font-style: italic; font-weight: 700; color: var(--primary-color); }
+        .pub-year { font-weight: bold; color: #000; }
+        
+        .pub-actions { margin-top: 12px; }
+        .btn-read { 
+            display: inline-block;
+            padding: 8px 16px;
+            background: transparent;
+            color: var(--primary-color);
+            border: 1.5px solid var(--primary-color);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+        .btn-read:hover { background-color: var(--primary-color); color: #fff; transform: translateX(3px); }
+
+        /* ================= Badges ================= */
+        .badge { 
+            display: inline-block; 
+            padding: 2px 8px; 
+            border-radius: 4px; 
+            font-size: 0.72rem; 
+            font-weight: bold; 
+            margin-left: 6px; 
+            vertical-align: middle;
+            letter-spacing: 0.5px;
+        }
+        .badge-q1 { background-color: var(--badge-q1); color: var(--badge-q1-text); border: 1px solid #C8D8CD; }
+        .badge-q2 { background-color: var(--badge-q2); color: var(--badge-q2-text); border: 1px solid #E0D5BA; }
+        .badge-q4 { background-color: var(--badge-q4); color: var(--badge-q4-text); border: 1px solid #DDD; }
+        .badge-sinta { background-color: var(--badge-sinta); color: var(--badge-sinta-text); border: 1px solid #C9CFE3; }
+        .badge-award { background-color: var(--badge-award); color: var(--badge-award-text); border: 1px solid #F5B7B1; }
+        .badge-poster { background-color: var(--badge-poster); color: var(--badge-poster-text); border: 1px solid #F5D4B7; }
+
+        /* ================= Footer ================= */
+        footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #D1E0D7; font-size: 0.95rem; margin-top: 60px; }
+
+        /* ================= Mobile ================= */
+        @media (max-width: 767px) {
+            .container { margin: 30px auto; }
+            h2.section-title { font-size: 1.7rem; }
+            .stats-bar { gap: 22px; margin-bottom: 35px; }
+            .stat-num { font-size: 1.7rem; }
+            .pub-list { padding: 5px 18px; }
+            .pub-item { padding: 20px 0 20px 15px; }
+            .pub-title { font-size: 1rem; }
+            .pub-authors { font-size: 0.88rem; }
+            .pub-venue { font-size: 0.88rem; }
+            .pub-actions { margin-top: 12px; }
+            .badge { display: inline-block; margin: 4px 4px 0 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Rospawan Lab</a>
+        <nav>
+            <a href="index.html">HOME</a> 
+            <a href="about.html">ABOUT ME</a>
+            <a href="publications.html" class="nav-active">PUBLICATIONS</a> 
+            <a href="research.html">RESEARCH</a>
+            <a href="awards.html">AWARDS</a>
+            <a href="activity.html">ACTIVITY</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Publications</h2>
+        <p class="intro">
+            Selected research outputs across intelligent control systems, fuzzy neural and broad learning systems, autonomous mobile robots, visual SLAM, and industrial automation. For a complete and up-to-date list, see my 
+            <a href="https://scholar.google.com/citations?user=oFUWGWoAAAAJ" target="_blank">Google Scholar</a> · 
+            <a href="https://www.researchgate.net/profile/Ali-Rospawan" target="_blank">ResearchGate</a> · 
+            <a href="https://orcid.org/0000-0001-5667-2269" target="_blank">ORCID</a>.
+        </p>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-num">25</div>
+                <div class="stat-label">Total Publications</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">10</div>
+                <div class="stat-label">Journal Articles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">7</div>
+                <div class="stat-label">Scopus Q1</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">12</div>
+                <div class="stat-label">Conference Papers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">2</div>
+                <div class="stat-label">Posters</div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- =========== JOURNAL ARTICLES =============== -->
+        <!-- ============================================ -->
+        <h3 class="category-title">Journal Articles</h3>
+        <p class="category-note">Peer-reviewed journal papers indexed in Scopus and/or Web of Science.</p>
+        <div class="pub-list">
+
+            <!-- ===== 2026 ===== -->
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Enhanced RGB-D Visual SLAM Using Photogrammetric Keyframe Selection Method and Static Conditional Probability Model<span class="badge badge-q1">SCOPUS Q1</span></div>
+                    <div class="pub-authors">C. C. Tsai, <span class="pi-name">A. Rospawan</span>, C. H. Li, H. S. Lin, and S. C. Chen</div>
+                    <div class="pub-venue"><span class="journal-name">IEEE Sensors Journal</span>, vol. 26, no. 9, pp. 13629–13639, <span class="pub-year">2026</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Enhanced+RGB-D+Visual+SLAM+Photogrammetric+Keyframe+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Autonomous Steering System Using Fuzzy TD3 and GRU-Attention for Omnidirectional AMRs in Dynamic Environments<span class="badge badge-q1">SCOPUS Q1</span></div>
+                    <div class="pub-authors">C. C. Tsai, H. S. Wu, L. H. Chen, <span class="pi-name">A. Rospawan</span>, C. H. Li, and S. C. Chen</div>
+                    <div class="pub-venue"><span class="journal-name">International Journal of Fuzzy Systems</span>, <span class="pub-year">2026</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Autonomous+Steering+Fuzzy+TD3+GRU-Attention+Omnidirectional+AMRs+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Adaptive Fixed-Time Sliding-Mode Trajectory Following Control of Nonholonomic AMRs with Adaptive Sliding-Mode Observers<span class="badge badge-q1">SCOPUS Q1</span></div>
+                    <div class="pub-authors">C. C. Tsai, C. H. Li, <span class="pi-name">A. Rospawan</span>, and Z. H. Wu</div>
+                    <div class="pub-venue"><span class="journal-name">Asian Journal of Control</span>, <span class="pub-year">2026</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Adaptive+Fixed-Time+Sliding-Mode+Trajectory+Nonholonomic+AMRs+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Global Cooperative Localization Method Using Fuzzy DDEKF and Broad Learning System for Swarmed Omnidirectional Mobile Robots with Uncertainties<span class="badge badge-q1">SCOPUS Q1</span></div>
+                    <div class="pub-authors">C. C. Tsai, G. H. Yang, S. C. Chen, <span class="pi-name">A. Rospawan</span>, and H. Y. Zheng</div>
+                    <div class="pub-venue"><span class="journal-name">International Journal of Fuzzy Systems</span>, <span class="pub-year">2026</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Global+Cooperative+Localization+Fuzzy+DDEKF+Broad+Learning+Swarmed+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <!-- ===== 2025 ===== -->
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Two-Layer Intelligent Learning Control Using Output Recurrent Fuzzy Neural Long Short-Term Memory Broad Learning System With RMSprop<span class="badge badge-q1">SCOPUS Q1</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span>, C. C. Tsai, and C. C. Hung</div>
+                    <div class="pub-venue"><span class="journal-name">IEEE Access</span>, vol. 13, pp. 34334–34349, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Two-Layer+Intelligent+Learning+Control+Output+Recurrent+Fuzzy+Neural+LSTM+BLS+RMSprop+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Intelligent MIMO ORFBLS-Based Setpoint Tracking Control with Its Application to Temperature Control of an Industrial Extrusion Barrel<span class="badge badge-q1">SCOPUS Q1</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span>, C. C. Tsai, and C. C. Hung</div>
+                    <div class="pub-venue"><span class="journal-name">International Journal of Fuzzy Systems</span>, vol. 27, pp. 774–790, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Intelligent+MIMO+ORFBLS+Setpoint+Tracking+Industrial+Extrusion+Barrel+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Adaptive Nonlinear PID Control of DC Motor Position Using a Polynomial Fuzzy Long Short-Term Memory Neural Network<span class="badge badge-q2">SCOPUS Q2</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span>, et al.</div>
+                    <div class="pub-venue"><span class="journal-name">International Journal of Automotive and Mechanical Engineering</span>, vol. 22, iss. 3, pp. 12821–12836, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Adaptive+Nonlinear+PID+DC+Motor+Polynomial+Fuzzy+LSTM+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Direct Control Strategy Using Polynomial Fuzzy-Based Adaptive Fractional Order PID Controller<span class="badge badge-sinta">SINTA 2</span><span class="badge badge-q4">WEB OF SCIENCE Q4</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span>, et al.</div>
+                    <div class="pub-venue"><span class="journal-name">Makara Journal of Technology</span>, vol. 29, iss. 2, art. 3, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Direct+Control+Polynomial+Fuzzy+Adaptive+Fractional+Order+PID+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <!-- ===== 2024 ===== -->
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Output Recurrent Fuzzy Broad Learning Systems for Adaptive MIMO PID Control: Theory, Simulations, and Application<span class="badge badge-q1">SCOPUS Q1</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span>, C. C. Tsai, and C. C. Hung</div>
+                    <div class="pub-venue"><span class="journal-name">IEEE Access</span>, vol. 12, pp. 19388–19404, <span class="pub-year">2024</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Output+Recurrent+Fuzzy+Broad+Learning+Adaptive+MIMO+PID+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <!-- ===== 2022 ===== -->
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Adaptive Predictive PID Control Using Recurrent Fuzzy Broad Learning System for Accurate Setpoint Tracking of Digital Nonlinear Time-Delay Dynamic Systems</div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span>, C. C. Tsai, and F. C. Tai</div>
+                    <div class="pub-venue"><span class="journal-name">International Journal of iRobotics</span>, vol. 5, no. 3, pp. 26–32, <span class="pub-year">November 2022</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Adaptive+Predictive+PID+Recurrent+Fuzzy+Broad+Learning+Time-Delay+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+        </div>
+
+        <!-- ============================================ -->
+        <!-- =========== SINTA JOURNALS ================= -->
+        <!-- ============================================ -->
+        <h3 class="category-title">SINTA-Indexed Journals</h3>
+        <p class="category-note">Peer-reviewed papers indexed in SINTA (Science and Technology Index) — the Indonesian national academic indexing system.</p>
+        <div class="pub-list">
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">A Benchmark Study of DeepLabV3+, U-Net++, and Attention U-Net for Blood Cell Segmentation<span class="badge badge-sinta">SINTA 3</span></div>
+                    <div class="pub-authors">C. L. Angelina and <span class="pi-name">A. Rospawan</span></div>
+                    <div class="pub-venue"><span class="journal-name">Green Intelligent Systems and Applications</span>, vol. 5, no. 1, pp. 61–73, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Benchmark+DeepLabV3+U-Net+Attention+U-Net+Blood+Cell+Segmentation+Rospawan" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+        </div>
+
+        <!-- ============================================ -->
+        <!-- ========== CONFERENCE PAPERS =============== -->
+        <!-- ============================================ -->
+        <h3 class="category-title">Conference Papers</h3>
+        <p class="category-note">Peer-reviewed papers presented at international and national conferences.</p>
+        <div class="pub-list">
+
+            <!-- ===== 2025 ===== -->
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Intelligent Trajectory Tracking Control Using PFBLS for Omnidirectional Mobile Robots<span class="badge badge-award">🎖 HONORARY MENTION · BEST PRESENTATION</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span> and C. C. Tsai</div>
+                    <div class="pub-venue"><span class="journal-name">2025 International Conference on Advanced Robotics and Intelligent Systems (ARIS 2025)</span>, College of EECS, NCHU, Taichung, Taiwan, <span class="pub-year">August 2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Intelligent+Trajectory+Tracking+PFBLS+Omnidirectional+Mobile+Robots+Rospawan+ARIS+2025" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Positive PFBLS for Intelligent Trajectory Tracking Control of Omnidirectional Mobile Robots<span class="badge badge-award">🥈 BEST STUDENT PAPER · 2ND PLACE</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span> and C. C. Tsai</div>
+                    <div class="pub-venue"><span class="journal-name">2025 International Conference on Fuzzy Theory and Its Applications (iFUZZY 2025)</span>, Taiwan, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Positive+PFBLS+Trajectory+Tracking+Omnidirectional+Mobile+Robots+Rospawan+iFUZZY+2025" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Adaptive Model Predictive Control Using Interval Type-2 Elliptic Fuzzy Broad Learning Systems for Nonlinear Dynamic Digital Time-Delay Systems<span class="badge badge-award">🎖 SESSION 4 · BEST PRESENTATION</span></div>
+                    <div class="pub-authors">C. C. Hung, C. C. Tsai, and <span class="pi-name">A. Rospawan</span></div>
+                    <div class="pub-venue"><span class="journal-name">2025 International Conference on System Science and Engineering (ICSSE 2025)</span>, Kantary Hills Hotel, Chiang Mai, Thailand, p. 33, <span class="pub-year">August 2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Adaptive+MPC+Interval+Type-2+Elliptic+Fuzzy+Broad+Learning+Rospawan+ICSSE+2025" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Autonomous and Path-Following Navigation of Differential-Driving AMRs Using Dynamic Control and FWNN-RBLS Compensation</div>
+                    <div class="pub-authors">C. W. Tsai, C. C. Tsai, and <span class="pi-name">A. Rospawan</span></div>
+                    <div class="pub-venue"><span class="journal-name">2025 National Symposium on System Science and Engineering (NSSSE 2025)</span>, Taiwan, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Autonomous+Path-Following+Differential-Driving+AMRs+FWNN-RBLS+Rospawan+NSSSE+2025" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Adaptive Nonlinear PID Tension Control Using PRFBLS for Industrial Roll-to-Roll Systems</div>
+                    <div class="pub-authors">S. C. Wang, C. C. Tsai, and <span class="pi-name">A. Rospawan</span></div>
+                    <div class="pub-venue"><span class="journal-name">2025 International Conference on Advanced Robotics and Intelligent Systems (ARIS 2025)</span>, Taichung, Taiwan, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Adaptive+Nonlinear+PID+Tension+Control+PRFBLS+Roll-to-Roll+Rospawan+ARIS+2025" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Global Cooperative Localization Method Using Polynomial Fuzzy Recurrent Broad Learning System for Swarmed Omnidirectional Multirobots with Uncertainties</div>
+                    <div class="pub-authors">G. H. Yang, C. C. Tsai, and <span class="pi-name">A. Rospawan</span></div>
+                    <div class="pub-venue"><span class="journal-name">2025 International Conference on Advanced Robotics and Intelligent Systems (ARIS 2025)</span>, Taichung, Taiwan, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Global+Cooperative+Localization+Polynomial+Fuzzy+Recurrent+Broad+Learning+Multirobots+Rospawan+ARIS+2025" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Nonlinear Adaptive Model Predictive Control for Semiconductor Packaging Oven Using Type-3 Fuzzy Controller with Incremental Broad Learning System</div>
+                    <div class="pub-authors">C. C. Hung, C. C. Tsai, and <span class="pi-name">A. Rospawan</span></div>
+                    <div class="pub-venue"><span class="journal-name">2025 International Conference on Advanced Robotics and Intelligent Systems (ARIS 2025)</span>, Taichung, Taiwan, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Nonlinear+Adaptive+MPC+Semiconductor+Packaging+Oven+Type-3+Fuzzy+Rospawan+ARIS+2025" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <!-- ===== 2024 ===== -->
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Recurrent Polynomial-Based FBLS for Adaptive Predictive PID Control of Nonlinear Discrete-Time Systems: Comparative Studies on Control Performance and Time Complexity<span class="badge badge-award">🏆 BEST STUDENT PAPER · 1ST PLACE</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span> and C. C. Tsai</div>
+                    <div class="pub-venue"><span class="journal-name">2024 IEEE International Conference on Systems, Man, and Cybernetics (SMC)</span>, Kuching, Malaysia, pp. 541–546, <span class="pub-year">2024</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Recurrent+Polynomial+FBLS+Adaptive+Predictive+PID+Discrete-Time+Rospawan+SMC+2024" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Intelligent Data-Driven Control Using Output Recurrent Elliptic Fuzzy BLS for Nonlinear Dynamic Systems<span class="badge badge-award">🥉 BEST PAPER · 3RD PLACE</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span> and C. C. Tsai</div>
+                    <div class="pub-venue"><span class="journal-name">第三十二屆模糊理論及其應用研討會 (Fuzzy 2024)</span>, Taiwan, pp. 106–111, <span class="pub-year">2024</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Intelligent+Data-Driven+Output+Recurrent+Elliptic+Fuzzy+BLS+Rospawan+Fuzzy+2024" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <!-- ===== 2023 ===== -->
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Output Recurrent Fuzzy Neural LSTM-BLS Controller for Nonlinear Digital Time-Delay Dynamic Systems</div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span>, C. C. Tsai, and C. C. Hung</div>
+                    <div class="pub-venue"><span class="journal-name">2023 IEEE International Conference on Systems, Man, and Cybernetics (SMC)</span>, Honolulu, Hawaii, USA, pp. 3009–3014, <span class="pub-year">2023</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Output+Recurrent+Fuzzy+Neural+LSTM-BLS+Time-Delay+Rospawan+SMC+2023" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Recurrent Fuzzy Broad Learning Controller for MIMO Nonlinear Digital Time-Delay Dynamic Systems</div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span>, et al.</div>
+                    <div class="pub-venue"><span class="journal-name">20th World Congress of the International Fuzzy Systems Association (IFSA)</span>, EXCO, Daegu, Korea, <span class="pub-year">August 2023</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Recurrent+Fuzzy+Broad+Learning+MIMO+Time-Delay+Rospawan+IFSA+2023" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+            <!-- ===== 2022 ===== -->
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Intelligent PID Temperature Control Using Output Recurrent Fuzzy Broad Learning System for Nonlinear Time-Delay Dynamic Systems</div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span>, C. C. Tsai, and F. C. Tai</div>
+                    <div class="pub-venue"><span class="journal-name">2022 International Conference on System Science and Engineering (ICSSE)</span>, Taichung, Taiwan, pp. 011–016, <span class="pub-year">May 2022</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="https://scholar.google.com/scholar?q=Intelligent+PID+Temperature+Output+Recurrent+Fuzzy+Broad+Learning+Rospawan+ICSSE+2022" target="_blank" class="btn-read">Read Article ➜</a></div>
+            </div>
+
+        </div>
+
+        <!-- ============================================ -->
+        <!-- ============== POSTERS ===================== -->
+        <!-- ============================================ -->
+        <h3 class="category-title">Posters & Award Presentations</h3>
+        <p class="category-note">Research posters presented at scientific competitions and symposia.</p>
+        <div class="pub-list">
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Improving Power Efficiency and Tracking Accuracy in Semiconductor Heating Ovens via Polynomial Fuzzy Stacked BLS Nonlinear MPC<span class="badge badge-poster">POSTER</span><span class="badge badge-award">🥉 3RD PLACE · SEMICONDUCTOR TECH</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span> and C. C. Tsai</div>
+                    <div class="pub-venue"><span class="journal-name">2025 National Chung Hsing University Scientific Paper Competition</span> — Semiconductor Technology Research Field, Taichung, Taiwan, <span class="pub-year">2025</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="awards.html" class="btn-read">View Award ➜</a></div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-content">
+                    <div class="pub-title">Data-Driven Learning Control Using Polynomial-Based FBLS for Heating Oven in Semiconductor Packaging Industry<span class="badge badge-poster">POSTER</span><span class="badge badge-award">🥇 1ST PLACE · ENGINEERING TECH</span></div>
+                    <div class="pub-authors"><span class="pi-name">A. Rospawan</span> and C. C. Tsai</div>
+                    <div class="pub-venue"><span class="journal-name">2024 National Chung Hsing University Scientific Paper Competition</span> — Engineering Technology Research Field, Taichung, Taiwan, <span class="pub-year">2024</span>.</div>
+                </div>
+                <div class="pub-actions"><a href="awards.html" class="btn-read">View Award ➜</a></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <h3 style="color: #fff; margin-top: 0; font-size: 1.5rem;">Rospawan Lab</h3>
+        <p>© 2026 Ali Rospawan. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
