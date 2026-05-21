@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHLab | Research</title>
+    <title>Research | Rospawan Lab</title>
+    <meta name="description" content="Research thrusts of Ali Rospawan — intelligent adaptive control, fuzzy neural and broad learning systems, autonomous mobile robots, and visual SLAM.">
+    
     <style>
-        /* ================= 基礎設定 ================= */
+        /* ================= Base ================= */
         :root { 
             --bg-color: #F5F4F0; 
             --primary-color: #2C4C3B; 
             --secondary-color: #3A634D;
+            --accent-gold: #B87500;
             --text-color: #333333; 
             --link-blue: #0066cc;
         }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         
-        /* ================= 導覽列 ================= */
+        /* ================= Header / Nav ================= */
         header { background-color: var(--primary-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: #FFFFFF; text-decoration: none; }
         nav { display: flex; gap: 20px; }
         nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding-bottom: 5px; transition: 0.3s;}
-        nav a:hover { border-bottom: 2px solid #FFFFFF; }
+        nav a:hover, .nav-active { border-bottom: 2px solid #FFFFFF; }
         
-        /* ================= 共通排版 ================= */
+        /* ================= Layout ================= */
         .container { max-width: 1050px; margin: 50px auto; padding: 0 20px; }
-        h2.section-title { color: var(--primary-color); text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 15px; margin-bottom: 50px; font-size: 2.2rem; }
+        h2.section-title { color: var(--primary-color); text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 15px; margin-bottom: 16px; font-size: 2.2rem; }
+        .section-intro { text-align: center; color: #555; max-width: 720px; margin: 0 auto 50px; font-size: 1.05rem; line-height: 1.7; }
 
-        /* ================= 研究卡片 ================= */
+        /* ================= Research Card ================= */
         .research-card { 
             background: #fff; border-radius: 12px; margin-bottom: 40px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; transition: box-shadow 0.3s;
@@ -35,32 +39,41 @@
 
         .card-summary { display: flex; padding: 40px; gap: 40px; align-items: center; }
         
-        /* 主圖框設定 */
+        /* Icon visual (instead of real images) */
         .research-img-wrapper { 
-            flex: 0 0 380px; 
-            height: 250px; 
-            border-radius: 8px; 
+            flex: 0 0 280px; 
+            height: 220px; 
+            border-radius: 12px; 
             overflow: hidden; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-            background: #fff; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
             display: flex;
             justify-content: center;
             align-items: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            position: relative;
         }
-        .research-img-wrapper img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
+        .research-img-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                              radial-gradient(circle at 70% 80%, rgba(184,117,0,0.2) 0%, transparent 50%);
+        }
+        .research-img-wrapper .research-icon {
+            font-size: 5.5rem;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
         }
         
         .research-content { flex: 1; }
-        .research-content h3 { color: var(--primary-color); margin-top: 0; margin-bottom: 15px; font-size: 1.6rem; border-left: 5px solid var(--primary-color); padding-left: 15px; line-height: 1.3;}
+        .research-content h3 { color: var(--primary-color); margin-top: 0; margin-bottom: 15px; font-size: 1.55rem; border-left: 5px solid var(--primary-color); padding-left: 15px; line-height: 1.3;}
         .research-content p { font-size: 1.05rem; color: #555; margin-bottom: 20px; text-align: justify; }
         
         .read-more-btn { background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); padding: 8px 20px; font-size: 1rem; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; }
         .read-more-btn:hover { background-color: var(--primary-color); color: #fff; }
 
-        /* ================= 隱藏展開區 ================= */
+        /* ================= Expandable details ================= */
         .card-details {
             max-height: 0; overflow: hidden; transition: max-height 0.8s ease-in-out, padding 0.8s ease;
             background-color: #fafafa; border-top: 1px solid #eee; padding: 0 40px; 
@@ -70,44 +83,83 @@
         .details-text { font-size: 1.05rem; line-height: 1.8; color: #333; margin-bottom: 30px; text-align: justify; }
         .details-text a { color: var(--link-blue); font-weight: bold; text-decoration: none; }
         .details-text a:hover { text-decoration: underline; }
+        .details-text p { margin-bottom: 18px; }
+        .details-text strong { color: var(--primary-color); }
 
-        .relevant-pubs { background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 8px; margin-bottom: 40px; }
-        .relevant-pubs h4 { margin: 0 0 10px 0; color: var(--primary-color); font-size: 1.1rem; }
-        .relevant-pubs ul { margin: 0; padding-left: 20px; font-size: 0.95rem; color: #555; }
-        .relevant-pubs li { margin-bottom: 5px; }
+        .key-topics {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 22px 24px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .key-topics h4 { margin: 0 0 14px 0; color: var(--primary-color); font-size: 1.05rem; }
+        .topic-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .topic-tag {
+            background: #EAF0EC;
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
 
-        /* ================= 多圖網格 ================= */
+        .relevant-pubs { background: #fff; border: 1px solid #ddd; padding: 22px 24px; border-radius: 8px; margin-bottom: 30px; }
+        .relevant-pubs h4 { margin: 0 0 12px 0; color: var(--primary-color); font-size: 1.05rem; }
+        .relevant-pubs ul { margin: 0; padding-left: 22px; font-size: 0.95rem; color: #555; line-height: 1.7; }
+        .relevant-pubs li { margin-bottom: 7px; }
+        .relevant-pubs em { color: var(--primary-color); font-style: italic; font-weight: 600;}
+        .relevant-pubs .badge-small {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: var(--accent-gold);
+            color: #fff;
+            padding: 1px 7px;
+            border-radius: 10px;
+            margin-left: 5px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+        .relevant-pubs .pub-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.92rem;
+        }
+        .relevant-pubs .pub-link:hover { text-decoration: underline; }
+
+        /* Image gallery (empty by default; ready for figures) */
         .details-gallery { 
             display: flex; 
             flex-wrap: wrap; 
             justify-content: center; 
-            align-items: center; 
             gap: 30px; 
         }
-
+        .gallery-placeholder {
+            width: 100%;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+            font-style: italic;
+            padding: 20px;
+            border: 2px dashed #DDD;
+            border-radius: 8px;
+            background: #FAFAFA;
+        }
         .gallery-item { 
-            width: 100%; 
-            max-width: 900px; 
-            height: auto; 
-            background: #fff; 
-            border: 1px solid #ddd; 
-            border-radius: 8px; 
-            padding: 15px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
-            cursor: zoom-in;
-            transition: transform 0.3s, border-color 0.3s; 
-            box-sizing: border-box;
+            width: 100%; max-width: 900px; height: auto; 
+            background: #fff; border: 1px solid #ddd; border-radius: 8px; 
+            padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+            cursor: zoom-in; transition: transform 0.3s, border-color 0.3s; box-sizing: border-box;
         }
-
-        .gallery-item:hover { 
-            transform: scale(1.02); 
-            border-color: var(--primary-color); 
-        }
-
+        .gallery-item:hover { transform: scale(1.02); border-color: var(--primary-color); }
         .gallery-item.size-sm { max-width: 420px; }
         .gallery-item.size-md { max-width: 750px; }
 
-        /* ================= 燈箱效果 ================= */
+        /* Lightbox */
         #lightbox {
             display: none; position: fixed; z-index: 9999; top: 0; left: 0;
             width: 100%; height: 100%; background: rgba(0,0,0,0.9);
@@ -116,43 +168,30 @@
         #lightbox img { max-width: 90%; max-height: 90%; border: 3px solid #fff; border-radius: 5px; box-shadow: 0 0 30px rgba(0,0,0,0.5); object-fit: contain; }
         .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 50px; cursor: pointer; }
 
-        /* 同步其他頁面的深色 Footer */
         footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #D1E0D7; font-size: 0.95rem; margin-top: 50px;}
 
-        /* ================= RWD 手機版適應 ================= */
+        /* Mobile */
         @media (max-width: 850px) {
             header { flex-direction: column; gap: 15px; padding: 15px; }
             nav { flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
-
             .container { margin-top: 30px; padding: 0 15px; }
-            h2.section-title { font-size: 1.8rem; margin-bottom: 30px; }
+            h2.section-title { font-size: 1.8rem; margin-bottom: 16px; }
 
-            /* 卡片排版改為垂直 */
             .card-summary { flex-direction: column; padding: 25px 20px; gap: 20px; }
-            
-            /* 圖框取消固定寬度，高度自適應縮小 */
-            .research-img-wrapper { 
-                flex: 1 1 100%; 
-                width: 100%; 
-                max-width: 100%; 
-                height: 200px; 
-            }
-            
-            /* 內文與標題微調 */
-            .research-content h3 { font-size: 1.4rem; }
+            .research-img-wrapper { flex: 1 1 100%; width: 100%; max-width: 100%; height: 180px; }
+            .research-img-wrapper .research-icon { font-size: 4rem; }
+            .research-content h3 { font-size: 1.3rem; }
             .research-content p { font-size: 1rem; }
             
-            /* 展開區域減少留白 */
             .card-details { padding: 0 20px; }
             .research-card.expanded .card-details { padding: 25px 20px; }
             .details-text { font-size: 1rem; margin-bottom: 20px; }
+            .key-topics, .relevant-pubs { padding: 18px 16px; }
 
-            /* 多圖網格間距縮小 */
             .details-gallery { gap: 15px; }
             .gallery-item { padding: 10px; border-radius: 6px; }
-            .gallery-item.size-sm, .gallery-item.size-md { max-width: 100%; } /* 手機上所有圖皆滿版 */
+            .gallery-item.size-sm, .gallery-item.size-md { max-width: 100%; }
         }
-
     </style>
 </head>
 <body>
@@ -163,8 +202,8 @@
             <a href="index.html">HOME</a> 
             <a href="about.html">ABOUT ME</a>
             <a href="member.html">MEMBER</a> 
-            <a href="publications.html">PUBLICATIONS</a>
-            <a href="research.html" style="border-bottom: 2px solid #FFFFFF;">RESEARCH</a> 
+            <a href="publications.html">PUBLICATIONS</a> 
+            <a href="research.html" class="nav-active">RESEARCH</a>
             <a href="awards.html">AWARDS</a>
             <a href="activity.html">ACTIVITY</a>
         </nav>
@@ -172,76 +211,220 @@
 
     <div id="lightbox" onclick="closeLightbox()">
         <span class="close-lightbox">&times;</span>
-        <img id="lightbox-img" src="" alt="Enlarged view">
+        <img id="lightbox-img" src="" alt="Enlarged">
     </div>
 
     <div class="container">
         <h2 class="section-title">Research Interests</h2>
+        <p class="section-intro">
+            My research sits at the intersection of <strong>intelligent control theory</strong> and <strong>real industrial applications</strong>. I work on adaptive controllers powered by fuzzy neural and broad learning systems, and I extend these ideas into autonomous mobile robotics and vision-based sensing. Below are the four main thrusts I'm currently active in.
+        </p>
         
+        <!-- ============================== -->
+        <!-- THRUST 1: Intelligent Control  -->
+        <!-- ============================== -->
         <div class="research-card">
             <div class="card-summary">
                 <div class="research-img-wrapper">
-                    <img src="images/research/r2_main.gif" alt="Exciton Physics">
+                    <span class="research-icon">⚙️</span>
                 </div>
                 <div class="research-content">
-                    <h3>Semiconductor Physics in 2D Limits </h3>
-                    <p>Our research explores the fundamental physics of semiconductors at their ultimate thickness limits, focusing on how reduced screening governs carrier dynamics and exciton behavior. We also investigate transport mechanisms in scaled systems to reveal how percolation determines amorphous device beyond conventional electrostatic and quantum limitations. </p>
+                    <h3>Intelligent Adaptive Control of Industrial Systems</h3>
+                    <p>Designing adaptive PID, fractional-order, and sliding-mode controllers augmented with fuzzy and neural components, then deploying them on real industrial machinery — from extrusion barrels in plastic injection molding to semiconductor heating ovens and DC motor positioning systems.</p>
                     <button class="read-more-btn" onclick="toggleDetails(this)">Read More ➜</button>
                 </div>
             </div>
             <div class="card-details">
                 <div class="details-text">
-                    <p>Atomic-thin semiconductors exhibit unique physics because reducing thickness also reduces the screening effect. This leads to strong many-body interactions where carriers become bound as room-temperature excitons. Using monolayer platforms, we were the first to identify the excitonic nature in 2D by analyzing the excitonic recombination process. We demonstrated that these systems achieve near-unity photoluminescence quantum yields through electrostatic doping, even with native defects due to strongly bound excitons. Based on our findings, comprehensive recombination models across various TMDCs were established. Python code for these quasiparticle recombination models is available <a href="https://colab.research.google.com/github/dhlien/code/blob/master/Quasiparticle%20-%20code.ipynb" target="_blank">here</a>.</p>
-                    <p>We also identify a unique dimensional scaling effect in amorphous semiconductors with thickness approaching 2D limits, where reducing channel thickness, width, or length constrains conductive pathways and modulates the percolation threshold. These geometric constraints directly drive threshold voltage shifts, a mechanism observed across different percolative oxide transistors. The findings establish that charge transport in scaled amorphous electronics is governed by geometry-driven percolation transport rather than conventional electrostatics or quantum confinement, presenting key insights for an important class of semiconductors regarding device designs.</p>
+                    <p>Classical PID controllers remain ubiquitous in industry, but they struggle with the <strong>nonlinearity, time-delay, and uncertainty</strong> that characterize real manufacturing equipment. My research develops a family of adaptive control schemes that retain the simplicity and interpretability of PID while gaining the flexibility of machine learning.</p>
+                    <p>One direction extends PID with <strong>polynomial fuzzy long short-term memory neural networks</strong>, enabling the controller to learn from historical trajectories and adapt its gains online for nonlinear DC motor positioning tasks. A second direction introduces <strong>fractional-order PID controllers</strong> driven by polynomial fuzzy adaptation laws — fractional calculus provides extra degrees of tuning freedom that improve robustness to disturbances and parametric drift.</p>
+                    <p>For systems where stability and finite-time convergence matter (such as nonholonomic mobile robots), I also work on <strong>adaptive fixed-time sliding-mode trajectory following control</strong> with adaptive sliding-mode observers, which guarantees convergence within a bounded settling time regardless of initial conditions.</p>
+                    <p>These controllers are not just simulation studies — they're validated on real industrial test rigs, including <strong>extrusion barrels for plastic injection molding</strong> and <strong>semiconductor heating ovens</strong>, where temperature regulation directly impacts product quality.</p>
+                </div>
+
+                <div class="key-topics">
+                    <h4>Key Topics</h4>
+                    <div class="topic-tags">
+                        <span class="topic-tag">Adaptive PID</span>
+                        <span class="topic-tag">Fractional-Order Control</span>
+                        <span class="topic-tag">Sliding-Mode Control</span>
+                        <span class="topic-tag">Industrial Extrusion Barrel</span>
+                        <span class="topic-tag">Semiconductor Heating Ovens</span>
+                        <span class="topic-tag">DC Motor Positioning</span>
+                        <span class="topic-tag">Setpoint Tracking</span>
+                    </div>
                 </div>
 
                 <div class="relevant-pubs">
-                    <h4>Relevant Publications:</h4>
+                    <h4>Relevant Publications</h4>
                     <ul>
-                        <li>Science, 364, 468–471, 2019.</li>
-                        <li>Science, 350, 1065, 2015.</li>
+                        <li>A. Rospawan et al., "Adaptive Nonlinear PID Control of DC Motor Position Using a Polynomial Fuzzy LSTM Neural Network," <em>Int. J. Automotive and Mechanical Eng.</em>, vol. 22, 2025. <span class="badge-small">Q2</span></li>
+                        <li>A. Rospawan et al., "Direct Control Strategy using Polynomial Fuzzy-Based Adaptive Fractional Order PID Controller," <em>Makara J. of Technology</em>, vol. 29, 2025.</li>
+                        <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Intelligent MIMO ORFBLS-Based Setpoint Tracking Control with Application to Industrial Extrusion Barrel," <em>Int. J. Fuzzy Systems</em>, vol. 27, 2025. <span class="badge-small">Q1</span></li>
+                        <li>C. C. Tsai, C. H. Li, A. Rospawan, Z. H. Wu, "Adaptive Fixed-Time Sliding-Mode Trajectory Following Control of Nonholonomic AMRs," <em>Asian J. Control</em>, 2026. <span class="badge-small">Q1</span></li>
+                        <li>A. Rospawan, C. C. Tsai, F. C. Tai, "Intelligent PID Temperature Control Using Output Recurrent Fuzzy Broad Learning System," <em>ICSSE 2022</em>, Taichung, Taiwan.</li>
                     </ul>
+                    <a href="publications.html" class="pub-link">See Full Publications List ➜</a>
                 </div>
 
                 <div class="details-gallery">
-                    <img src="images/research/r2_detail1.png" alt="Research Details" class="gallery-item size-sm" onclick="openLightbox(this.src)">
-                    <img src="images/research/r2_detail2.gif" alt="Research Details" class="gallery-item" onclick="openLightbox(this.src)">
+                    <div class="gallery-placeholder">📊 Figures, block diagrams, and experimental results coming soon</div>
                 </div>
             </div>
         </div>
 
+        <!-- ============================== -->
+        <!-- THRUST 2: Fuzzy Neural / BLS   -->
+        <!-- ============================== -->
         <div class="research-card">
             <div class="card-summary">
                 <div class="research-img-wrapper">
-                    <img src="images/research/r3_main1.gif" alt="Device Innovation">
+                    <span class="research-icon">🧠</span>
                 </div>
                 <div class="research-content">
-                    <h3>Monolithic 3D Electronics & Innovations </h3>
-                    <p>Our research explores emerging semiconductors and fundamental atomic-scale properties to develop advanced processing techniques for monolithic 3D integration and back-end-of-line applications. We innovate electronics across fields and bridge academic discovery with industrial manufacturability through collaborations with Taiwanese companies. </p>
+                    <h3>Fuzzy Neural & Broad Learning Systems</h3>
+                    <p>Building the algorithmic engine behind my adaptive controllers — recurrent fuzzy networks, broad learning systems (BLS), and their hybrids with LSTM cells. These architectures provide fast online learning, low time complexity, and provable approximation power for nonlinear time-delay dynamics.</p>
                     <button class="read-more-btn" onclick="toggleDetails(this)">Read More ➜</button>
                 </div>
             </div>
             <div class="card-details">
                 <div class="details-text">
-                    <p>My research focuses on the exploration and engineering of emerging semiconductors, including 2D materials, oxide semiconductors, and many others. By investigating fundamental material properties at the atomic scale, we develop advanced processing techniques to enable high-performance monolithic 3D integration and back-end-of-line applications. We aim to bridge the gap between academic discovery and industrial manufacturability. Our work is deeply integrated with the industrial landscape in Taiwan, featuring close collaborations with TSMC and MediaTek to develop next-generation circuits, such as CFETs and beyond.</p>
-                    <p>We are also driven by the electronic innovation to bypass conventional physical limitations. I developed a transient-mode AC carrier injection scheme to address the injection inefficiency inherent in Schottky contacts, which enables efficient carrier injection and electroluminescence across various material systems, including 2D, III-V, QDs, etc. Our innovation extends to the forefront of functional integration and advanced packaging, such as memristor-based RF switches integrated on flexible interposers for 3D packaging in 6G communications. We have also pioneered developments in printable memories and resonance-enhanced optoelectronic sensors. Furthermore, we collaborate with industry partners to integrate AI-driven multitask learning algorithms into wearable systems for real-time physiological and biochemical monitoring. Our ultimate goal is to provide a viable pathway for integrating advanced semiconductors into the next generation of versatile electronics. </p>
+                    <p>Deep neural networks are powerful but expensive to train and difficult to deploy on real-time control hardware. <strong>Broad Learning Systems (BLS)</strong> offer an attractive alternative: a flat, incrementally trainable architecture with closed-form solutions that achieves comparable accuracy at a fraction of the training cost. My work extends BLS in several directions targeted at control.</p>
+                    <p>The <strong>Output Recurrent Fuzzy Broad Learning System (ORFBLS)</strong> introduces output recurrence and fuzzy membership functions into BLS, giving it the dynamic memory needed for time-delay systems while preserving fast online adaptation. I've extended this further with <strong>polynomial fuzzy</strong> consequents and <strong>RMSprop-based</strong> online optimization, producing a two-layer learning controller that combines stability with rapid convergence.</p>
+                    <p>A complementary line of work integrates <strong>LSTM cells</strong> directly into the BLS pipeline, yielding the LSTM-BLS controller that handles long-horizon temporal dependencies in nonlinear digital time-delay dynamic systems. I've also explored <strong>recurrent polynomial-based FBLS</strong> for adaptive predictive PID control, with comparative studies showing favorable trade-offs in control performance versus computational time complexity.</p>
+                    <p>This research thrust earned the <strong>1st place Best Student Paper Award at IEEE SMC 2024</strong> in Kuching, Malaysia, and the <strong>1st place Best Master Thesis Award from TFSA</strong>.</p>
+                </div>
+
+                <div class="key-topics">
+                    <h4>Key Topics</h4>
+                    <div class="topic-tags">
+                        <span class="topic-tag">Broad Learning Systems</span>
+                        <span class="topic-tag">Recurrent Fuzzy Networks</span>
+                        <span class="topic-tag">ORFBLS</span>
+                        <span class="topic-tag">LSTM-BLS Hybrid</span>
+                        <span class="topic-tag">Polynomial Fuzzy</span>
+                        <span class="topic-tag">RMSprop Optimization</span>
+                        <span class="topic-tag">Time-Delay Systems</span>
+                        <span class="topic-tag">MIMO Control</span>
+                    </div>
                 </div>
 
                 <div class="relevant-pubs">
-                    <h4>Relevant Publications:</h4>
+                    <h4>Relevant Publications</h4>
                     <ul>
-                        <li>Nature Communications, 9, 1129, 2018.</li>
-                        <li>Nature Electronics, 2020.</li>
-                        <li>Proceedings of the National Academy of Sciences (PNAS) 117 (2), 902-906, 2020.</li>
-                        <li>Advanced Functional Materials, 30 (6), 1907941, 2020.</li>
+                        <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Two-Layer Intelligent Learning Control Using ORFNL-LSTM Broad Learning System With RMSprop," <em>IEEE Access</em>, vol. 13, 2025. <span class="badge-small">Q1</span></li>
+                        <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Output Recurrent Fuzzy Broad Learning Systems for Adaptive MIMO PID Control," <em>IEEE Access</em>, vol. 12, 2024. <span class="badge-small">Q1</span></li>
+                        <li>A. Rospawan, C. C. Tsai, "Recurrent Polynomial-Based FBLS for Adaptive Predictive PID Control of Nonlinear Discrete-Time Systems," <em>IEEE SMC 2024</em>, Kuching, Malaysia. <span class="badge-small">🏆 BEST PAPER</span></li>
+                        <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Output Recurrent Fuzzy Neural LSTM-BLS Controller for Nonlinear Digital Time-Delay Systems," <em>IEEE SMC 2023</em>, Honolulu.</li>
+                        <li>A. Rospawan et al., "Recurrent Fuzzy Broad Learning Controller for MIMO Nonlinear Time-Delay Systems," <em>IFSA 2023</em>, Daegu, Korea.</li>
                     </ul>
+                    <a href="publications.html" class="pub-link">See Full Publications List ➜</a>
                 </div>
 
                 <div class="details-gallery">
-                    <img src="images/research/r3_detail1.jpg" alt="Research Details" class="gallery-item size-sm" onclick="openLightbox(this.src)">
-                    <img src="images/research/r3_detail3.gif" alt="Research Details" class="gallery-item size-md" onclick="openLightbox(this.src)">
-                    <img src="images/research/r3_detail2.jpg" alt="Research Details" class="gallery-item size-md" onclick="openLightbox(this.src)">
-                    <img src="images/research/r3_detail4.gif" alt="Research Details" class="gallery-item size-md" onclick="openLightbox(this.src)">
+                    <div class="gallery-placeholder">🧠 Network architecture diagrams and benchmark results coming soon</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================== -->
+        <!-- THRUST 3: Autonomous Robots    -->
+        <!-- ============================== -->
+        <div class="research-card">
+            <div class="card-summary">
+                <div class="research-img-wrapper">
+                    <span class="research-icon">🤖</span>
+                </div>
+                <div class="research-content">
+                    <h3>Autonomous Mobile Robots & Cooperative Localization</h3>
+                    <p>Bringing fuzzy and broad learning ideas into mobile robotics — autonomous steering for omnidirectional AMRs in dynamic environments, fixed-time trajectory tracking for nonholonomic platforms, and cooperative localization for swarmed robot teams operating under uncertainty.</p>
+                    <button class="read-more-btn" onclick="toggleDetails(this)">Read More ➜</button>
+                </div>
+            </div>
+            <div class="card-details">
+                <div class="details-text">
+                    <p>Autonomous Mobile Robots (AMRs) face two persistent challenges in industrial deployment: <strong>safe navigation in dynamic environments</strong> and <strong>accurate localization when GPS or fiducials are unavailable</strong>. My work attacks both problems by transplanting the control and learning techniques developed in industrial settings into mobile robotic contexts.</p>
+                    <p>For steering, I co-developed an <strong>autonomous steering system using Fuzzy TD3 and GRU-Attention</strong> for omnidirectional AMRs. Fuzzy TD3 — a fuzzy-augmented variant of the Twin Delayed DDPG reinforcement learning algorithm — handles continuous action spaces in cluttered, dynamic environments, while the GRU-attention module gives the agent a sense of recent history needed to anticipate moving obstacles.</p>
+                    <p>For trajectory tracking on nonholonomic AMRs, I extend my fixed-time sliding-mode work with <strong>adaptive sliding-mode observers</strong> that estimate unmeasured velocities and disturbances in real time, achieving robust trajectory following with guaranteed settling times.</p>
+                    <p>For multi-robot systems, my collaborators and I developed a <strong>Global Cooperative Localization method using Fuzzy DDEKF</strong> (Discrete-time Distributed Extended Kalman Filter) and Broad Learning Systems for swarmed omnidirectional mobile robots operating under sensor and motion uncertainties — the BLS component compensates for the nonlinear bias terms that vanilla EKF approaches typically struggle with.</p>
+                </div>
+
+                <div class="key-topics">
+                    <h4>Key Topics</h4>
+                    <div class="topic-tags">
+                        <span class="topic-tag">Omnidirectional AMRs</span>
+                        <span class="topic-tag">Nonholonomic Robots</span>
+                        <span class="topic-tag">Fuzzy TD3 RL</span>
+                        <span class="topic-tag">GRU-Attention</span>
+                        <span class="topic-tag">Fixed-Time Sliding Mode</span>
+                        <span class="topic-tag">Fuzzy DDEKF</span>
+                        <span class="topic-tag">Cooperative Localization</span>
+                        <span class="topic-tag">Swarm Robotics</span>
+                    </div>
+                </div>
+
+                <div class="relevant-pubs">
+                    <h4>Relevant Publications</h4>
+                    <ul>
+                        <li>C. C. Tsai, H. S. Wu, L. H. Chen, A. Rospawan, et al., "Autonomous Steering System Using Fuzzy TD3 and GRU-Attention for Omnidirectional AMRs in Dynamic Environments," <em>Int. J. Fuzzy Systems</em>, 2026. <span class="badge-small">Q1</span></li>
+                        <li>C. C. Tsai, C. H. Li, A. Rospawan, Z. H. Wu, "Adaptive Fixed-Time Sliding-Mode Trajectory Following Control of Nonholonomic AMRs with Adaptive Sliding-Mode Observers," <em>Asian J. Control</em>, 2026. <span class="badge-small">Q1</span></li>
+                        <li>C. C. Tsai, G. H. Yang, S. C. Chen, A. Rospawan, H. Y. Zheng, "Global Cooperative Localization Method Using Fuzzy DDEKF and BLS for Swarmed Omnidirectional Mobile Robots with Uncertainties," <em>Int. J. Fuzzy Systems</em>, 2026. <span class="badge-small">Q1</span></li>
+                    </ul>
+                    <a href="publications.html" class="pub-link">See Full Publications List ➜</a>
+                </div>
+
+                <div class="details-gallery">
+                    <div class="gallery-placeholder">🤖 Robot platform photos and trajectory plots coming soon</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================== -->
+        <!-- THRUST 4: Visual SLAM / AI     -->
+        <!-- ============================== -->
+        <div class="research-card">
+            <div class="card-summary">
+                <div class="research-img-wrapper">
+                    <span class="research-icon">👁️</span>
+                </div>
+                <div class="research-content">
+                    <h3>Visual SLAM & AI-Based Robotic Sensing</h3>
+                    <p>Pushing visual SLAM into the territory where geometric reasoning meets data-driven scene understanding. Recent work introduces photogrammetric keyframe selection and static conditional probability models for RGB-D SLAM, alongside industry-driven vision pipelines that convert RGB imagery into depth and 3D point clouds.</p>
+                    <button class="read-more-btn" onclick="toggleDetails(this)">Read More ➜</button>
+                </div>
+            </div>
+            <div class="card-details">
+                <div class="details-text">
+                    <p>Visual SLAM (Simultaneous Localization And Mapping) is the foundation of any robot that needs to know where it is and what's around it. Classical RGB-D SLAM pipelines, however, often suffer in scenes with <strong>dynamic objects, weak features, or poorly chosen keyframes</strong>. My recent work proposes an <strong>Enhanced RGB-D Visual SLAM</strong> framework that addresses these issues on two fronts.</p>
+                    <p>First, a <strong>photogrammetric keyframe selection method</strong> chooses keyframes based on principles drawn from photogrammetry — geometric configuration quality and parallax — rather than purely heuristic distance or frame-count thresholds. This produces a more stable backbone for the SLAM graph and reduces drift over long trajectories.</p>
+                    <p>Second, a <strong>static conditional probability model</strong> reasons about which pixels in a scene are likely to belong to static structure versus moving objects. Pixels flagged as dynamic are downweighted in pose estimation, making the system robust in environments with pedestrians, vehicles, or other moving entities — settings where vanilla ORB-SLAM-style methods often fail.</p>
+                    <p>Complementing this academic work, my <strong>AI System Development internship at the Industrial Technology Research Institute (ITRI)</strong> in Taiwan focused on the practical side: developing a complete vision pipeline that converts RGB images into <strong>dense depth maps and 3D point clouds</strong> for automotive and robotic sensing applications — bridging research-grade algorithms with deployable, latency-sensitive systems.</p>
+                </div>
+
+                <div class="key-topics">
+                    <h4>Key Topics</h4>
+                    <div class="topic-tags">
+                        <span class="topic-tag">RGB-D Visual SLAM</span>
+                        <span class="topic-tag">Photogrammetric Keyframe Selection</span>
+                        <span class="topic-tag">Dynamic Object Handling</span>
+                        <span class="topic-tag">Static Conditional Probability</span>
+                        <span class="topic-tag">Depth Estimation</span>
+                        <span class="topic-tag">3D Point Clouds</span>
+                        <span class="topic-tag">Automotive Sensing</span>
+                    </div>
+                </div>
+
+                <div class="relevant-pubs">
+                    <h4>Relevant Publications</h4>
+                    <ul>
+                        <li>C. C. Tsai, A. Rospawan, C. H. Li, H. S. Lin, S. C. Chen, "Enhanced RGB-D Visual SLAM Using Photogrammetric Keyframe Selection Method and Static Conditional Probability Model," <em>IEEE Sensors Journal</em>, vol. 26, no. 9, pp. 13629–13639, 2026. <span class="badge-small">Q1</span></li>
+                        <li>Industry experience: <em>AI System Development Intern, Industrial Technology Research Institute (ITRI), Taiwan, 2025</em> — RGB → depth map → 3D point cloud vision pipelines for automotive and robotic sensing.</li>
+                    </ul>
+                    <a href="publications.html" class="pub-link">See Full Publications List ➜</a>
+                </div>
+
+                <div class="details-gallery">
+                    <div class="gallery-placeholder">👁️ SLAM trajectory comparisons and point cloud visualizations coming soon</div>
                 </div>
             </div>
         </div>
@@ -249,34 +432,26 @@
     </div>
 
     <footer>
-        <p>© 2026 DHLab. National Yang Ming Chiao Tung University.</p>
+        <h3 style="color: #fff; margin-top: 0; font-size: 1.5rem;">Rospawan Lab</h3>
+        <p>© 2026 Ali Rospawan. All rights reserved.</p>
     </footer>
 
     <script>
-        function toggleDetails(button) {
-            const card = button.closest('.research-card');
+        function toggleDetails(btn) {
+            const card = btn.closest('.research-card');
             card.classList.toggle('expanded');
-            
-            if (card.classList.contains('expanded')) {
-                button.innerHTML = 'Show Less ✖';
-                button.style.backgroundColor = 'var(--primary-color)';
-                button.style.color = '#fff';
-            } else {
-                button.innerHTML = 'Read More ➜';
-                button.style.backgroundColor = 'transparent';
-                button.style.color = 'var(--primary-color)';
-            }
+            btn.innerHTML = card.classList.contains('expanded') ? 'Show Less ➜' : 'Read More ➜';
         }
 
         function openLightbox(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; 
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
-            document.body.style.overflow = 'auto'; 
+            document.body.style.overflow = 'auto';
         }
     </script>
 </body>
