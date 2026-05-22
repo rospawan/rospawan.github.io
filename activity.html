@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activities | Rospawan Lab</title>
-    <meta name="description" content="Activities of Ali Rospawan — internships, conferences, professional service, and training.">
+    <meta name="description" content="Activities of Ali Rospawan — internships, conferences, professional service, teaching, and training.">
     
     <style>
         /* ================= Base ================= */
@@ -15,9 +15,11 @@
             --accent-gold: #B87500;
             --text-color: #333333;
             --cat-internship: #2E86AB;
-            --cat-conference: #2C4C3B;
+            --cat-conference: #3A634D;
+            --cat-committee: #2C4C3B;
             --cat-program: #6A4C93;
-            --cat-service: #B87500;
+            --cat-teaching: #8B5A2B;
+            --cat-competition: #C2185B;
             --cat-training: #6B7280;
         }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
@@ -32,7 +34,7 @@
         /* ================= Layout ================= */
         .container { max-width: 1100px; margin: 50px auto 80px; padding: 0 20px; }
         h2.section-title { color: var(--primary-color); text-align: center; font-size: 2.4rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase;}
-        .section-intro { text-align: center; color: #555; max-width: 700px; margin: 0 auto 40px; font-size: 1.05rem; line-height: 1.7;}
+        .section-intro { text-align: center; color: #555; max-width: 720px; margin: 0 auto 40px; font-size: 1.05rem; line-height: 1.7;}
 
         /* ================= Filter Tabs ================= */
         .filter-tabs {
@@ -79,13 +81,21 @@
             letter-spacing: 2px;
             padding-right: 18px;
         }
+        .year-divider.ongoing .year {
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+        }
         .year-divider .line {
             flex: 1;
             height: 3px;
             background: linear-gradient(to right, var(--primary-color), transparent);
         }
+        .year-divider.ongoing .line {
+            background: linear-gradient(to right, var(--accent-gold), transparent);
+        }
 
-        /* ================= Activity Card ================= */
+        /* ================= Activity Card (FULL) ================= */
         .activity-card {
             background: #fff;
             border-radius: 12px;
@@ -141,8 +151,10 @@
         }
         .badge-internship { background: var(--cat-internship); }
         .badge-conference { background: var(--cat-conference); }
+        .badge-committee { background: var(--cat-committee); }
         .badge-program { background: var(--cat-program); }
-        .badge-service { background: var(--cat-service); }
+        .badge-teaching { background: var(--cat-teaching); }
+        .badge-competition { background: var(--cat-competition); }
         .badge-training { background: var(--cat-training); }
 
         .activity-content h3 {
@@ -188,22 +200,41 @@
             border-radius: 10px;
             font-weight: 600;
         }
-        .activity-link {
-            display: inline-block;
-            margin-top: 12px;
-            color: var(--accent-gold);
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        .activity-link:hover { text-decoration: underline; }
 
-        /* ================= Empty state ================= */
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-            font-size: 1.05rem;
+        /* ================= Compact Card ================= */
+        .activity-card.compact {
+            grid-template-columns: 130px 1fr;
+            margin-bottom: 10px;
+        }
+        .activity-card.compact .activity-date-strip {
+            padding: 14px 12px;
+        }
+        .activity-card.compact .activity-date-strip .month {
+            font-size: 0.75rem;
+        }
+        .activity-card.compact .activity-date-strip .day {
+            font-size: 0.9rem;
+        }
+        .activity-card.compact .activity-content {
+            padding: 14px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .activity-card.compact .category-badge {
+            margin-bottom: 6px;
+            font-size: 0.65rem;
+            padding: 2px 8px;
+        }
+        .activity-card.compact h3 {
+            font-size: 1.02rem;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .activity-card.compact .activity-location {
+            font-size: 0.86rem;
+            margin-bottom: 0;
+            font-weight: 500;
         }
 
         /* ================= Footer ================= */
@@ -221,8 +252,10 @@
             .filter-btn { padding: 7px 14px; font-size: 0.85rem;}
 
             .year-divider .year { font-size: 1.6rem; }
+            .year-divider.ongoing .year { font-size: 1.1rem; }
 
-            .activity-card { grid-template-columns: 1fr; }
+            .activity-card,
+            .activity-card.compact { grid-template-columns: 1fr; }
             .activity-date-strip { 
                 padding: 14px 20px; 
                 border-right: none; 
@@ -233,6 +266,7 @@
             }
             .activity-content { padding: 20px; }
             .activity-content h3 { font-size: 1.1rem; }
+            .activity-card.compact .activity-content { padding: 14px 20px; }
         }
     </style>
 </head>
@@ -253,42 +287,113 @@
     <div class="container">
         <h2 class="section-title">Activities</h2>
         <p class="section-intro">
-            A timeline of internships, conferences, programs, professional service, and training — the experiences that shape my research and professional journey beyond the lab.
+            A timeline of internships, conferences, teaching, competitions, and programs — the experiences that shape my research and professional journey beyond the lab. <em>Featured cards</em> highlight roles where I served as committee, intern, award winner, or instructor; <em>compact entries</em> mark conferences attended as a presenter.
         </p>
 
         <!-- ============ FILTER TABS ============ -->
         <div class="filter-tabs">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="internship">Internships</button>
-            <button class="filter-btn" data-filter="conference">Conferences</button>
             <button class="filter-btn" data-filter="program">Programs</button>
-            <button class="filter-btn" data-filter="service">Service</button>
+            <button class="filter-btn" data-filter="conference">Conferences</button>
+            <button class="filter-btn" data-filter="committee">Committee</button>
+            <button class="filter-btn" data-filter="teaching">Teaching</button>
+            <button class="filter-btn" data-filter="competition">Competitions</button>
             <button class="filter-btn" data-filter="training">Training</button>
         </div>
 
-        <!-- ============================================ -->
-        <!-- HOW TO ADD MORE ACTIVITIES:                  -->
-        <!-- Copy any <div class="activity-card">...</div> -->
-        <!-- block below and edit. Use data-category to    -->
-        <!-- match one of: internship, conference,         -->
-        <!-- program, service, training.                   -->
-        <!-- ============================================ -->
+
+        <!-- ================================================ -->
+        <!-- ============ ONGOING (recurring roles) ========== -->
+        <!-- ================================================ -->
+        <div class="year-divider ongoing">
+            <span class="year">★ ONGOING</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ===== Lecturer at Politeknik Manufaktur ===== -->
+        <div class="activity-card" data-category="teaching">
+            <div class="activity-date-strip">
+                <div class="month">Jun 2025</div>
+                <div class="day">– Present</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                <h3>Lecturer · Department of Electronics Engineering</h3>
+                <div class="activity-location">📍 Politeknik Manufaktur Negeri Bangka Belitung · Indonesia</div>
+                <p class="activity-description">
+                    Recently started as a Lecturer at Polman Babel, teaching Electronic Circuit Applications and Robotics courses.
+                </p>
+                <div class="activity-tags">
+                    <span class="tag-chip">Lecturer</span>
+                    <span class="tag-chip">Electronics</span>
+                    <span class="tag-chip">Robotics</span>
+                    <span class="tag-chip">Indonesia</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Summer Teaching Assistant ===== -->
+        <div class="activity-card" data-category="teaching">
+            <div class="activity-date-strip">
+                <div class="month">2022</div>
+                <div class="day">– Present</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-teaching">Teaching · Annual</span>
+                <h3>Summer Teaching Assistant · Automatic Control Practice</h3>
+                <div class="activity-location">📍 Department of Electrical Engineering, National Chung Hsing University · Taichung, Taiwan</div>
+                <p class="activity-description">
+                    Every summer since 2022, serve as Teaching Assistant for the Automatic Control Practice course offered by the EE department at NCHU — guiding undergraduate students through hands-on control experiments and lab sessions.
+                </p>
+                <div class="activity-tags">
+                    <span class="tag-chip">NCHU EE</span>
+                    <span class="tag-chip">Automatic Control</span>
+                    <span class="tag-chip">Undergraduate Teaching</span>
+                    <span class="tag-chip">Annual</span>
+                </div>
+            </div>
+        </div>
 
 
-        <!-- ============ 2025 ============ -->
+        <!-- ================================================ -->
+        <!-- ====================== 2025 ===================== -->
+        <!-- ================================================ -->
         <div class="year-divider">
             <span class="year">2025</span>
             <span class="line"></span>
         </div>
 
-        <!-- ===== AISS Australia ===== -->
-        <div class="activity-card" data-category="program">
+        <!-- ===== ITRI Internship ===== -->
+        <div class="activity-card" data-category="internship">
             <div class="activity-date-strip">
-                <div class="month">2025</div>
-                <div class="day">Summer</div>
+                <div class="month">Jul – Nov</div>
+                <div class="day">2025</div>
             </div>
             <div class="activity-content">
-                <span class="category-badge badge-program">Program</span>
+                <span class="category-badge badge-internship">Internship</span>
+                <h3>AI System Development Intern · Automotive & Robotic Sensing</h3>
+                <div class="activity-location">📍 Industrial Technology Research Institute (ITRI) · Taiwan</div>
+                <p class="activity-description">
+                    Worked on AI system development for automotive and robotic sensing applications. Built a complete vision pipeline that converts RGB images into dense depth maps and 3D point clouds, bridging research-grade SLAM algorithms with deployable, latency-sensitive systems.
+                </p>
+                <div class="activity-tags">
+                    <span class="tag-chip">Computer Vision</span>
+                    <span class="tag-chip">Depth Estimation</span>
+                    <span class="tag-chip">3D Point Clouds</span>
+                    <span class="tag-chip">Automotive AI</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== IEEE AISS Australia ===== -->
+        <div class="activity-card" data-category="program">
+            <div class="activity-date-strip">
+                <div class="month">Summer</div>
+                <div class="day">2025</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-program">Program · Scholarship</span>
                 <h3>IEEE Academia-Industry Summer School (AISS)</h3>
                 <div class="activity-location">📍 Swinburne University of Technology · Hawthorn, Australia</div>
                 <p class="activity-description">
@@ -305,63 +410,130 @@
             </div>
         </div>
 
-        <!-- ===== ITRI Internship ===== -->
-        <div class="activity-card" data-category="internship">
+        <!-- ===== ICSSE 2025 Chiang Mai ===== -->
+        <div class="activity-card" data-category="conference">
             <div class="activity-date-strip">
-                <div class="month">Jul – Nov</div>
+                <div class="month">Aug</div>
                 <div class="day">2025</div>
             </div>
             <div class="activity-content">
-                <span class="category-badge badge-internship">Internship</span>
-                <h3>AI System Development Intern</h3>
-                <div class="activity-location">📍 Industrial Technology Research Institute (ITRI) · Taiwan</div>
+                <span class="category-badge badge-conference">Presenter</span>
+                <h3>ICSSE 2025 — Int. Conf. on System Science and Engineering</h3>
+                <div class="activity-location">📍 Chiang Mai, Thailand</div>
                 <p class="activity-description">
-                    Worked on AI system development for automotive and robotic sensing applications. Built a complete vision pipeline that converts RGB images into dense depth maps and 3D point clouds, bridging research-grade SLAM algorithms with deployable, latency-sensitive systems.
+                    Lab paper presented at the 2025 International Conference on System Science and Engineering — "Adaptive Model Predictive Control Using Interval Type-2 Elliptic Fuzzy Broad Learning Systems for Nonlinear Dynamic Digital Time-Delay Systems."
                 </p>
+                <div class="activity-highlights">
+                    <strong>🎖 Session 4 Best Presentation Award</strong>
+                </div>
                 <div class="activity-tags">
-                    <span class="tag-chip">Computer Vision</span>
-                    <span class="tag-chip">Depth Estimation</span>
-                    <span class="tag-chip">3D Point Clouds</span>
-                    <span class="tag-chip">Automotive AI</span>
+                    <span class="tag-chip">Best Presentation</span>
+                    <span class="tag-chip">Thailand</span>
                 </div>
             </div>
         </div>
 
-        <!-- ===== ICSSE Chiang Mai ===== -->
+        <!-- ===== ARIS 2025 Taichung (committee + presenter) ===== -->
+        <div class="activity-card" data-category="committee">
+            <div class="activity-date-strip">
+                <div class="month">Aug</div>
+                <div class="day">2025</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-committee">Local Committee · Presenter</span>
+                <h3>ARIS 2025 — Int. Conf. on Advanced Robotics and Intelligent Systems</h3>
+                <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
+                <p class="activity-description">
+                    Served as a Local Organizing Committee Member as part of the host laboratory at NCHU (chaired by Prof. Ching-Chih Tsai). Also presented research: "Intelligent Trajectory Tracking Control Using PFBLS for Omnidirectional Mobile Robots."
+                </p>
+                <div class="activity-highlights">
+                    <strong>🎖 Honorary Mention — Best Presentation Award</strong>
+                </div>
+                <div class="activity-tags">
+                    <span class="tag-chip">Local Committee</span>
+                    <span class="tag-chip">Presenter</span>
+                    <span class="tag-chip">Taichung</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== iFUZZY 2025 Hsinchu ===== -->
         <div class="activity-card" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">2025</div>
                 <div class="day">Conference</div>
             </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Conference</span>
-                <h3>ICSSE 2025 — Int. Conf. on System Science and Engineering</h3>
-                <div class="activity-location">📍 Chiang Mai, Thailand</div>
+                <span class="category-badge badge-conference">Presenter</span>
+                <h3>iFUZZY 2025 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
+                <div class="activity-location">📍 Hsinchu, Taiwan</div>
                 <p class="activity-description">
-                    Presented research at the 2025 International Conference on System Science and Engineering. Received the <strong>Session 4 Best Presentation Award</strong>.
+                    Presented "Positive PFBLS for Intelligent Trajectory Tracking Control of Omnidirectional Mobile Robots" at the 2025 iFUZZY conference.
                 </p>
+                <div class="activity-highlights">
+                    <strong>🥈 Best Student Paper Award · 2nd Place</strong>
+                </div>
                 <div class="activity-tags">
-                    <span class="tag-chip">Best Presentation Award</span>
-                    <span class="tag-chip">Thailand</span>
+                    <span class="tag-chip">iFUZZY</span>
+                    <span class="tag-chip">Best Student Paper</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== NSSSE 2025 Taichung (committee) ===== -->
+        <div class="activity-card compact" data-category="committee">
+            <div class="activity-date-strip">
+                <div class="month">2025</div>
+                <div class="day">Taichung</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-committee">Local Committee</span>
+                <h3>NSSSE 2025 — National Symposium on System Science and Engineering</h3>
+                <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
+            </div>
+        </div>
+
+        <!-- ===== NCHU Scientific Paper Competition 2025 ===== -->
+        <div class="activity-card" data-category="competition">
+            <div class="activity-date-strip">
+                <div class="month">2025</div>
+                <div class="day">Competition</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-competition">Competition</span>
+                <h3>NCHU Scientific Paper Competition · Semiconductor Technology Field</h3>
+                <div class="activity-location">📍 National Chung Hsing University · Taichung, Taiwan</div>
+                <p class="activity-description">
+                    Competed in the Semiconductor Technology Research Field of the 2025 NCHU Scientific Paper Competition with a poster on Polynomial Fuzzy Stacked BLS Nonlinear MPC for semiconductor heating ovens.
+                </p>
+                <div class="activity-highlights">
+                    <strong>🥉 3rd Place — Semiconductor Technology Research Field</strong>
+                </div>
+                <div class="activity-tags">
+                    <span class="tag-chip">NCHU</span>
+                    <span class="tag-chip">Poster Competition</span>
+                    <span class="tag-chip">Semiconductor</span>
                 </div>
             </div>
         </div>
 
 
-        <!-- ============ 2024 ============ -->
+        <!-- ================================================ -->
+        <!-- ====================== 2024 ===================== -->
+        <!-- ================================================ -->
         <div class="year-divider">
             <span class="year">2024</span>
             <span class="line"></span>
         </div>
 
-        <!-- ===== IEEE SMC Malaysia ===== -->
+        <!-- ===== IEEE SMC 2024 Kuching ===== -->
         <div class="activity-card" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">2024</div>
                 <div class="day">Conference</div>
             </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Conference</span>
+                <span class="category-badge badge-conference">Presenter</span>
                 <h3>🏆 IEEE SMC 2024 — Int. Conf. on Systems, Man, and Cybernetics</h3>
                 <div class="activity-location">📍 Kuching, Malaysia</div>
                 <p class="activity-description">
@@ -378,42 +550,70 @@
             </div>
         </div>
 
+        <!-- ===== Fuzzy 2024 Nangan ===== -->
+        <div class="activity-card" data-category="conference">
+            <div class="activity-date-strip">
+                <div class="month">2024</div>
+                <div class="day">Conference</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-conference">Presenter</span>
+                <h3>Fuzzy 2024 — 32nd Conference on Fuzzy Theory and Its Applications</h3>
+                <div class="activity-location">📍 Nangan Township, Taiwan</div>
+                <p class="activity-description">
+                    Presented "Intelligent Data-Driven Control Using Output Recurrent Elliptic Fuzzy BLS for Nonlinear Dynamic Systems" at the 32nd annual Fuzzy Theory conference of the Republic of China.
+                </p>
+                <div class="activity-highlights">
+                    <strong>🥉 Best Paper Award · 3rd Place</strong>
+                </div>
+                <div class="activity-tags">
+                    <span class="tag-chip">Fuzzy Theory</span>
+                    <span class="tag-chip">Best Paper</span>
+                </div>
+            </div>
+        </div>
 
-        <!-- ============ 2023 ============ -->
+        <!-- ===== NCHU Scientific Paper Competition 2024 ===== -->
+        <div class="activity-card" data-category="competition">
+            <div class="activity-date-strip">
+                <div class="month">2024</div>
+                <div class="day">Competition</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-competition">Competition</span>
+                <h3>NCHU Scientific Paper Competition · Engineering Technology Field</h3>
+                <div class="activity-location">📍 National Chung Hsing University · Taichung, Taiwan</div>
+                <p class="activity-description">
+                    Competed in the Engineering Technology Research Field of the 2024 NCHU Scientific Paper Competition with a poster on Polynomial-Based FBLS data-driven learning control for semiconductor packaging.
+                </p>
+                <div class="activity-highlights">
+                    <strong>🥇 1st Place — Engineering Technology Research Field</strong>
+                </div>
+                <div class="activity-tags">
+                    <span class="tag-chip">NCHU</span>
+                    <span class="tag-chip">Poster Competition</span>
+                    <span class="tag-chip">1st Place</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2023 ===================== -->
+        <!-- ================================================ -->
         <div class="year-divider">
             <span class="year">2023</span>
             <span class="line"></span>
         </div>
 
-        <!-- ===== IEEE Chair ===== -->
-        <div class="activity-card" data-category="service">
-            <div class="activity-date-strip">
-                <div class="month">2023</div>
-                <div class="day">– Present</div>
-            </div>
-            <div class="activity-content">
-                <span class="category-badge badge-service">Service</span>
-                <h3>Chapter Chair · IEEE NCHU Student Branch & IEEE SMC Society NCHU</h3>
-                <div class="activity-location">📍 National Chung Hsing University, Taiwan</div>
-                <p class="activity-description">
-                    Serving as Chair of both the IEEE National Chung Hsing University Student Branch and the IEEE Systems, Man, and Cybernetics Society NCHU Student Branch Chapter. Also Secretary of the Chinese Institute of Electrical Engineering, Taichung Chapter, and Treasurer of the Institution of Engineers Indonesia (Bangka Regency Branch).
-                </p>
-                <div class="activity-tags">
-                    <span class="tag-chip">IEEE Leadership</span>
-                    <span class="tag-chip">Professional Service</span>
-                    <span class="tag-chip">Community Building</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== IEEE SMC Honolulu ===== -->
+        <!-- ===== IEEE SMC 2023 Honolulu ===== -->
         <div class="activity-card" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">2023</div>
                 <div class="day">Conference</div>
             </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Conference</span>
+                <span class="category-badge badge-conference">Presenter</span>
                 <h3>IEEE SMC 2023 — Int. Conf. on Systems, Man, and Cybernetics</h3>
                 <div class="activity-location">📍 Honolulu, Hawaii, USA</div>
                 <p class="activity-description">
@@ -421,39 +621,173 @@
                 </p>
                 <div class="activity-tags">
                     <span class="tag-chip">IEEE SMC</span>
+                    <span class="tag-chip">First International</span>
                     <span class="tag-chip">USA</span>
                 </div>
             </div>
         </div>
 
-        <!-- ============================================== -->
-        <!-- TEMPLATE: copy and edit this block to add more -->
-        <!-- Available data-category values:                -->
-        <!--   internship · conference · program · service  -->
-        <!--   · training                                    -->
-        <!-- Available badge classes:                       -->
-        <!--   badge-internship, badge-conference,          -->
-        <!--   badge-program, badge-service, badge-training -->
-        <!-- ============================================== -->
-        <!--
-        <div class="activity-card" data-category="training">
+        <!-- ===== iFUZZY 2023 Penghu ===== -->
+        <div class="activity-card" data-category="conference">
             <div class="activity-date-strip">
-                <div class="month">YEAR</div>
-                <div class="day">Month or Description</div>
+                <div class="month">2023</div>
+                <div class="day">Conference</div>
             </div>
             <div class="activity-content">
-                <span class="category-badge badge-training">Training</span>
-                <h3>Activity Title</h3>
-                <div class="activity-location">📍 Location · Institution</div>
+                <span class="category-badge badge-conference">Presenter</span>
+                <h3>iFUZZY 2023 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
+                <div class="activity-location">📍 Penghu, Taiwan</div>
                 <p class="activity-description">
-                    Short description of what you did, what you learned, or what made it meaningful.
+                    Lab papers presented at the 2023 iFUZZY conference, including "Self-Tuning Predictive PID Control Using Interval Type-2 Fuzzy Neural LSTM Incorporated with Broad Learning System" and "Fuzzy Neural LSTM with Recurrent BLS for Adaptive MPC Tracking Control of Nonlinear Systems."
                 </p>
                 <div class="activity-highlights">
-                    <strong>Optional highlight</strong> — for awards, recognitions, or notable outcomes.
+                    <strong>🥈 Best Student Paper Award · 2nd Place</strong>
                 </div>
                 <div class="activity-tags">
-                    <span class="tag-chip">Tag 1</span>
-                    <span class="tag-chip">Tag 2</span>
+                    <span class="tag-chip">iFUZZY</span>
+                    <span class="tag-chip">Best Student Paper</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== IFSA 2023 Daegu (compact) ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-date-strip">
+                <div class="month">Aug 2023</div>
+                <div class="day">Korea</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-conference">Presenter</span>
+                <h3>IFSA 2023 — 20th World Congress of the Int. Fuzzy Systems Association</h3>
+                <div class="activity-location">📍 EXCO · Daegu, Korea</div>
+            </div>
+        </div>
+
+        <!-- ===== ICSSE 2023 Ho Chi Minh (compact) ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-date-strip">
+                <div class="month">2023</div>
+                <div class="day">Vietnam</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-conference">Presenter</span>
+                <h3>ICSSE 2023 — Int. Conf. on System Science and Engineering</h3>
+                <div class="activity-location">📍 Ho Chi Minh City, Vietnam</div>
+            </div>
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2022 ===================== -->
+        <!-- ================================================ -->
+        <div class="year-divider">
+            <span class="year">2022</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ===== ICSSE 2022 Taichung (first committee + first paper) ===== -->
+        <div class="activity-card" data-category="committee">
+            <div class="activity-date-strip">
+                <div class="month">May</div>
+                <div class="day">2022</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-committee">Local Committee · Presenter</span>
+                <h3>ICSSE 2022 — Int. Conf. on System Science and Engineering</h3>
+                <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
+                <p class="activity-description">
+                    Served as a Local Organizing Committee Member as part of the host lab at NCHU (chaired by Prof. Ching-Chih Tsai). Also presented my first conference paper: "Intelligent PID Temperature Control Using Output Recurrent Fuzzy Broad Learning System for Nonlinear Time-Delay Dynamic Systems."
+                </p>
+                <div class="activity-tags">
+                    <span class="tag-chip">Local Committee</span>
+                    <span class="tag-chip">First Paper</span>
+                    <span class="tag-chip">Taichung</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ARIS 2022 Taipei ===== -->
+        <div class="activity-card" data-category="conference">
+            <div class="activity-date-strip">
+                <div class="month">Aug</div>
+                <div class="day">2022</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-conference">Presenter</span>
+                <h3>ARIS 2022 — Int. Conf. on Advanced Robotics and Intelligent Systems</h3>
+                <div class="activity-location">📍 Taipei Nangang Exhibition Center · Taipei, Taiwan</div>
+                <p class="activity-description">
+                    Presented "Adaptive Predictive PID Control Using Recurrent Fuzzy Broad Learning System for Accurate Setpoint Tracking of Digital Nonlinear Time-Delay Dynamic Systems."
+                </p>
+                <div class="activity-highlights">
+                    <strong>🎖 Best Conference Paper Award — Honorable Mention</strong>
+                </div>
+                <div class="activity-tags">
+                    <span class="tag-chip">ARIS</span>
+                    <span class="tag-chip">Honorable Mention</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== WCE 2022 Huwei ===== -->
+        <div class="activity-card" data-category="conference">
+            <div class="activity-date-strip">
+                <div class="month">2022</div>
+                <div class="day">Conference</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-conference">Presenter</span>
+                <h3>Workshop on Consumer Electronics 2022 (第二十三屆民生電子研討會)</h3>
+                <div class="activity-location">📍 Huwei Township, Taiwan</div>
+                <p class="activity-description">
+                    Lab paper presented at the 23rd Workshop on Consumer Electronics — "Adaptive Predictive PID Setpoint Tracking Control of Digital Nonlinear Time-Delay Dynamic Systems Using Interval Type-2 Fuzzy Broad Learning System."
+                </p>
+                <div class="activity-highlights">
+                    <strong>🏆 Best Paper Award</strong>
+                </div>
+                <div class="activity-tags">
+                    <span class="tag-chip">WCE</span>
+                    <span class="tag-chip">Best Paper</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== iFUZZY 2022 Kaohsiung (compact) ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-date-strip">
+                <div class="month">2022</div>
+                <div class="day">Kaohsiung</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-conference">Presenter</span>
+                <h3>iFUZZY 2022 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
+                <div class="activity-location">📍 Kaohsiung, Taiwan</div>
+            </div>
+        </div>
+
+
+        <!-- ============================================== -->
+        <!-- TEMPLATE: copy and edit this block to add more -->
+        <!-- data-category values:                          -->
+        <!--   internship · conference · committee ·        -->
+        <!--   program · teaching · competition · training  -->
+        <!-- Add `compact` class to .activity-card for the  -->
+        <!-- slim single-line presenter card style.         -->
+        <!-- ============================================== -->
+        <!--
+        <div class="activity-card" data-category="conference">
+            <div class="activity-date-strip">
+                <div class="month">Month</div>
+                <div class="day">Year</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-conference">Presenter</span>
+                <h3>Activity Title</h3>
+                <div class="activity-location">📍 Location</div>
+                <p class="activity-description">Description...</p>
+                <div class="activity-highlights"><strong>Optional highlight</strong></div>
+                <div class="activity-tags">
+                    <span class="tag-chip">Tag</span>
                 </div>
             </div>
         </div>
