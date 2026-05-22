@@ -235,6 +235,18 @@
             margin-top: 4px;
             line-height: 1.45;
         }
+        .activity-card.compact .activity-highlights {
+            background: #FFF8E7;
+            border-left: 3px solid var(--accent-gold);
+            padding: 5px 10px;
+            margin: 6px 0 0;
+            font-size: 0.82rem;
+            border-radius: 0 4px 4px 0;
+            color: #444;
+        }
+        .activity-card.compact .activity-highlights strong {
+            color: var(--accent-gold);
+        }
 
         /* ================= Footer ================= */
         footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #D1E0D7; font-size: 0.95rem; }
@@ -285,7 +297,7 @@
     <div class="container">
         <h2 class="section-title">Activities</h2>
         <p class="section-intro">
-            A timeline of internships, conferences, teaching, competitions, and programs — the experiences that shape my research and professional journey beyond the lab. <em>Featured cards</em> highlight roles where I served as committee, intern, award winner, or instructor; <em>compact entries</em> mark conferences attended as a presenter.
+            A timeline of internships, conferences, teaching, competitions, and programs — the experiences that shape my research and professional journey beyond the lab. Award and recognition highlights are noted where applicable; paper details are available on the <a href="publications.html" style="color: var(--primary-color); font-weight: 600;">Publications</a> page.
         </p>
 
         <!-- ============ FILTER TABS ============ -->
@@ -347,7 +359,7 @@
         </div>
 
         <!-- ===== ITRI Internship ===== -->
-        <div class="activity-card" data-category="internship">
+        <div class="activity-card compact" data-category="internship">
             <div class="activity-date-strip">
                 <div class="month">Jul – Nov</div>
                 <div class="day">2025</div>
@@ -356,20 +368,11 @@
                 <span class="category-badge badge-internship">Internship</span>
                 <h3>AI System Development Intern · Automotive & Robotic Sensing</h3>
                 <div class="activity-location">📍 Industrial Technology Research Institute (ITRI) · Taiwan</div>
-                <p class="activity-description">
-                    Worked on AI system development for automotive and robotic sensing applications. Built a complete vision pipeline that converts RGB images into dense depth maps and 3D point clouds, bridging research-grade SLAM algorithms with deployable, latency-sensitive systems.
-                </p>
-                <div class="activity-tags">
-                    <span class="tag-chip">Computer Vision</span>
-                    <span class="tag-chip">Depth Estimation</span>
-                    <span class="tag-chip">3D Point Clouds</span>
-                    <span class="tag-chip">Automotive AI</span>
-                </div>
             </div>
         </div>
 
         <!-- ===== IEEE AISS Australia ===== -->
-        <div class="activity-card" data-category="program">
+        <div class="activity-card compact" data-category="program">
             <div class="activity-date-strip">
                 <div class="month">Nov</div>
                 <div class="day">2025</div>
@@ -378,22 +381,12 @@
                 <span class="category-badge badge-program">Program · Scholarship</span>
                 <h3>IEEE Academia-Industry Summer School (AISS)</h3>
                 <div class="activity-location">📍 Swinburne University of Technology · Hawthorn, Australia</div>
-                <p class="activity-description">
-                    Attended the 2025 IEEE AISS held by the IEEE Systems, Man, and Cybernetics Society — a one-week intensive program bringing together graduate researchers and industry experts on emerging topics in systems engineering, control, and AI.
-                </p>
-                <div class="activity-highlights">
-                    <strong>🎓 Full Scholarship Recipient</strong> — selected by IEEE SMC Society to attend with all expenses covered.
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">IEEE SMC</span>
-                    <span class="tag-chip">Systems Engineering</span>
-                    <span class="tag-chip">Scholarship</span>
-                </div>
+                <div class="activity-highlights"><strong>🎓 Full Scholarship Recipient</strong> — IEEE SMC Society</div>
             </div>
         </div>
 
         <!-- ===== ICSSE 2025 Chiang Mai ===== -->
-        <div class="activity-card" data-category="conference">
+        <div class="activity-card compact" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">Aug</div>
                 <div class="day">2025</div>
@@ -402,21 +395,12 @@
                 <span class="category-badge badge-conference">Presenter</span>
                 <h3>ICSSE 2025 — Int. Conf. on System Science and Engineering</h3>
                 <div class="activity-location">📍 Chiang Mai, Thailand</div>
-                <p class="activity-description">
-                    Lab paper presented at the 2025 International Conference on System Science and Engineering — "Adaptive Model Predictive Control Using Interval Type-2 Elliptic Fuzzy Broad Learning Systems for Nonlinear Dynamic Digital Time-Delay Systems."
-                </p>
-                <div class="activity-highlights">
-                    <strong>🎖 Session 4 Best Presentation Award</strong>
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">Best Presentation</span>
-                    <span class="tag-chip">Thailand</span>
-                </div>
+                <div class="activity-highlights"><strong>🎖 Session 4 Best Presentation Award</strong></div>
             </div>
         </div>
 
         <!-- ===== ARIS 2025 Taichung (committee + presenter) ===== -->
-        <div class="activity-card" data-category="committee">
+        <div class="activity-card compact" data-category="committee">
             <div class="activity-date-strip">
                 <div class="month">Aug</div>
                 <div class="day">2025</div>
@@ -425,22 +409,12 @@
                 <span class="category-badge badge-committee">Local Committee · Presenter</span>
                 <h3>ARIS 2025 — Int. Conf. on Advanced Robotics and Intelligent Systems</h3>
                 <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
-                <p class="activity-description">
-                    Served as a Local Organizing Committee Member as part of the host laboratory at NCHU (chaired by Prof. Ching-Chih Tsai). Also presented research: "Intelligent Trajectory Tracking Control Using PFBLS for Omnidirectional Mobile Robots."
-                </p>
-                <div class="activity-highlights">
-                    <strong>🎖 Honorary Mention — Best Presentation Award</strong>
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">Local Committee</span>
-                    <span class="tag-chip">Presenter</span>
-                    <span class="tag-chip">Taichung</span>
-                </div>
+                <div class="activity-highlights"><strong>🎖 Honorary Mention — Best Presentation Award</strong></div>
             </div>
         </div>
 
         <!-- ===== iFUZZY 2025 Hsinchu ===== -->
-        <div class="activity-card" data-category="conference">
+        <div class="activity-card compact" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">2025</div>
                 <div class="day">Conference</div>
@@ -449,16 +423,7 @@
                 <span class="category-badge badge-conference">Presenter</span>
                 <h3>iFUZZY 2025 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
                 <div class="activity-location">📍 Hsinchu, Taiwan</div>
-                <p class="activity-description">
-                    Presented "Positive PFBLS for Intelligent Trajectory Tracking Control of Omnidirectional Mobile Robots" at the 2025 iFUZZY conference.
-                </p>
-                <div class="activity-highlights">
-                    <strong>🥈 Best Student Paper Award · 2nd Place</strong>
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">iFUZZY</span>
-                    <span class="tag-chip">Best Student Paper</span>
-                </div>
+                <div class="activity-highlights"><strong>🥈 Best Student Paper Award · 2nd Place</strong></div>
             </div>
         </div>
 
@@ -477,7 +442,7 @@
         </div>
 
         <!-- ===== NCHU Scientific Paper Competition 2025 ===== -->
-        <div class="activity-card" data-category="competition">
+        <div class="activity-card compact" data-category="competition">
             <div class="activity-date-strip">
                 <div class="month">2025</div>
                 <div class="day">Competition</div>
@@ -486,17 +451,7 @@
                 <span class="category-badge badge-competition">Competition</span>
                 <h3>NCHU Scientific Paper Competition · Semiconductor Technology Field</h3>
                 <div class="activity-location">📍 National Chung Hsing University · Taichung, Taiwan</div>
-                <p class="activity-description">
-                    Competed in the Semiconductor Technology Research Field of the 2025 NCHU Scientific Paper Competition with a poster on Polynomial Fuzzy Stacked BLS Nonlinear MPC for semiconductor heating ovens.
-                </p>
-                <div class="activity-highlights">
-                    <strong>🥉 3rd Place — Semiconductor Technology Research Field</strong>
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">NCHU</span>
-                    <span class="tag-chip">Poster Competition</span>
-                    <span class="tag-chip">Semiconductor</span>
-                </div>
+                <div class="activity-highlights"><strong>🥉 3rd Place — Semiconductor Technology Research Field</strong></div>
             </div>
         </div>
 
@@ -552,7 +507,7 @@
         </div>
 
         <!-- ===== IEEE SMC 2024 Kuching ===== -->
-        <div class="activity-card" data-category="conference">
+        <div class="activity-card compact" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">2024</div>
                 <div class="day">Conference</div>
@@ -561,22 +516,12 @@
                 <span class="category-badge badge-conference">Presenter</span>
                 <h3>🏆 IEEE SMC 2024 — Int. Conf. on Systems, Man, and Cybernetics</h3>
                 <div class="activity-location">📍 Kuching, Malaysia</div>
-                <p class="activity-description">
-                    Presented "Recurrent Polynomial-Based FBLS for Adaptive Predictive PID Control of Nonlinear Discrete-Time Systems" — a comparative study on control performance and time complexity.
-                </p>
-                <div class="activity-highlights">
-                    <strong>🏆 Best Student Paper Award · 1st Place</strong> — top-paper recognition at one of IEEE's flagship international conferences in systems engineering.
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">IEEE SMC</span>
-                    <span class="tag-chip">Best Paper Winner</span>
-                    <span class="tag-chip">Malaysia</span>
-                </div>
+                <div class="activity-highlights"><strong>🏆 Best Student Paper Award · 1st Place</strong></div>
             </div>
         </div>
 
         <!-- ===== Fuzzy 2024 Nangan ===== -->
-        <div class="activity-card" data-category="conference">
+        <div class="activity-card compact" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">2024</div>
                 <div class="day">Conference</div>
@@ -585,21 +530,12 @@
                 <span class="category-badge badge-conference">Presenter</span>
                 <h3>Fuzzy 2024 — 32nd Conference on Fuzzy Theory and Its Applications</h3>
                 <div class="activity-location">📍 Nangan Township, Taiwan</div>
-                <p class="activity-description">
-                    Presented "Intelligent Data-Driven Control Using Output Recurrent Elliptic Fuzzy BLS for Nonlinear Dynamic Systems" at the 32nd annual Fuzzy Theory conference of the Republic of China.
-                </p>
-                <div class="activity-highlights">
-                    <strong>🥉 Best Paper Award · 3rd Place</strong>
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">Fuzzy Theory</span>
-                    <span class="tag-chip">Best Paper</span>
-                </div>
+                <div class="activity-highlights"><strong>🥉 Best Paper Award · 3rd Place</strong></div>
             </div>
         </div>
 
         <!-- ===== NCHU Scientific Paper Competition 2024 ===== -->
-        <div class="activity-card" data-category="competition">
+        <div class="activity-card compact" data-category="competition">
             <div class="activity-date-strip">
                 <div class="month">2024</div>
                 <div class="day">Competition</div>
@@ -608,17 +544,7 @@
                 <span class="category-badge badge-competition">Competition</span>
                 <h3>NCHU Scientific Paper Competition · Engineering Technology Field</h3>
                 <div class="activity-location">📍 National Chung Hsing University · Taichung, Taiwan</div>
-                <p class="activity-description">
-                    Competed in the Engineering Technology Research Field of the 2024 NCHU Scientific Paper Competition with a poster on Polynomial-Based FBLS data-driven learning control for semiconductor packaging.
-                </p>
-                <div class="activity-highlights">
-                    <strong>🥇 1st Place — Engineering Technology Research Field</strong>
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">NCHU</span>
-                    <span class="tag-chip">Poster Competition</span>
-                    <span class="tag-chip">1st Place</span>
-                </div>
+                <div class="activity-highlights"><strong>🥇 1st Place — Engineering Technology Research Field</strong></div>
             </div>
         </div>
 
@@ -647,7 +573,7 @@
         </div>
 
         <!-- ===== IEEE SMC 2023 Honolulu ===== -->
-        <div class="activity-card" data-category="conference">
+        <div class="activity-card compact" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">2023</div>
                 <div class="day">Conference</div>
@@ -656,19 +582,11 @@
                 <span class="category-badge badge-conference">Presenter</span>
                 <h3>IEEE SMC 2023 — Int. Conf. on Systems, Man, and Cybernetics</h3>
                 <div class="activity-location">📍 Honolulu, Hawaii, USA</div>
-                <p class="activity-description">
-                    Presented "Output Recurrent Fuzzy Neural LSTM-BLS Controller for Nonlinear Digital Time-Delay Dynamic Systems" — my first international IEEE SMC appearance.
-                </p>
-                <div class="activity-tags">
-                    <span class="tag-chip">IEEE SMC</span>
-                    <span class="tag-chip">First International</span>
-                    <span class="tag-chip">USA</span>
-                </div>
             </div>
         </div>
 
         <!-- ===== iFUZZY 2023 Penghu ===== -->
-        <div class="activity-card" data-category="conference">
+        <div class="activity-card compact" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">2023</div>
                 <div class="day">Conference</div>
@@ -677,16 +595,7 @@
                 <span class="category-badge badge-conference">Presenter</span>
                 <h3>iFUZZY 2023 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
                 <div class="activity-location">📍 Penghu, Taiwan</div>
-                <p class="activity-description">
-                    Lab papers presented at the 2023 iFUZZY conference, including "Self-Tuning Predictive PID Control Using Interval Type-2 Fuzzy Neural LSTM Incorporated with Broad Learning System" and "Fuzzy Neural LSTM with Recurrent BLS for Adaptive MPC Tracking Control of Nonlinear Systems."
-                </p>
-                <div class="activity-highlights">
-                    <strong>🥈 Best Student Paper Award · 2nd Place</strong>
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">iFUZZY</span>
-                    <span class="tag-chip">Best Student Paper</span>
-                </div>
+                <div class="activity-highlights"><strong>🥈 Best Student Paper Award · 2nd Place</strong></div>
             </div>
         </div>
 
@@ -743,7 +652,7 @@
         </div>
 
         <!-- ===== ICSSE 2022 Taichung (first committee + first paper) ===== -->
-        <div class="activity-card" data-category="committee">
+        <div class="activity-card compact" data-category="committee">
             <div class="activity-date-strip">
                 <div class="month">May</div>
                 <div class="day">2022</div>
@@ -752,19 +661,11 @@
                 <span class="category-badge badge-committee">Local Committee · Presenter</span>
                 <h3>ICSSE 2022 — Int. Conf. on System Science and Engineering</h3>
                 <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
-                <p class="activity-description">
-                    Served as a Local Organizing Committee Member as part of the host lab at NCHU (chaired by Prof. Ching-Chih Tsai). Also presented my first conference paper: "Intelligent PID Temperature Control Using Output Recurrent Fuzzy Broad Learning System for Nonlinear Time-Delay Dynamic Systems."
-                </p>
-                <div class="activity-tags">
-                    <span class="tag-chip">Local Committee</span>
-                    <span class="tag-chip">First Paper</span>
-                    <span class="tag-chip">Taichung</span>
-                </div>
             </div>
         </div>
 
         <!-- ===== ARIS 2022 Taipei ===== -->
-        <div class="activity-card" data-category="conference">
+        <div class="activity-card compact" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">Aug</div>
                 <div class="day">2022</div>
@@ -773,21 +674,12 @@
                 <span class="category-badge badge-conference">Presenter</span>
                 <h3>ARIS 2022 — Int. Conf. on Advanced Robotics and Intelligent Systems</h3>
                 <div class="activity-location">📍 Taipei Nangang Exhibition Center · Taipei, Taiwan</div>
-                <p class="activity-description">
-                    Presented "Adaptive Predictive PID Control Using Recurrent Fuzzy Broad Learning System for Accurate Setpoint Tracking of Digital Nonlinear Time-Delay Dynamic Systems."
-                </p>
-                <div class="activity-highlights">
-                    <strong>🎖 Best Conference Paper Award — Honorable Mention</strong>
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">ARIS</span>
-                    <span class="tag-chip">Honorable Mention</span>
-                </div>
+                <div class="activity-highlights"><strong>🎖 Best Conference Paper Award — Honorable Mention</strong></div>
             </div>
         </div>
 
         <!-- ===== WCE 2022 Huwei ===== -->
-        <div class="activity-card" data-category="conference">
+        <div class="activity-card compact" data-category="conference">
             <div class="activity-date-strip">
                 <div class="month">2022</div>
                 <div class="day">Conference</div>
@@ -796,16 +688,7 @@
                 <span class="category-badge badge-conference">Presenter</span>
                 <h3>Workshop on Consumer Electronics 2022 (第二十三屆民生電子研討會)</h3>
                 <div class="activity-location">📍 Huwei Township, Taiwan</div>
-                <p class="activity-description">
-                    Lab paper presented at the 23rd Workshop on Consumer Electronics — "Adaptive Predictive PID Setpoint Tracking Control of Digital Nonlinear Time-Delay Dynamic Systems Using Interval Type-2 Fuzzy Broad Learning System."
-                </p>
-                <div class="activity-highlights">
-                    <strong>🏆 Best Paper Award</strong>
-                </div>
-                <div class="activity-tags">
-                    <span class="tag-chip">WCE</span>
-                    <span class="tag-chip">Best Paper</span>
-                </div>
+                <div class="activity-highlights"><strong>🏆 Best Paper Award</strong></div>
             </div>
         </div>
 
