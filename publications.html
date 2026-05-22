@@ -194,7 +194,7 @@
         
 
         /* ================= Auto-numbering per section ================= */
-        /* .pub-list {
+        .pub-list {
             counter-reset: pub-counter;
         }
         .pub-item {
@@ -202,7 +202,8 @@
         }
         .pub-content::before {
             content: "#" counter(pub-counter);
-            display: inline-block;
+            /* display: inline-block; */
+            display: block; width: fit-content;
             background-color: var(--badge-bg);
             color: var(--primary-color);
             border: 1px solid #C8D8CD;
@@ -212,40 +213,7 @@
             font-weight: 700;
             margin-bottom: 6px;
             letter-spacing: 0.5px;
-        } */
-
-
-      /* 1. Reset counter for each section */
-      .pub-list {
-        counter-reset: pub-num;
-      }
-    
-      /* 2. Make room for the number inside each item */
-      .pub-item {
-        position: relative;
-        padding-left: 2.4em; /* ← Change this value to increase/decrease spacing */
-        margin-bottom: 1.5em;
-      }
-    
-      /* 3. Position the number safely in the reserved padding area */
-      .pub-item::before {
-        counter-increment: pub-num;
-        content: counter(pub-num) ".";
-        position: absolute;
-        left: 0;
-        top: 0;
-        font-weight: 700;
-        color: #2563eb; /* Match your theme */
-        min-width: 1.8em;
-        text-align: right; /* Keeps 1. and 10. aligned neatly */
-      }
-    
-      /* Optional: subtle hover effect */
-      .pub-item:hover::before {
-        color: #1d4ed8;
-        transition: color 0.2s;
-      }
-
+        } 
         
         
     </style>
