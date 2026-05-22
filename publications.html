@@ -191,6 +191,28 @@
             .pub-actions { margin-top: 12px; }
             .badge { display: inline-block; margin: 4px 4px 0 0; }
         }
+        
+          /* Reset counter at the start of each publication section */
+          .pub-list {
+            counter-reset: pub-num;
+            padding-left: 0;
+          }
+        
+          /* Auto-increment & display number before each publication */
+          .pub-item::before {
+            counter-increment: pub-num;
+            content: counter(pub-num) ". ";
+            font-weight: 700;
+            color: #2563eb; /* Change this to match your site's theme */
+            margin-right: 0.5em;
+            display: inline-block;
+            min-width: 1.8em; /* Keeps numbers aligned neatly */
+          }
+        
+          /* Optional: subtle hover effect */
+          .pub-item:hover::before {
+            color: #1d4ed8;
+          }
     </style>
 </head>
 <body>
