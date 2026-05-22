@@ -9,12 +9,17 @@
     <style>
         /* ================= Base Setup ================= */
         :root { 
-            --bg-color: #F8F9FA; 
+            --bg-color: #F5F4F0; 
             --primary-color: #2C4C3B; 
             --secondary-color: #3A634D;
             --accent-gold: #B87500;
             --text-color: #333333; 
             --card-bg: #FFFFFF;
+            --tier-gold: #D4A017;
+            --tier-silver: #9CA3AF;
+            --tier-bronze: #B87333;
+            --tier-recognition: #2C4C3B;
+            --tier-scholarship: #2E86AB;
         }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         
@@ -26,200 +31,251 @@
         nav a:hover, .nav-active { border-bottom: 2px solid #FFFFFF; }
         
         /* ================= Layout ================= */
-        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
-        h2.section-title { color: var(--primary-color); text-align: center; font-size: 2.2rem; margin-bottom: 20px; letter-spacing: 1px; }
-        .section-subtitle { text-align: center; color: #6B7280; font-size: 1.05rem; margin-bottom: 70px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .container { max-width: 1000px; margin: 50px auto 80px; padding: 0 20px; }
+        h2.section-title { color: var(--primary-color); text-align: center; font-size: 2.4rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; }
+        .section-subtitle { text-align: center; color: #6B7280; font-size: 1.05rem; margin: 0 auto 35px; max-width: 640px; line-height: 1.7; }
 
-        /* ================= Timeline ================= */
-        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 50px; }
-        .timeline::before { 
-            content: ''; 
-            position: absolute; 
-            top: 0; 
-            left: 20px; 
-            height: 100%; 
-            width: 2px; 
-            background: #E5E7EB; 
-        }
-
-        .timeline-item { 
-            position: relative; 
-            margin-bottom: 60px; 
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .timeline-item::before { 
-            content: ''; 
-            position: absolute; 
-            top: 8px; 
-            left: -34px; 
-            width: 10px; 
-            height: 10px; 
-            background: #D1D5DB; 
-            border: 3px solid var(--bg-color); 
-            border-radius: 50%; 
-            z-index: 2; 
-            transition: all 0.4s ease;
-        }
-
-        .timeline-year { 
-            font-size: 1.5rem; 
-            font-weight: 800; 
-            color: #9CA3AF; 
-            margin-bottom: 12px; 
-            display: inline-block; 
-            transition: color 0.4s ease;
-        }
-
-        .timeline-content { 
-            position: relative;
-            background: var(--card-bg); 
-            padding: 35px 40px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02), 0 10px 15px rgba(0, 0, 0, 0.03); 
+        /* ================= Stats Banner ================= */
+        .awards-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            margin: 0 auto 55px;
+            padding: 18px 16px;
+            background: #FFFFFF;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
             border: 1px solid #F3F4F6;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
+            max-width: 900px;
         }
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 0; 
-            left: 0;
-            width: 4px;
-            height: 0%;
-            background: var(--primary-color);
-            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .awards-stats .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px 22px;
+            border-right: 1px solid #F0F0F0;
+            min-width: 110px;
         }
-
-        /* ================= Hover focus effect ================= */
-        .timeline:hover .timeline-item {
-            opacity: 0.4;
-            transform: scale(0.98);
-            filter: grayscale(80%);
-        }
-        .timeline .timeline-item:hover {
-            opacity: 1;
-            transform: scale(1.02);
-            filter: grayscale(0%);
-            z-index: 10;
-        }
-        .timeline-item:hover::before {
-            background: var(--primary-color);
-            transform: scale(1.5);
-            box-shadow: 0 0 0 4px rgba(44, 76, 59, 0.1);
-        }
-        .timeline-item:hover .timeline-year {
+        .awards-stats .stat-item:last-child { border-right: none; }
+        .awards-stats .stat-num {
+            font-size: 1.9rem;
+            font-weight: 900;
+            line-height: 1;
             color: var(--primary-color);
         }
-        .timeline-item:hover .timeline-content {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
-            border-color: transparent;
-        }
-        .timeline-item:hover .timeline-content::before {
-            height: 100%;
-        }
-
-        /* ================= Award Items ================= */
-        .award-group { position: relative; z-index: 2; margin-bottom: 25px; }
-        .award-group:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-        .award-group:not(:last-child) { border-bottom: 1px solid #F3F4F6; padding-bottom: 25px; }
-
-        .award-title { font-weight: 700; font-size: 1.25rem; color: #111827; margin-bottom: 6px; line-height: 1.4; }
-        .award-title .badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            background: var(--accent-gold);
-            color: #fff;
-            padding: 2px 10px;
-            border-radius: 12px;
-            margin-right: 8px;
-            vertical-align: middle;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        .award-title .badge.gold { background: #D4A017; }
-        .award-title .badge.silver { background: #9CA3AF; }
-        .award-title .badge.bronze { background: #B87333; }
-        
-        .award-desc { font-size: 0.95rem; color: #4B5563; margin-bottom: 0; line-height: 1.6; }
-        .award-desc .venue { color: #374151; font-weight: 500; }
-        
-        .award-link { display: inline-block; margin-top: 10px; font-size: 0.9rem; color: var(--secondary-color); text-decoration: none; font-weight: 600; transition: 0.2s;}
-        .award-link:hover { color: var(--primary-color); text-decoration: underline; }
-
-        /* ================= Photo gallery (collapsible) ================= */
-        .view-photo-btn {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 15px;
-            padding: 6px 0;
-            font-size: 0.9rem;
+        .awards-stats .stat-label {
+            font-size: 0.78rem;
             color: #6B7280;
-            background-color: transparent;
-            border: none;
+            font-weight: 700;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .awards-stats .stat-item.gold .stat-num { color: #B7950B; }
+        .awards-stats .stat-item.silver .stat-num { color: #707B7C; }
+        .awards-stats .stat-item.bronze .stat-num { color: #884A09; }
+        .awards-stats .stat-item.recognition .stat-num { color: var(--primary-color); }
+        .awards-stats .stat-item.scholarship .stat-num { color: var(--tier-scholarship); }
+
+        /* ================= Year Divider ================= */
+        .year-divider {
+            display: flex;
+            align-items: center;
+            margin: 42px 0 20px;
+            color: var(--primary-color);
+        }
+        .year-divider:first-of-type { margin-top: 0; }
+        .year-divider .year {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            padding-right: 18px;
+        }
+        .year-divider .line {
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), transparent);
+        }
+
+        /* ================= Award Card (compact) ================= */
+        .award-card {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            background: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border-left: 4px solid #E5E7EB;
+            overflow: hidden;
+        }
+        .award-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+        }
+
+        .award-tier-strip {
+            padding: 14px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-right: 1px solid #F0F0F0;
+        }
+        .award-tier-strip .tier-emoji {
+            font-size: 1.7rem;
+            line-height: 1;
+        }
+        .award-tier-strip .tier-label {
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 6px;
+            color: #4B5563;
+        }
+
+        /* ================= Tier-specific colors ================= */
+        .award-card.gold { border-left-color: var(--tier-gold); }
+        .award-card.gold .award-tier-strip { background: linear-gradient(135deg, #FEF9E7, #FCF3CF); }
+        .award-card.gold .tier-label { color: #B7950B; }
+
+        .award-card.silver { border-left-color: var(--tier-silver); }
+        .award-card.silver .award-tier-strip { background: linear-gradient(135deg, #F4F6F7, #EAEDED); }
+        .award-card.silver .tier-label { color: #707B7C; }
+
+        .award-card.bronze { border-left-color: var(--tier-bronze); }
+        .award-card.bronze .award-tier-strip { background: linear-gradient(135deg, #FAEFE5, #F0D3B5); }
+        .award-card.bronze .tier-label { color: #884A09; }
+
+        .award-card.recognition { border-left-color: var(--tier-recognition); }
+        .award-card.recognition .award-tier-strip { background: linear-gradient(135deg, #EAEFEC, #DCE6E0); }
+        .award-card.recognition .tier-label { color: var(--primary-color); }
+
+        .award-card.scholarship { border-left-color: var(--tier-scholarship); }
+        .award-card.scholarship .award-tier-strip { background: linear-gradient(135deg, #E8F4F8, #D1E5F0); }
+        .award-card.scholarship .tier-label { color: var(--tier-scholarship); }
+
+        /* ================= Award Content ================= */
+        .award-content {
+            padding: 14px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .award-title {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 4px 0;
+            line-height: 1.4;
+        }
+        .award-venue {
+            font-size: 0.88rem;
+            color: #6B7280;
+            margin: 0;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .award-venue .institution {
+            color: #374151;
+            font-weight: 600;
+        }
+        .award-photos-toggle {
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: var(--secondary-color);
+            background: transparent;
+            border: 1px solid #E5E7EB;
+            padding: 4px 12px;
+            border-radius: 14px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: all 0.2s ease;
+            align-self: flex-start;
         }
-        .view-photo-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 0;
-            width: 0%;
-            height: 2px;
+        .award-photos-toggle:hover {
             background: var(--primary-color);
-            transition: width 0.3s ease;
+            border-color: var(--primary-color);
+            color: #fff;
         }
-        .view-photo-btn:hover { color: var(--primary-color); }
-        .view-photo-btn:hover::after { width: 100%; }
-        .view-photo-btn.active { color: var(--primary-color); }
-        .view-photo-btn.active::after { width: 100%; }
+        .award-photos-toggle.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
 
+        /* ================= Gallery ================= */
         .award-gallery {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out, margin-top 0.3s ease;
+            transition: max-height 0.4s ease;
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            align-items: center; 
+            gap: 12px;
+            margin-top: 0;
         }
-        .award-gallery.expanded { max-height: 500px; margin-top: 20px; }
-        
+        .award-gallery.expanded {
+            max-height: 500px;
+            margin-top: 14px;
+        }
         .gallery-img {
-            height: 120px; 
+            height: 110px;
             width: auto;
             border-radius: 6px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
             cursor: zoom-in;
             border: 1px solid #F3F4F6;
-            transition: all 0.3s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .gallery-img:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .gallery-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+        }
 
         /* ================= Lightbox ================= */
         #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: zoom-out; backdrop-filter: blur(5px); }
         #lightbox img { max-width: 90%; max-height: 90%; border-radius: 4px; box-shadow: 0 0 40px rgba(0,0,0,0.5); object-fit: contain; }
-        .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 50px; cursor: pointer; transition: 0.3s;}
-        .close-lightbox:hover { transform: scale(1.1); color: #E5E7EB;}
+        .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 50px; cursor: pointer; transition: 0.3s; }
+        .close-lightbox:hover { transform: scale(1.1); color: #E5E7EB; }
 
-        footer { background-color: var(--primary-color); padding: 40px 20px 20px; margin-top: 80px; text-align: center; color: #D1E0D7; font-size: 0.95rem; }
+        /* ================= Footer ================= */
+        footer { background-color: var(--primary-color); padding: 40px 20px 20px; margin-top: 0; text-align: center; color: #D1E0D7; font-size: 0.95rem; }
 
         /* ================= Mobile ================= */
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 15px; padding: 15px; }
             nav { flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
-            .container { margin: 30px auto; }
-            .timeline { padding-left: 35px; }
-            .timeline::before { left: 12px; }
-            .timeline-item::before { left: -28px; }
-            .timeline-content { padding: 25px 22px; }
-            .award-title { font-size: 1.1rem; }
-            .award-title .badge { display: inline-block; margin-bottom: 4px; }
-            h2.section-title { font-size: 1.7rem; }
-            .timeline:hover .timeline-item { opacity: 1; filter: none; transform: none; }
+            .container { margin-top: 25px; padding: 0 15px; }
+            h2.section-title { font-size: 1.8rem; }
+            .section-subtitle { font-size: 0.98rem; }
+
+            .awards-stats { padding: 14px 10px; gap: 0; }
+            .awards-stats .stat-item {
+                padding: 6px 12px;
+                min-width: 70px;
+                border-right: 1px solid #F0F0F0;
+            }
+            .awards-stats .stat-num { font-size: 1.4rem; }
+            .awards-stats .stat-label { font-size: 0.65rem; letter-spacing: 0.4px; margin-top: 4px; }
+
+            .year-divider .year { font-size: 1.7rem; }
+
+            .award-card { grid-template-columns: 1fr; }
+            .award-tier-strip {
+                padding: 10px 16px;
+                border-right: none;
+                border-bottom: 1px solid #F0F0F0;
+                flex-direction: row;
+                gap: 10px;
+                justify-content: flex-start;
+            }
+            .award-tier-strip .tier-emoji { font-size: 1.3rem; }
+            .award-tier-strip .tier-label { margin-top: 0; }
+            .award-content { padding: 14px 18px; }
+            .award-title { font-size: 1rem; }
         }
     </style>
 </head>
@@ -243,132 +299,218 @@
     </div>
 
     <div class="container">
-        <h2 class="section-title">Honors & Awards</h2>
+        <h2 class="section-title">Honors &amp; Awards</h2>
         <p class="section-subtitle">Recognition received for research contributions, best paper awards, and scholarships across international conferences and institutions.</p>
 
-        <div class="timeline">
-            
-            <!-- ============ 2025 ============ -->
-            <div class="timeline-item">
-                <div class="timeline-year">2025</div>
-                <div class="timeline-content">
-
-                    <div class="award-group">
-                        <div class="award-title">Full Scholarship Recipient — IEEE Academia-Industry Summer School (AISS)</div>
-                        <div class="award-desc"><span class="venue">Held by IEEE Systems, Man, and Cybernetics Society at Swinburne University of Technology, Hawthorn VIC, Australia</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                    <div class="award-group">
-                        <div class="award-title"><span class="badge silver">2ND PLACE</span>Best Student Paper Award</div>
-                        <div class="award-desc"><span class="venue">2025 International Conference on Fuzzy Theory and Its Applications (iFUZZY 2025)</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                    <div class="award-group">
-                        <div class="award-title">Honorary Mention — Best Presentation Award</div>
-                        <div class="award-desc"><span class="venue">2025 International Conference on Advanced Robotics and Intelligent Systems (ARIS 2025), Taichung, Taiwan</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                    <div class="award-group">
-                        <div class="award-title">Session 4 Best Presentation Award</div>
-                        <div class="award-desc"><span class="venue">2025 International Conference on System Science and Engineering (ICSSE 2025), Chiang Mai, Thailand</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                    <div class="award-group">
-                        <div class="award-title"><span class="badge bronze">3RD PLACE</span>Semiconductor Technology Research Field</div>
-                        <div class="award-desc"><span class="venue">2025 National Chung Hsing University Scientific Paper Competition, Taichung, Taiwan</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                </div>
+        <!-- ============ STATS BANNER ============ -->
+        <div class="awards-stats">
+            <div class="stat-item gold">
+                <span class="stat-num">4</span>
+                <span class="stat-label">🥇 1st Place</span>
             </div>
-
-            <!-- ============ 2024 ============ -->
-            <div class="timeline-item">
-                <div class="timeline-year">2024</div>
-                <div class="timeline-content">
-
-                    <div class="award-group">
-                        <div class="award-title"><span class="badge gold">1ST PLACE</span>Best Student Paper Award Winner</div>
-                        <div class="award-desc"><span class="venue">2024 IEEE International Conference on Systems, Man, and Cybernetics (IEEE SMC 2024), Kuching, Malaysia</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <!-- <div class="award-gallery"></div> -->
-                        <div class="award-gallery">
-                            <img src="images/awards/2024-ieee-smc1.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="SMC 2024 Award">
-                            <img src="images/awards/2024-ieee-smc2.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="SMC 2024 Award">
-                       </div>
-                    </div>
-
-                    <div class="award-group">
-                        <div class="award-title"><span class="badge gold">1ST PLACE</span>Engineering Technology Research Field</div>
-                        <div class="award-desc"><span class="venue">2024 National Chung Hsing University Scientific Paper Competition, Taichung, Taiwan</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                    <div class="award-group">
-                        <div class="award-title"><span class="badge bronze">3RD PLACE</span>Best Paper Award</div>
-                        <div class="award-desc"><span class="venue">FUZZY 2024 Conference, Nangan Township, Taiwan</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                </div>
+            <div class="stat-item silver">
+                <span class="stat-num">2</span>
+                <span class="stat-label">🥈 2nd Place</span>
             </div>
-
-            <!-- ============ 2023 ============ -->
-            <div class="timeline-item">
-                <div class="timeline-year">2023</div>
-                <div class="timeline-content">
-
-                    <div class="award-group">
-                        <div class="award-title"><span class="badge gold">1ST PLACE</span>Best Master Thesis Award</div>
-                        <div class="award-desc"><span class="venue">Taiwan Fuzzy Systems Association (TFSA), 2023</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                    <div class="award-group">
-                        <div class="award-title"><span class="badge silver">2ND PLACE</span>Best Student Paper Award</div>
-                        <div class="award-desc"><span class="venue">2023 International Conference on Fuzzy Theory and Its Applications (iFUZZY 2023)</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                </div>
+            <div class="stat-item bronze">
+                <span class="stat-num">2</span>
+                <span class="stat-label">🥉 3rd Place</span>
             </div>
-
-            <!-- ============ 2022 ============ -->
-            <div class="timeline-item">
-                <div class="timeline-year">2022</div>
-                <div class="timeline-content">
-
-                    <div class="award-group">
-                        <div class="award-title">Honorary Mention — Best Conference Paper Award</div>
-                        <div class="award-desc"><span class="venue">2022 International Conference on Advanced Robotics and Intelligent Systems (ARIS 2022)</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                    <div class="award-group">
-                        <div class="award-title">Best Paper Award</div>
-                        <div class="award-desc"><span class="venue">2022 Workshop on Consumer Electronics (第二十三屆民生電子研討會)，最佳論文獎</span></div>
-                        <button class="view-photo-btn" onclick="togglePhotos(this)">View Photos 📸</button>
-                        <div class="award-gallery"></div>
-                    </div>
-
-                </div>
+            <div class="stat-item recognition">
+                <span class="stat-num">3</span>
+                <span class="stat-label">🎖 Recognitions</span>
             </div>
-
+            <div class="stat-item scholarship">
+                <span class="stat-num">1</span>
+                <span class="stat-label">🎓 Scholarship</span>
+            </div>
         </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2025 ===================== -->
+        <!-- ================================================ -->
+        <div class="year-divider">
+            <span class="year">2025</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ===== iFUZZY 2025 (Silver) ===== -->
+        <div class="award-card silver">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🥈</span>
+                <span class="tier-label">2nd Place</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Best Student Paper Award</div>
+                <div class="award-venue"><span class="institution">iFUZZY 2025</span> — Int. Conf. on Fuzzy Theory and Its Applications · Hsinchu, Taiwan</div>
+            </div>
+        </div>
+
+        <!-- ===== NCHU SPC 2025 (Bronze) ===== -->
+        <div class="award-card bronze">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🥉</span>
+                <span class="tier-label">3rd Place</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Semiconductor Technology Research Field</div>
+                <div class="award-venue"><span class="institution">2025 NCHU Scientific Paper Competition</span> · Taichung, Taiwan</div>
+            </div>
+        </div>
+
+        <!-- ===== ARIS 2025 Honorary Mention (Recognition) ===== -->
+        <div class="award-card recognition">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🎖</span>
+                <span class="tier-label">Honorary Mention</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Best Presentation Award</div>
+                <div class="award-venue"><span class="institution">ARIS 2025</span> — Int. Conf. on Advanced Robotics and Intelligent Systems · Taichung, Taiwan</div>
+            </div>
+        </div>
+
+        <!-- ===== ICSSE 2025 Session 4 (Recognition) ===== -->
+        <div class="award-card recognition">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🎖</span>
+                <span class="tier-label">Best Presentation</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Session 4 Best Presentation Award</div>
+                <div class="award-venue"><span class="institution">ICSSE 2025</span> — Int. Conf. on System Science and Engineering · Chiang Mai, Thailand</div>
+            </div>
+        </div>
+
+        <!-- ===== AISS Scholarship ===== -->
+        <div class="award-card scholarship">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🎓</span>
+                <span class="tier-label">Full Scholarship</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">IEEE Academia-Industry Summer School (AISS) Recipient</div>
+                <div class="award-venue">Held by <span class="institution">IEEE SMC Society</span> at Swinburne University of Technology, Hawthorn VIC, Australia</div>
+            </div>
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2024 ===================== -->
+        <!-- ================================================ -->
+        <div class="year-divider">
+            <span class="year">2024</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ===== IEEE SMC 2024 (Gold) - HAS PHOTOS ===== -->
+        <div class="award-card gold">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🥇</span>
+                <span class="tier-label">1st Place</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Best Student Paper Award Winner</div>
+                <div class="award-venue"><span class="institution">IEEE SMC 2024</span> — Int. Conf. on Systems, Man, and Cybernetics · Kuching, Malaysia</div>
+                <button class="award-photos-toggle" onclick="togglePhotos(this)">View Photos 📸</button>
+                <div class="award-gallery">
+                    <img src="images/awards/2024-ieee-smc1.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="SMC 2024 Award">
+                    <img src="images/awards/2024-ieee-smc2.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="SMC 2024 Award">
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== NCHU SPC 2024 (Gold) ===== -->
+        <div class="award-card gold">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🥇</span>
+                <span class="tier-label">1st Place</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Engineering Technology Research Field</div>
+                <div class="award-venue"><span class="institution">2024 NCHU Scientific Paper Competition</span> · Taichung, Taiwan</div>
+            </div>
+        </div>
+
+        <!-- ===== Fuzzy 2024 (Bronze) ===== -->
+        <div class="award-card bronze">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🥉</span>
+                <span class="tier-label">3rd Place</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Best Paper Award</div>
+                <div class="award-venue"><span class="institution">FUZZY 2024 Conference</span> · Nangan Township, Taiwan</div>
+            </div>
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2023 ===================== -->
+        <!-- ================================================ -->
+        <div class="year-divider">
+            <span class="year">2023</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ===== TFSA Master Thesis (Gold) ===== -->
+        <div class="award-card gold">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🥇</span>
+                <span class="tier-label">1st Place</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Best Master Thesis Award</div>
+                <div class="award-venue"><span class="institution">Taiwan Fuzzy Systems Association (TFSA)</span>, 2023</div>
+            </div>
+        </div>
+
+        <!-- ===== iFUZZY 2023 (Silver) ===== -->
+        <div class="award-card silver">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🥈</span>
+                <span class="tier-label">2nd Place</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Best Student Paper Award</div>
+                <div class="award-venue"><span class="institution">iFUZZY 2023</span> — Int. Conf. on Fuzzy Theory and Its Applications</div>
+            </div>
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2022 ===================== -->
+        <!-- ================================================ -->
+        <div class="year-divider">
+            <span class="year">2022</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ===== WCE 2022 (Gold) ===== -->
+        <div class="award-card gold">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🏆</span>
+                <span class="tier-label">Best Paper</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Best Paper Award (最佳論文獎)</div>
+                <div class="award-venue"><span class="institution">2022 Workshop on Consumer Electronics</span> (第二十三屆民生電子研討會)</div>
+            </div>
+        </div>
+
+        <!-- ===== ARIS 2022 Honorary Mention (Recognition) ===== -->
+        <div class="award-card recognition">
+            <div class="award-tier-strip">
+                <span class="tier-emoji">🎖</span>
+                <span class="tier-label">Honorary Mention</span>
+            </div>
+            <div class="award-content">
+                <div class="award-title">Best Conference Paper Award</div>
+                <div class="award-venue"><span class="institution">ARIS 2022</span> — Int. Conf. on Advanced Robotics and Intelligent Systems</div>
+            </div>
+        </div>
+
     </div>
 
     <footer>
@@ -380,7 +522,7 @@
         function togglePhotos(btn) {
             const gallery = btn.nextElementSibling;
             
-            if (gallery.children.length === 0) {
+            if (!gallery || gallery.children.length === 0) {
                 alert("Photos will be added soon!");
                 return;
             }
