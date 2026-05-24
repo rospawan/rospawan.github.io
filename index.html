@@ -46,6 +46,30 @@
         nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding-bottom: 5px; transition: 0.3s;}
         nav a:hover, .nav-active { border-bottom: 2px solid #FFFFFF; }
 
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 6px 8px;
+            width: 44px;
+            height: 44px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #FFFFFF;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
         /* ================= Container ================= */
         .container { max-width: 1200px; margin: 50px auto 80px; padding: 0 20px; }
         
@@ -375,8 +399,33 @@
 
         /* ================= Mobile ================= */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; padding: 15px; }
-            nav { flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+            header { padding: 10px 16px; }
+            .logo { font-size: 1.4rem; gap: 8px; }
+            .logo-img { height: 36px; }
+        
+            .menu-toggle { display: flex; }
+        
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                gap: 0;
+                padding: 8px 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+            nav.open { display: flex; }
+            nav a {
+                padding: 14px 24px;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+                font-size: 0.95rem;
+            }
+            nav a:last-child { border-bottom: none; }
         }
         
         @media (max-width: 900px) {
@@ -418,6 +467,9 @@
             <img src="images/logo.svg" alt="RACS Lab logo" class="logo-img">
             <span>RACS Lab</span>
         </a>
+        <button class="menu-toggle" aria-label="Toggle navigation" onclick="const n=this.parentElement.querySelector('nav');n.classList.toggle('open');this.classList.toggle('open');">
+            <span></span><span></span><span></span>
+        </button>
         <nav>
             <a href="index.html" class="nav-active">HOME</a> 
             <a href="about.html">ABOUT ME</a>
