@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research | RACS Lab</title>
-    <meta name="description" content="Research thrusts of Ali Rospawan — intelligent adaptive control, fuzzy neural and broad learning systems, autonomous mobile robots, and visual SLAM.">
+    <meta name="description" content="Research thrusts of Ali Rospawan — intelligent adaptive control for industrial and robotic systems, hybrid AI architectures (fuzzy neural, broad learning, evolutionary, reinforcement learning), autonomous mobile robots, and visual SLAM. Hardware-validated on real industrial and mobile platforms.">
     
     <style>
         /* ================= Base ================= */
@@ -170,6 +170,100 @@
 
         footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #D1E0D7; font-size: 0.95rem; margin-top: 50px;}
 
+        /* ================= Experimental Platforms Section ================= */
+        .platforms-section { 
+            margin-top: 90px; 
+            padding-top: 60px; 
+            border-top: 2px solid #E5E5DE;
+            scroll-margin-top: 100px;
+        }
+        .platforms-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); 
+            gap: 26px; 
+            margin-top: 45px; 
+        }
+        .platform-card { 
+            background: #fff; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            display: flex; 
+            flex-direction: column;
+        }
+        .platform-card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 10px 28px rgba(0,0,0,0.1); 
+        }
+        .platform-img-wrapper { 
+            width: 100%; 
+            height: 200px; 
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .platform-img-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 50%),
+                              radial-gradient(circle at 70% 80%, rgba(184,117,0,0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .platform-img-wrapper img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            position: relative;
+            z-index: 1;
+            cursor: zoom-in;
+        }
+        .platform-img-wrapper .platform-fallback-icon {
+            font-size: 4.5rem;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+            color: rgba(255,255,255,0.95);
+        }
+        .platform-name { 
+            color: var(--primary-color); 
+            margin: 20px 22px 8px; 
+            font-size: 1.12rem; 
+            line-height: 1.35;
+            font-weight: 700;
+        }
+        .platform-desc { 
+            color: #555; 
+            font-size: 0.92rem; 
+            margin: 0 22px 16px; 
+            line-height: 1.55;
+            flex: 1;
+        }
+        .platform-tags { 
+            margin: 0 22px 20px; 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 6px;
+        }
+        .platform-tag { 
+            font-size: 0.7rem; 
+            padding: 3px 10px; 
+            border-radius: 12px; 
+            font-weight: 700; 
+            letter-spacing: 0.4px; 
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .ptag-industrial { background: #FFF3E0; color: #B87500; }
+        .ptag-amr { background: #EAF0EC; color: var(--primary-color); }
+        .ptag-slam { background: #E8EEF8; color: #0066cc; }
+        .ptag-swarm { background: #F3EBF7; color: #6A1B9A; }
+        .ptag-service { background: #FCE4EC; color: #AD1457; }
+
         /* Mobile */
         @media (max-width: 850px) {
             header { flex-direction: column; gap: 15px; padding: 15px; }
@@ -191,6 +285,14 @@
             .details-gallery { gap: 15px; }
             .gallery-item { padding: 10px; border-radius: 6px; }
             .gallery-item.size-sm, .gallery-item.size-md { max-width: 100%; }
+
+            /* Platforms section - mobile */
+            .platforms-section { margin-top: 60px; padding-top: 40px; }
+            .platforms-grid { grid-template-columns: 1fr; gap: 18px; margin-top: 30px; }
+            .platform-img-wrapper { height: 220px; }
+            .platform-name { font-size: 1.05rem; margin: 16px 18px 6px; }
+            .platform-desc { font-size: 0.9rem; margin: 0 18px 14px; }
+            .platform-tags { margin: 0 18px 18px; }
         }
     </style>
 </head>
@@ -216,7 +318,7 @@
     <div class="container">
         <h2 class="section-title">Research Interests</h2>
         <p class="section-intro">
-            My research sits at the intersection of <strong>intelligent control theory</strong> and <strong>real industrial applications</strong>. I work on adaptive controllers powered by fuzzy neural and broad learning systems, and I extend these ideas into autonomous mobile robotics and vision-based sensing. Below are the four main thrusts I'm currently active in.
+            My research lives at the intersection of <strong>intelligent control theory</strong>, <strong>artificial intelligence</strong>, and <strong>real-world industrial and robotic systems</strong>. I design hybrid AI controllers — combining fuzzy neural networks, broad learning systems, reinforcement learning, and evolutionary algorithms — and validate them on real hardware ranging from semiconductor heating ovens to autonomous delivery robots. Below are the four research thrusts that organize this work, followed by the <a href="#platforms" style="color: var(--accent-gold); font-weight: 600; text-decoration: none;">experimental platforms</a> I use.
         </p>
         
         <!-- ============================== -->
@@ -228,52 +330,60 @@
                     <span class="research-icon">⚙️</span>
                 </div>
                 <div class="research-content">
-                    <h3>Intelligent Adaptive Control of Industrial Systems</h3>
-                    <p>Designing adaptive PID, fractional-order, and sliding-mode controllers augmented with fuzzy and neural components, then deploying them on real industrial machinery — from extrusion barrels in plastic injection molding to semiconductor heating ovens and DC motor positioning systems.</p>
+                    <h3>Intelligent Adaptive Control for Industrial & Robotic Systems</h3>
+                    <p>Designing three complementary families of controllers for nonlinear, uncertain systems: <strong>intelligent control</strong> uses AI methods <em>as</em> the controller and skips the need for an explicit plant model; <strong>adaptive control</strong> keeps a familiar PID-style structure but tunes its parameters online; <strong>intelligent adaptive control</strong> combines both — learning the dynamics while adapting in real time. Each family answers a different question, and all are validated on real industrial test rigs and mobile robotic platforms.</p>
                     <button class="read-more-btn" onclick="toggleDetails(this)">Read More ➜</button>
                 </div>
             </div>
             <div class="card-details">
                 <div class="details-text">
-                    <p>Classical PID controllers remain ubiquitous in industry, but they struggle with the <strong>nonlinearity, time-delay, and uncertainty</strong> that characterize real manufacturing equipment. My research develops a family of adaptive control schemes that retain the simplicity and interpretability of PID while gaining the flexibility of machine learning.</p>
-                    <p>One direction extends PID with <strong>polynomial fuzzy long short-term memory neural networks</strong>, enabling the controller to learn from historical trajectories and adapt its gains online for nonlinear DC motor positioning tasks. A second direction introduces <strong>fractional-order PID controllers</strong> driven by polynomial fuzzy adaptation laws — fractional calculus provides extra degrees of tuning freedom that improve robustness to disturbances and parametric drift.</p>
-                    <p>For systems where stability and finite-time convergence matter (such as nonholonomic mobile robots), I also work on <strong>adaptive fixed-time sliding-mode trajectory following control</strong> with adaptive sliding-mode observers, which guarantees convergence within a bounded settling time regardless of initial conditions.</p>
-                    <p>These controllers are not just simulation studies — they're validated on real industrial test rigs, including <strong>extrusion barrels for plastic injection molding</strong> and <strong>semiconductor heating ovens</strong>, where temperature regulation directly impacts product quality.</p>
+                    <p>Real plants — whether an industrial heating chamber, an extrusion barrel, or a wheeled mobile robot — share three difficulties: <strong>nonlinear dynamics</strong>, <strong>parametric uncertainty</strong>, and <strong>time delays</strong>. Classical PID handles none of them gracefully. My research develops three complementary control families that each attack a different part of the problem.</p>
+
+                    <p><strong>Intelligent control</strong> — using AI methods <em>as</em> the controller. When the plant is too complex to model exactly, the controller itself becomes a learning system. The flagship example is the <strong>Intelligent MIMO ORFBLS-Based Setpoint Tracking Controller</strong> deployed on the industrial extrusion barrel: the Output Recurrent Fuzzy Broad Learning System (ORFBLS) replaces the explicit plant model and tracks temperature setpoints across coupled heating zones despite strong nonlinearity and load disturbances. An earlier instance applied the same idea to the semiconductor heating oven via an intelligent PID temperature controller built on ORFBLS.</p>
+
+                    <p><strong>Adaptive control</strong> — keeping a familiar PID structure but letting its parameters tune themselves online. When the plant structure is approximately known but its parameters drift, the right strategy is to preserve the controller form and adapt only the gains. The representative work here is <strong>Output Recurrent Fuzzy Broad Learning Systems for Adaptive MIMO PID Control</strong> (IEEE Access, 2024) — the recurrent fuzzy BLS provides online gain adaptation that responds to plant changes without manual re-tuning. The <strong>polynomial fuzzy-based adaptive fractional-order PID</strong> extends this idea by giving the adaptation law extra degrees of freedom from fractional calculus, improving robustness under disturbance.</p>
+
+                    <p><strong>Intelligent adaptive control</strong> — the union of both. The most powerful family is also the most demanding to design: a controller that <em>learns</em> the plant dynamics AND <em>adapts</em> its parameters in real time. My most recent flagship is the <strong>Two-Layer Intelligent Learning Controller using ORFNL-LSTM-BLS with RMSprop</strong> (IEEE Access, 2025). The first layer learns the plant dynamics from data, the second layer adapts the controller gains online via RMSprop optimization, and the LSTM cells handle long-horizon temporal dependencies that flat BLS cannot. This combination achieves both fast convergence and stability under nonlinear time-delay conditions where pure intelligent or pure adaptive methods each fall short.</p>
+
+                    <p>The same taxonomy carries over to <strong>mobile robotics</strong>. For DC motor positioning on wheeled platforms, the adaptive nonlinear PID controller with <strong>polynomial fuzzy LSTM</strong> handles servo-level tracking. For nonholonomic delivery and inspection robots, the <strong>adaptive fixed-time sliding-mode trajectory following controller with adaptive sliding-mode observers</strong> guarantees bounded settling time regardless of initial conditions — important for safety-critical service robotics.</p>
+
+                    <p>None of these controllers stay in simulation. They are validated on the <strong>extrusion barrel</strong> and <strong>semiconductor heating oven</strong> at our lab, and on the mobile fleet — <strong>A100-WMR</strong>, <strong>omnidirectional AMR</strong>, and <strong>outdoor inspection robot</strong>. See the <a href="#platforms">Experimental Platforms</a> section below for the full hardware lineup.</p>
                 </div>
 
                 <div class="key-topics">
                     <h4>Key Topics</h4>
                     <div class="topic-tags">
-                        <span class="topic-tag">Adaptive PID</span>
-                        <span class="topic-tag">Fractional-Order Control</span>
+                        <span class="topic-tag">Intelligent Control</span>
+                        <span class="topic-tag">Adaptive Control</span>
+                        <span class="topic-tag">Intelligent Adaptive Control</span>
+                        <span class="topic-tag">MIMO Setpoint Tracking</span>
+                        <span class="topic-tag">Fractional-Order PID</span>
                         <span class="topic-tag">Sliding-Mode Control</span>
+                        <span class="topic-tag">Fixed-Time Convergence</span>
                         <span class="topic-tag">Industrial Extrusion Barrel</span>
                         <span class="topic-tag">Semiconductor Heating Ovens</span>
-                        <span class="topic-tag">DC Motor Positioning</span>
-                        <span class="topic-tag">Setpoint Tracking</span>
+                        <span class="topic-tag">Nonholonomic Mobile Robots</span>
                     </div>
                 </div>
 
                 <div class="relevant-pubs">
                     <h4>Relevant Publications</h4>
                     <ul>
+                        <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Two-Layer Intelligent Learning Control Using Output Recurrent Fuzzy Neural Long Short-Term Memory Broad Learning System With RMSprop," <em>IEEE Access</em>, vol. 13, 2025. <span class="badge-small">Q1</span> &nbsp;<em style="color:#777; font-size:0.85rem;">— intelligent adaptive control</em></li>
+                        <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Output Recurrent Fuzzy Broad Learning Systems for Adaptive MIMO PID Control: Theory, Simulations, and Application," <em>IEEE Access</em>, vol. 12, 2024. <span class="badge-small">Q1</span> &nbsp;<em style="color:#777; font-size:0.85rem;">— adaptive control</em></li>
+                        <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Intelligent MIMO ORFBLS-Based Setpoint Tracking Control with Application to Industrial Extrusion Barrel," <em>Int. J. Fuzzy Systems</em>, vol. 27, 2025. <span class="badge-small">Q1</span> &nbsp;<em style="color:#777; font-size:0.85rem;">— intelligent control</em></li>
+                        <li>C. C. Tsai, C. H. Li, A. Rospawan, Z. H. Wu, "Adaptive Fixed-Time Sliding-Mode Trajectory Following Control of Nonholonomic AMRs with Adaptive Sliding-Mode Observers," <em>Asian J. Control</em>, 2026. <span class="badge-small">Q1</span></li>
                         <li>A. Rospawan et al., "Adaptive Nonlinear PID Control of DC Motor Position Using a Polynomial Fuzzy LSTM Neural Network," <em>Int. J. Automotive and Mechanical Eng.</em>, vol. 22, 2025. <span class="badge-small">Q2</span></li>
                         <li>A. Rospawan et al., "Direct Control Strategy using Polynomial Fuzzy-Based Adaptive Fractional Order PID Controller," <em>Makara J. of Technology</em>, vol. 29, 2025.</li>
-                        <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Intelligent MIMO ORFBLS-Based Setpoint Tracking Control with Application to Industrial Extrusion Barrel," <em>Int. J. Fuzzy Systems</em>, vol. 27, 2025. <span class="badge-small">Q1</span></li>
-                        <li>C. C. Tsai, C. H. Li, A. Rospawan, Z. H. Wu, "Adaptive Fixed-Time Sliding-Mode Trajectory Following Control of Nonholonomic AMRs," <em>Asian J. Control</em>, 2026. <span class="badge-small">Q1</span></li>
                         <li>A. Rospawan, C. C. Tsai, F. C. Tai, "Intelligent PID Temperature Control Using Output Recurrent Fuzzy Broad Learning System," <em>ICSSE 2022</em>, Taichung, Taiwan.</li>
                     </ul>
                     <a href="publications.html" class="pub-link">See Full Publications List ➜</a>
-                </div>
-
-                <div class="details-gallery">
-                    <div class="gallery-placeholder">📊 Figures, block diagrams, and experimental results coming soon</div>
                 </div>
             </div>
         </div>
 
         <!-- ============================== -->
-        <!-- THRUST 2: Fuzzy Neural / BLS   -->
+        <!-- THRUST 2: Artificial Intelligence -->
         <!-- ============================== -->
         <div class="research-card">
             <div class="card-summary">
@@ -281,30 +391,42 @@
                     <span class="research-icon">🧠</span>
                 </div>
                 <div class="research-content">
-                    <h3>Fuzzy Neural & Broad Learning Systems</h3>
-                    <p>Building the algorithmic engine behind my adaptive controllers — recurrent fuzzy networks, broad learning systems (BLS), and their hybrids with LSTM cells. These architectures provide fast online learning, low time complexity, and provable approximation power for nonlinear time-delay dynamics.</p>
+                    <h3>Artificial Intelligence for Control & Robotics</h3>
+                    <p>Building the algorithmic engine behind my adaptive controllers across four AI families — <strong>fuzzy neural networks</strong>, <strong>broad learning systems</strong>, <strong>evolutionary algorithms</strong>, and <strong>reinforcement learning</strong>. The signature of this thrust is not any single method, but the systematic <em>hybridization</em> of these methods to meet the dual demands of fast online adaptation and real-time deployment on control hardware.</p>
                     <button class="read-more-btn" onclick="toggleDetails(this)">Read More ➜</button>
                 </div>
             </div>
             <div class="card-details">
                 <div class="details-text">
-                    <p>Deep neural networks are powerful but expensive to train and difficult to deploy on real-time control hardware. <strong>Broad Learning Systems (BLS)</strong> offer an attractive alternative: a flat, incrementally trainable architecture with closed-form solutions that achieves comparable accuracy at a fraction of the training cost. My work extends BLS in several directions targeted at control.</p>
-                    <p>The <strong>Output Recurrent Fuzzy Broad Learning System (ORFBLS)</strong> introduces output recurrence and fuzzy membership functions into BLS, giving it the dynamic memory needed for time-delay systems while preserving fast online adaptation. I've extended this further with <strong>polynomial fuzzy</strong> consequents and <strong>RMSprop-based</strong> online optimization, producing a two-layer learning controller that combines stability with rapid convergence.</p>
-                    <p>A complementary line of work integrates <strong>LSTM cells</strong> directly into the BLS pipeline, yielding the LSTM-BLS controller that handles long-horizon temporal dependencies in nonlinear digital time-delay dynamic systems. I've also explored <strong>recurrent polynomial-based FBLS</strong> for adaptive predictive PID control, with comparative studies showing favorable trade-offs in control performance versus computational time complexity.</p>
-                    <p>This research thrust earned the <strong>1st place Best Student Paper Award at IEEE SMC 2024</strong> in Kuching, Malaysia, and the <strong>1st place Best Master Thesis Award from TFSA</strong>.</p>
+                    <p>Modern control problems demand learning architectures that adapt online, run in real time on embedded hardware, and remain interpretable enough for engineers to trust. No single AI method satisfies all three constraints — deep networks are expensive, fuzzy systems lack scale, vanilla RL is sample-hungry, and evolutionary search is offline by nature. My research treats these methods as <strong>complementary building blocks</strong> and engineers hybrid architectures that combine their strengths.</p>
+
+                    <p><strong>Fuzzy Neural + Broad Learning hybrids.</strong> <strong>Broad Learning Systems (BLS)</strong> offer a flat, incrementally trainable alternative to deep networks, with closed-form solutions and a fraction of the training cost. My <strong>Output Recurrent Fuzzy Broad Learning System (ORFBLS)</strong> injects output recurrence and fuzzy membership functions into BLS, giving it the dynamic memory needed for time-delay systems while preserving fast online adaptation. I have extended this further with <strong>polynomial fuzzy</strong> consequents and <strong>RMSprop-based</strong> online optimization, producing a two-layer learning controller that combines stability with rapid convergence.</p>
+
+                    <p><strong>Fuzzy + LSTM + BLS — temporal hybrids.</strong> A complementary line integrates <strong>LSTM cells</strong> directly into the fuzzy-BLS pipeline, yielding the ORFNL-LSTM-BLS controller that handles long-horizon temporal dependencies in nonlinear digital time-delay dynamic systems. I have also explored <strong>recurrent polynomial-based FBLS</strong> for adaptive predictive PID control, with comparative studies showing favorable trade-offs in control performance versus computational time complexity.</p>
+
+                    <p><strong>Fuzzy + Reinforcement Learning.</strong> For control problems where dynamics are too complex to derive a model — for example, an omnidirectional AMR navigating among moving obstacles — I co-developed an autonomous steering system using <strong>Fuzzy TD3 with GRU-Attention</strong>. Fuzzy TD3 is a fuzzy-augmented variant of Twin Delayed DDPG: the fuzzy front-end provides structural priors and interpretability while the actor-critic RL backbone handles continuous action spaces in cluttered, dynamic environments. The GRU-attention module gives the agent a sense of recent history needed to anticipate moving obstacles.</p>
+
+                    <p><strong>Fuzzy + Bayesian filtering + BLS — for multi-robot systems.</strong> My collaborators and I developed a <strong>Global Cooperative Localization method using Fuzzy DDEKF</strong> (Discrete-time Distributed Extended Kalman Filter) augmented with Broad Learning Systems, for swarmed omnidirectional mobile robots operating under sensor and motion uncertainties. The BLS component compensates for the nonlinear bias terms that vanilla EKF approaches typically struggle with — a clean example of why hybridization wins over any single method in isolation.</p>
+
+                    <p><strong>Evolutionary algorithms — ongoing direction.</strong> I am currently exploring <strong>Genetic Algorithms (GA)</strong> and <strong>Particle Swarm Optimization (PSO)</strong> as complementary tools for hyperparameter tuning, controller structure search, and offline pretraining of the fuzzy-neural and BLS hybrids described above. This direction has not yet produced a published paper, but it is an active research thread I expect to formalize in future work.</p>
+
+                    <p>This thrust earned the <strong>1st place Best Student Paper Award at IEEE SMC 2024</strong> in Kuching, Malaysia, and the <strong>1st place Best Master Thesis Award from TFSA</strong>.</p>
                 </div>
 
                 <div class="key-topics">
                     <h4>Key Topics</h4>
                     <div class="topic-tags">
+                        <span class="topic-tag">Fuzzy Neural Networks</span>
                         <span class="topic-tag">Broad Learning Systems</span>
-                        <span class="topic-tag">Recurrent Fuzzy Networks</span>
+                        <span class="topic-tag">Reinforcement Learning</span>
+                        <span class="topic-tag">Evolutionary Algorithms</span>
+                        <span class="topic-tag">Hybrid AI Architectures</span>
                         <span class="topic-tag">ORFBLS</span>
-                        <span class="topic-tag">LSTM-BLS Hybrid</span>
-                        <span class="topic-tag">Polynomial Fuzzy</span>
-                        <span class="topic-tag">RMSprop Optimization</span>
-                        <span class="topic-tag">Time-Delay Systems</span>
-                        <span class="topic-tag">MIMO Control</span>
+                        <span class="topic-tag">Fuzzy TD3</span>
+                        <span class="topic-tag">LSTM-BLS</span>
+                        <span class="topic-tag">Fuzzy DDEKF</span>
+                        <span class="topic-tag">GA & PSO</span>
+                        <span class="topic-tag">Online Learning</span>
                     </div>
                 </div>
 
@@ -316,12 +438,10 @@
                         <li>A. Rospawan, C. C. Tsai, "Recurrent Polynomial-Based FBLS for Adaptive Predictive PID Control of Nonlinear Discrete-Time Systems," <em>IEEE SMC 2024</em>, Kuching, Malaysia. <span class="badge-small">🏆 BEST PAPER</span></li>
                         <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Output Recurrent Fuzzy Neural LSTM-BLS Controller for Nonlinear Digital Time-Delay Systems," <em>IEEE SMC 2023</em>, Honolulu.</li>
                         <li>A. Rospawan et al., "Recurrent Fuzzy Broad Learning Controller for MIMO Nonlinear Time-Delay Systems," <em>IFSA 2023</em>, Daegu, Korea.</li>
+                        <li>C. C. Tsai, H. S. Wu, L. H. Chen, A. Rospawan, et al., "Autonomous Steering System Using Fuzzy TD3 and GRU-Attention for Omnidirectional AMRs," <em>Int. J. Fuzzy Systems</em>, 2026. <span class="badge-small">Q1</span></li>
+                        <li>C. C. Tsai, G. H. Yang, S. C. Chen, A. Rospawan, H. Y. Zheng, "Global Cooperative Localization Using Fuzzy DDEKF and BLS for Swarmed Omnidirectional Mobile Robots," <em>Int. J. Fuzzy Systems</em>, 2026. <span class="badge-small">Q1</span></li>
                     </ul>
                     <a href="publications.html" class="pub-link">See Full Publications List ➜</a>
-                </div>
-
-                <div class="details-gallery">
-                    <div class="gallery-placeholder">🧠 Network architecture diagrams and benchmark results coming soon</div>
                 </div>
             </div>
         </div>
@@ -371,10 +491,6 @@
                     </ul>
                     <a href="publications.html" class="pub-link">See Full Publications List ➜</a>
                 </div>
-
-                <div class="details-gallery">
-                    <div class="gallery-placeholder">🤖 Robot platform photos and trajectory plots coming soon</div>
-                </div>
             </div>
         </div>
 
@@ -421,10 +537,111 @@
                     </ul>
                     <a href="publications.html" class="pub-link">See Full Publications List ➜</a>
                 </div>
+            </div>
+        </div>
 
-                <div class="details-gallery">
-                    <div class="gallery-placeholder">👁️ SLAM trajectory comparisons and point cloud visualizations coming soon</div>
+        <!-- ====================================== -->
+        <!-- EXPERIMENTAL PLATFORMS                 -->
+        <!-- ====================================== -->
+        <div class="platforms-section" id="platforms">
+            <h2 class="section-title">Experimental Platforms</h2>
+            <p class="section-intro">
+                My research is validated on real industrial and robotic hardware — not simulation alone. Below are the testbeds I use at the <strong>RACS Lab, NCHU Department of Electrical Engineering</strong>, together with platforms provided through industrial collaborations.
+            </p>
+
+            <div class="platforms-grid">
+
+                <!-- ===== Semiconductor Heating Oven ===== -->
+                <div class="platform-card">
+                    <div class="platform-img-wrapper" data-fallback-icon="🔥">
+                        <img src="images/research/heating_oven.jpg" alt="Semiconductor Heating Oven" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
+                    </div>
+                    <h3 class="platform-name">Semiconductor Heating Oven</h3>
+                    <p class="platform-desc">Lab-scale industrial heating chamber at the NCHU EE Lab. Used as the primary testbed for validating fuzzy-BLS and adaptive PID temperature controllers on a nonlinear time-delay thermal process.</p>
+                    <div class="platform-tags">
+                        <span class="platform-tag ptag-industrial">Industrial</span>
+                        <span class="platform-tag ptag-industrial">Temperature Control</span>
+                    </div>
                 </div>
+
+                <!-- ===== Extrusion Barrel ===== -->
+                <div class="platform-card">
+                    <div class="platform-img-wrapper" data-fallback-icon="🏭">
+                        <img src="images/research/extrusion_barrel.jpg" alt="Injection Molding Extrusion Barrel" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
+                    </div>
+                    <h3 class="platform-name">Injection Molding Extrusion Barrel</h3>
+                    <p class="platform-desc">Multi-zone industrial extrusion barrel testbed at the NCHU EE Lab. Used to validate MIMO setpoint tracking control with ORFBLS for plastic-injection temperature profiles across coupled heating zones.</p>
+                    <div class="platform-tags">
+                        <span class="platform-tag ptag-industrial">Industrial</span>
+                        <span class="platform-tag ptag-industrial">MIMO Control</span>
+                    </div>
+                </div>
+
+                <!-- ===== Omnidirectional AMR ===== -->
+                <div class="platform-card">
+                    <div class="platform-img-wrapper" data-fallback-icon="🤖">
+                        <img src="images/research/omnidirectional_amr.jpg" alt="Omnidirectional Autonomous Mobile Robot" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
+                    </div>
+                    <h3 class="platform-name">Omnidirectional Mobile Robot</h3>
+                    <p class="platform-desc">Omni-wheeled autonomous mobile robot used as the main hardware for testing Fuzzy TD3 + GRU-Attention steering, and for validating Fuzzy DDEKF + BLS cooperative localization across swarmed teams.</p>
+                    <div class="platform-tags">
+                        <span class="platform-tag ptag-amr">AMR</span>
+                        <span class="platform-tag ptag-swarm">Cooperative Loc.</span>
+                    </div>
+                </div>
+
+                <!-- ===== A100-WMR ===== -->
+                <div class="platform-card">
+                    <div class="platform-img-wrapper" data-fallback-icon="🛎️">
+                        <img src="images/research/a100_wmr.jpg" alt="A100-WMR Nonholonomic Delivery Robot" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
+                    </div>
+                    <h3 class="platform-name">A100-WMR Delivery Robot</h3>
+                    <p class="platform-desc">Round-body nonholonomic wheeled mobile robot in the form factor of a service-delivery robot. Used to validate adaptive fixed-time sliding-mode trajectory tracking for meal-delivery and hospital-delivery scenarios.</p>
+                    <div class="platform-tags">
+                        <span class="platform-tag ptag-amr">Nonholonomic</span>
+                        <span class="platform-tag ptag-service">Service Robotics</span>
+                    </div>
+                </div>
+
+                <!-- ===== 4-Wheeled Outdoor Inspection Robot ===== -->
+                <div class="platform-card">
+                    <div class="platform-img-wrapper" data-fallback-icon="🛻">
+                        <img src="images/research/outdoor_inspection.jpg" alt="4-Wheeled Outdoor Inspection Robot" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
+                    </div>
+                    <h3 class="platform-name">4-Wheeled Outdoor Inspection Robot</h3>
+                    <p class="platform-desc">Industrial four-wheeled mobile platform provided through partner collaboration. Used for outdoor navigation and autonomous inspection experiments on varying terrain.</p>
+                    <div class="platform-tags">
+                        <span class="platform-tag ptag-amr">Outdoor AMR</span>
+                        <span class="platform-tag ptag-service">Inspection</span>
+                    </div>
+                </div>
+
+                <!-- ===== TurtleBot3 Waffle ===== -->
+                <div class="platform-card">
+                    <div class="platform-img-wrapper" data-fallback-icon="🐢">
+                        <img src="images/research/turtlebot3_waffle.jpg" alt="TurtleBot3 Waffle" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
+                    </div>
+                    <h3 class="platform-name">TurtleBot3 Waffle</h3>
+                    <p class="platform-desc">Standard ROS-based research platform equipped with 360° LiDAR. Used together with the TurtleBot3 Burger as a multi-robot testbed for cooperative localization and distributed estimation algorithms.</p>
+                    <div class="platform-tags">
+                        <span class="platform-tag ptag-amr">ROS</span>
+                        <span class="platform-tag ptag-swarm">Multi-Robot</span>
+                    </div>
+                </div>
+
+                <!-- ===== TurtleBot3 Burger ===== -->
+                <div class="platform-card">
+                    <div class="platform-img-wrapper" data-fallback-icon="🐢">
+                        <img src="images/research/turtlebot3_burger.jpg" alt="TurtleBot3 Burger" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
+                    </div>
+                    <h3 class="platform-name">TurtleBot3 Burger</h3>
+                    <p class="platform-desc">Compact ROS-based research platform with 360° LiDAR. Paired with the Waffle to form swarmed multi-robot teams for validating Fuzzy DDEKF + BLS cooperative localization under sensor uncertainty.</p>
+                    <div class="platform-tags">
+                        <span class="platform-tag ptag-amr">ROS</span>
+                        <span class="platform-tag ptag-swarm">Swarm</span>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -451,6 +668,13 @@
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
             document.body.style.overflow = 'auto';
+        }
+
+        // Replaces missing platform photos with a clean themed icon so the section never looks broken
+        function handlePlatformImgError(img) {
+            const wrapper = img.parentElement;
+            const icon = wrapper.dataset.fallbackIcon || '📷';
+            wrapper.innerHTML = '<span class="platform-fallback-icon">' + icon + '</span>';
         }
     </script>
 </body>
