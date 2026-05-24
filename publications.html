@@ -226,6 +226,10 @@
 
         /* ================= Footer ================= */
         footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #DCC9E0; font-size: 0.95rem; margin-top: 60px; }
+        footer a { color: #fff; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .footer-links { margin-top: 18px; display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; }
+        .footer-links a { font-size: 0.95rem; opacity: 0.9; }
 
         /* ================= Mobile ================= */
         @media (max-width: 767px) {
@@ -750,7 +754,16 @@
 
     <footer>
         <h3 style="color: #fff; margin-top: 0; font-size: 1.0rem;">Rospawan Advanced Control and Systems Lab</h3>
-        <p>© 2026 Ali Rospawan. All rights reserved.</p>
+        <p>
+            Ali Rospawan · National Chung Hsing University, Taiwan<br>
+        </p>
+        <div class="footer-links">
+            <a href="https://scholar.google.com/citations?user=oFUWGWoAAAAJ" target="_blank">Google Scholar</a>
+            <a href="https://www.researchgate.net/profile/Ali-Rospawan" target="_blank">ResearchGate</a>
+            <a href="https://www.linkedin.com/in/alirospawan/" target="_blank">LinkedIn</a>
+            <a href="https://orcid.org/0000-0001-5667-2269" target="_blank">ORCID</a>
+        </div>
+        <p style="margin-top: 30px; opacity: 0.5; font-size: 0.8rem;">© 2026 Ali Rospawan. All rights reserved.</p>
     </footer>
 
     <script>
