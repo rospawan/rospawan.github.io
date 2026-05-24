@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research | RACS Lab</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
     <meta name="description" content="Research thrusts of Ali Rospawan — intelligent adaptive control for industrial and robotic systems, hybrid AI architectures (fuzzy neural, broad learning, evolutionary, reinforcement learning), autonomous mobile robots, and visual SLAM. Hardware-validated on real industrial and mobile platforms.">
     
     <style>
@@ -20,7 +25,21 @@
         
         /* ================= Header / Nav ================= */
         header { background-color: var(--primary-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: #FFFFFF; text-decoration: none; }
+        .logo { 
+            font-size: 1.8rem; 
+            font-weight: 900; 
+            font-style: italic; 
+            color: #FFFFFF; 
+            text-decoration: none; 
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .logo-img {
+            height: 48px;
+            width: auto;
+            display: block;
+        }
         nav { display: flex; gap: 20px; }
         nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding-bottom: 5px; transition: 0.3s;}
         nav a:hover, .nav-active { border-bottom: 2px solid #FFFFFF; }
@@ -306,7 +325,10 @@
 <body>
 
     <header>
-        <a href="index.html" class="logo">RACS Lab</a>
+        <a href="index.html" class="logo">
+            <img src="images/logo.svg" alt="RACS Lab logo" class="logo-img">
+            <span>RACS Lab</span>
+        </a>
         <nav>
             <a href="index.html">HOME</a> 
             <a href="about.html">ABOUT ME</a>
