@@ -290,12 +290,6 @@
             line-height: 1.55;
             flex: 1;
         }
-        .platform-tags { 
-            margin: 0 22px 20px; 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 6px;
-        }
         .platform-tag { 
             font-size: 0.7rem; 
             padding: 3px 10px; 
@@ -367,7 +361,6 @@
             .platform-img-wrapper { height: 220px; }
             .platform-name { font-size: 1.05rem; margin: 16px 18px 6px; }
             .platform-desc { font-size: 0.9rem; margin: 0 18px 14px; }
-            .platform-tags { margin: 0 18px 18px; }
         }
     </style>
 </head>
@@ -627,10 +620,6 @@
                     </div>
                     <h3 class="platform-name">Semiconductor Heating Oven</h3>
                     <p class="platform-desc">Lab-scale industrial heating chamber at the NCHU EE Lab. Used as the primary testbed for validating fuzzy-BLS and adaptive PID temperature controllers on a nonlinear time-delay thermal process.</p>
-                    <div class="platform-tags">
-                        <span class="platform-tag ptag-industrial">Industrial</span>
-                        <span class="platform-tag ptag-industrial">Temperature Control</span>
-                    </div>
                 </div>
 
                 <!-- ===== Extrusion Barrel ===== -->
@@ -640,10 +629,6 @@
                     </div>
                     <h3 class="platform-name">Injection Molding Extrusion Barrel</h3>
                     <p class="platform-desc">Multi-zone industrial extrusion barrel testbed at the NCHU EE Lab. Used to validate MIMO setpoint tracking control with ORFBLS for plastic-injection temperature profiles across coupled heating zones.</p>
-                    <div class="platform-tags">
-                        <span class="platform-tag ptag-industrial">Industrial</span>
-                        <span class="platform-tag ptag-industrial">MIMO Control</span>
-                    </div>
                 </div>
 
                 <!-- ===== Omnidirectional AMR ===== -->
@@ -653,10 +638,6 @@
                     </div>
                     <h3 class="platform-name">Omnidirectional Mobile Robot</h3>
                     <p class="platform-desc">Omni-wheeled autonomous mobile robot used as the main hardware for testing Fuzzy TD3 + GRU-Attention steering, and for validating Fuzzy DDEKF + BLS cooperative localization across swarmed teams.</p>
-                    <div class="platform-tags">
-                        <span class="platform-tag ptag-amr">AMR</span>
-                        <span class="platform-tag ptag-swarm">Cooperative Loc.</span>
-                    </div>
                 </div>
 
                 <!-- ===== A100-WMR ===== -->
@@ -666,10 +647,6 @@
                     </div>
                     <h3 class="platform-name">A100-WMR Delivery Robot</h3>
                     <p class="platform-desc">Round-body nonholonomic wheeled mobile robot in the form factor of a service-delivery robot. Used to validate adaptive fixed-time sliding-mode trajectory tracking for meal-delivery and hospital-delivery scenarios.</p>
-                    <div class="platform-tags">
-                        <span class="platform-tag ptag-amr">Nonholonomic</span>
-                        <span class="platform-tag ptag-service">Service Robotics</span>
-                    </div>
                 </div>
 
                 <!-- ===== 4-Wheeled Outdoor Inspection Robot ===== -->
@@ -679,10 +656,6 @@
                     </div>
                     <h3 class="platform-name">4-Wheeled Outdoor Inspection Robot</h3>
                     <p class="platform-desc">Industrial four-wheeled mobile platform provided through partner collaboration. Used for outdoor navigation and autonomous inspection experiments on varying terrain.</p>
-                    <div class="platform-tags">
-                        <span class="platform-tag ptag-amr">Outdoor AMR</span>
-                        <span class="platform-tag ptag-service">Inspection</span>
-                    </div>
                 </div>
 
                 <!-- ===== TurtleBot3 Waffle ===== -->
@@ -692,10 +665,6 @@
                     </div>
                     <h3 class="platform-name">TurtleBot3 Waffle</h3>
                     <p class="platform-desc">Standard ROS-based research platform equipped with 360° LiDAR. Used together with the TurtleBot3 Burger as a multi-robot testbed for cooperative localization and distributed estimation algorithms.</p>
-                    <div class="platform-tags">
-                        <span class="platform-tag ptag-amr">ROS</span>
-                        <span class="platform-tag ptag-swarm">Multi-Robot</span>
-                    </div>
                 </div>
 
                 <!-- ===== TurtleBot3 Burger ===== -->
@@ -705,10 +674,6 @@
                     </div>
                     <h3 class="platform-name">TurtleBot3 Burger</h3>
                     <p class="platform-desc">Compact ROS-based research platform with 360° LiDAR. Paired with the Waffle to form swarmed multi-robot teams for validating Fuzzy DDEKF + BLS cooperative localization under sensor uncertainty.</p>
-                    <div class="platform-tags">
-                        <span class="platform-tag ptag-amr">ROS</span>
-                        <span class="platform-tag ptag-swarm">Swarm</span>
-                    </div>
                 </div>
 
             </div>
