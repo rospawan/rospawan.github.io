@@ -12,15 +12,15 @@
         /* ================= Base Setup ================= */
         :root { 
             --bg-color: #F5F4F0; 
-            --primary-color: #2C4C3B; 
-            --secondary-color: #3A634D;
-            --accent-gold: #B87500;
-            --text-color: #333333;
-            --badge-bg: #EAF0EC;
+            --primary-color: #4A2545; 
+            --secondary-color: #6B2D5C;
+            --accent-gold: #B8860B;
+            --text-color: #2D1B2E;
+            --badge-bg: #EDE7F0;
             --badge-gold: #FFF5E5;
-            --badge-gold-text: #B87500;
-            --badge-q1: #EAF0EC;
-            --badge-q1-text: #2C4C3B;
+            --badge-gold-text: #B8860B;
+            --badge-q1: #EDE7F0;
+            --badge-q1-text: #4A2545;
             --badge-q2: #F0EBE0;
             --badge-q2-text: #8B6914;
             --badge-q4: #F0F0F0;
@@ -76,6 +76,56 @@
             margin-top: 6px;
         }
 
+        /* ================= Year Filter ================= */
+        .year-filter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto 14px;
+            padding: 18px 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .filter-label {
+            font-size: 0.92rem;
+            color: #555;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .filter-btn {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1.5px solid var(--primary-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+        .filter-btn:hover { background: var(--primary-color); color: #fff; }
+        .filter-btn.active { background: var(--primary-color); color: #fff; box-shadow: 0 2px 8px rgba(74,37,69,0.25); }
+        .result-count {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+            margin: 0 0 35px 0;
+            font-size: 0.92rem;
+            min-height: 1.2em;
+            transition: opacity 0.3s ease;
+        }
+        .pub-section.is-empty { display: none; }
+
+        @media (max-width: 767px) {
+            .year-filter { padding: 14px 12px; gap: 8px; }
+            .filter-btn { padding: 5px 12px; font-size: 0.82rem; }
+            .filter-label { width: 100%; text-align: center; margin-bottom: 4px; }
+        }
+
         h3.category-title { 
             color: var(--primary-color); 
             border-left: 5px solid var(--primary-color); 
@@ -83,7 +133,7 @@
             margin-top: 50px; 
             margin-bottom: 8px; 
             font-size: 1.6rem; 
-            background: linear-gradient(to right, #eef2f0, transparent);
+            background: linear-gradient(to right, #EFE9F1, transparent);
         }
         .category-note {
             color: #777;
@@ -166,7 +216,7 @@
             vertical-align: middle;
             letter-spacing: 0.5px;
         }
-        .badge-q1 { background-color: var(--badge-q1); color: var(--badge-q1-text); border: 1px solid #C8D8CD; }
+        .badge-q1 { background-color: var(--badge-q1); color: var(--badge-q1-text); border: 1px solid #C9B8D0; }
         .badge-q2 { background-color: var(--badge-q2); color: var(--badge-q2-text); border: 1px solid #E0D5BA; }
         .badge-q4 { background-color: var(--badge-q4); color: var(--badge-q4-text); border: 1px solid #DDD; }
         .badge-sinta { background-color: var(--badge-sinta); color: var(--badge-sinta-text); border: 1px solid #C9CFE3; }
@@ -175,7 +225,7 @@
         .badge-thesis { background-color: var(--badge-gold); color: var(--badge-gold-text); border: 1px solid #F0D9B0; }
 
         /* ================= Footer ================= */
-        footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #D1E0D7; font-size: 0.95rem; margin-top: 60px; }
+        footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #DCC9E0; font-size: 0.95rem; margin-top: 60px; }
 
         /* ================= Mobile ================= */
         @media (max-width: 767px) {
@@ -205,7 +255,7 @@
             display: inline-block;
             background-color: var(--badge-bg);
             color: var(--primary-color);
-            border: 1px solid #C8D8CD;
+            border: 1px solid #C9B8D0;
             border-radius: 4px;
             padding: 1px 8px;
             font-size: 0.72rem;
@@ -271,9 +321,24 @@
             </div>
         </div>
 
+        <!-- ================ YEAR FILTER ================ -->
+        <div class="year-filter">
+            <span class="filter-label">Filter by year:</span>
+            <button class="filter-btn active" data-year="all">All</button>
+            <button class="filter-btn" data-year="2026">2026</button>
+            <button class="filter-btn" data-year="2025">2025</button>
+            <button class="filter-btn" data-year="2024">2024</button>
+            <button class="filter-btn" data-year="2023">2023</button>
+            <button class="filter-btn" data-year="2022">2022</button>
+            <button class="filter-btn" data-year="2021">2021</button>
+            <button class="filter-btn" data-year="2019">2019</button>
+        </div>
+        <p class="result-count" id="result-count">Showing all 38 publications</p>
+
         <!-- ============================================ -->
         <!-- =========== JOURNAL ARTICLES =============== -->
         <!-- ============================================ -->
+        <section class="pub-section">
         <h3 class="category-title">Journal Articles</h3>
         <p class="category-note">Peer-reviewed journal papers indexed in Scopus and/or Web of Science.</p>
         <div class="pub-list">
@@ -374,9 +439,12 @@
 
         </div>
 
+        </section>
+
         <!-- ============================================ -->
         <!-- =========== SINTA JOURNALS ================= -->
         <!-- ============================================ -->
+        <section class="pub-section">
         <h3 class="category-title">SINTA-Indexed Journals</h3>
         <p class="category-note">Peer-reviewed papers indexed in SINTA (Science and Technology Index) — the Indonesian national academic indexing system.</p>
         <div class="pub-list">
@@ -449,9 +517,12 @@
 
         </div>
 
+        </section>
+
         <!-- ============================================ -->
         <!-- ========== CONFERENCE PAPERS =============== -->
         <!-- ============================================ -->
+        <section class="pub-section">
         <h3 class="category-title">Conference Papers</h3>
         <p class="category-note">Peer-reviewed papers presented at international and national conferences.</p>
         <div class="pub-list">
@@ -624,9 +695,12 @@
 
         </div>
 
+        </section>
+
         <!-- ============================================ -->
         <!-- ========= THESIS & DISSERTATION ============ -->
         <!-- ============================================ -->
+        <section class="pub-section">
         <h3 class="category-title">Thesis &amp; Dissertation</h3>
         <p class="category-note">Graduate research thesis and dissertation work.</p>
         <div class="pub-list">
@@ -642,10 +716,12 @@
 
         </div>
 
+        </section>
+
         <!-- ============================================ -->
         <!-- ============== POSTERS ===================== -->
         <!-- ============================================ -->
-        <h3 class="category-title">Posters & Award Presentations</h3>
+        <section class="pub-section">        <h3 class="category-title">Posters & Award Presentations</h3>
         <p class="category-note">Research posters presented at scientific competitions and symposia.</p>
         <div class="pub-list">
 
@@ -668,6 +744,7 @@
             </div>
 
         </div>
+        </section>
 
     </div>
 
@@ -675,6 +752,54 @@
         <h3 style="color: #fff; margin-top: 0; font-size: 1.0rem;">Rospawan Advanced Control and Systems Lab</h3>
         <p>© 2026 Ali Rospawan. All rights reserved.</p>
     </footer>
+
+    <script>
+        (function () {
+            const items = document.querySelectorAll('.pub-item');
+            const sections = document.querySelectorAll('.pub-section');
+            const buttons = document.querySelectorAll('.filter-btn');
+            const counter = document.getElementById('result-count');
+            const total = items.length;
+
+            // Tag every publication item with its year (read from the .pub-year span,
+            // which may contain text like "2026", "August 2022", "May 2025", etc.)
+            items.forEach(item => {
+                const yearEl = item.querySelector('.pub-year');
+                if (yearEl) {
+                    const match = yearEl.textContent.match(/\b(20\d{2})\b/);
+                    if (match) item.dataset.year = match[1];
+                }
+            });
+
+            function applyFilter(year) {
+                let visibleCount = 0;
+                items.forEach(item => {
+                    const show = (year === 'all' || item.dataset.year === year);
+                    item.style.display = show ? '' : 'none';
+                    if (show) visibleCount++;
+                });
+                // Hide sections that have zero visible items for the chosen year
+                sections.forEach(section => {
+                    const anyVisible = section.querySelector('.pub-item:not([style*="display: none"])');
+                    section.classList.toggle('is-empty', !anyVisible);
+                });
+                // Update result counter
+                if (year === 'all') {
+                    counter.textContent = `Showing all ${total} publications`;
+                } else {
+                    counter.textContent = `Showing ${visibleCount} publication${visibleCount === 1 ? '' : 's'} from ${year}`;
+                }
+            }
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    applyFilter(btn.dataset.year);
+                });
+            });
+        })();
+    </script>
 
 </body>
 </html>
