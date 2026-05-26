@@ -402,23 +402,23 @@
             <div class="card-summary">
                 <div class="research-content">
                     <h3>Intelligent Adaptive Control for Industrial & Robotic Systems</h3>
-                    <p>Designing three complementary families of controllers for nonlinear, uncertain systems: <strong>intelligent control</strong> uses AI methods <em>as</em> the controller and skips the need for an explicit plant model; <strong>adaptive control</strong> keeps a familiar PID-style structure but tunes its parameters online; <strong>intelligent adaptive control</strong> combines both — learning the dynamics while adapting in real time. Each family answers a different question, and all are validated on real industrial test rigs and mobile robotic platforms.</p>
+                    <p>Designing three complementary families of controllers for nonlinear, uncertain systems: <strong>intelligent control</strong> uses AI methods <em>as</em> the controller and skips the need for an explicit plant model; <strong>adaptive control</strong> keeps a familiar PID-style structure but tunes its parameters online; <strong>intelligent adaptive control</strong> that combines both learning the dynamics while adapting in real time. Each family answers a different question, and all are validated on real industrial test rigs and mobile robotic platforms.</p>
                     <button class="read-more-btn" onclick="toggleDetails(this)">Read More ➜</button>
                 </div>
             </div>
             <div class="card-details">
                 <div class="details-text">
-                    <p>Real plants — whether an industrial heating chamber, an extrusion barrel, or a wheeled mobile robot — share three difficulties: <strong>nonlinear dynamics</strong>, <strong>parametric uncertainty</strong>, and <strong>time delays</strong>. Classical PID handles none of them gracefully. My research develops three complementary control families that each attack a different part of the problem.</p>
+                    <p>Real plants, whether an industrial heating oven, an extrusion barrel, or a wheeled mobile robot, share three difficulties: <strong>nonlinear dynamics</strong>, <strong>parametric uncertainty</strong>, and <strong>time delays</strong>. Classical PID handles none of them gracefully. My research develops three complementary control families that each attack a different part of the problem.</p>
 
-                    <p><strong>Intelligent control</strong> — using AI methods <em>as</em> the controller. When the plant is too complex to model exactly, the controller itself becomes a learning system. The flagship example is the <strong>Intelligent MIMO ORFBLS-Based Setpoint Tracking Controller</strong> deployed on the industrial extrusion barrel: the Output Recurrent Fuzzy Broad Learning System (ORFBLS) replaces the explicit plant model and tracks temperature setpoints across coupled heating zones despite strong nonlinearity and load disturbances. An earlier instance applied the same idea to the semiconductor heating oven via an intelligent PID temperature controller built on ORFBLS.</p>
+                    <p><strong>Intelligent control</strong>, using AI methods as the controller itself, identifies as a self-learning algorithm that receives historical input-output data, then generates the controller output directly.</p>
 
-                    <p><strong>Adaptive control</strong> — keeping a familiar PID structure but letting its parameters tune themselves online. When the plant structure is approximately known but its parameters drift, the right strategy is to preserve the controller form and adapt only the gains. The representative work here is <strong>Output Recurrent Fuzzy Broad Learning Systems for Adaptive MIMO PID Control</strong> (IEEE Access, 2024) — the recurrent fuzzy BLS provides online gain adaptation that responds to plant changes without manual re-tuning. The <strong>polynomial fuzzy-based adaptive fractional-order PID</strong> extends this idea by giving the adaptation law extra degrees of freedom from fractional calculus, improving robustness under disturbance.</p>
+                    <p><strong>Adaptive control</strong>, keeping a familiar PID structure or other well-known standard methods but letting its gain parameters tune themselves online. When the plant structure is approximately known but its parameters drift, the right strategy is to preserve the controller form and adapt only the gains.</p>
 
-                    <p><strong>Intelligent adaptive control</strong> — the union of both. The most powerful family is also the most demanding to design: a controller that <em>learns</em> the plant dynamics AND <em>adapts</em> its parameters in real time. My most recent flagship is the <strong>Two-Layer Intelligent Learning Controller using ORFNL-LSTM-BLS with RMSprop</strong> (IEEE Access, 2025). The first layer learns the plant dynamics from data, the second layer adapts the controller gains online via RMSprop optimization, and the LSTM cells handle long-horizon temporal dependencies that flat BLS cannot. This combination achieves both fast convergence and stability under nonlinear time-delay conditions where pure intelligent or pure adaptive methods each fall short.</p>
+                    <p><strong>Intelligent adaptive control</strong>, the union of both. The most powerful family is also the most demanding to design: a controller that <em>learns</em> the plant dynamics AND <em>adapts</em> its parameters in real time. My most recent flagship is the <strong>Two-Layer Intelligent Learning Controller using ORFNL-LSTM-BLS with RMSprop</strong> (IEEE Access, 2025). The first layer learns the plant dynamics from data, the second layer adapts the controller gains online via RMSprop optimization, and the LSTM cells handle long-horizon temporal dependencies that flat BLS cannot. This combination achieves both fast convergence and stability under nonlinear time-delay conditions where pure intelligent or pure adaptive methods each fall short.</p>
 
                     <p>The same taxonomy carries over to <strong>mobile robotics</strong>. For DC motor positioning on wheeled platforms, the adaptive nonlinear PID controller with <strong>polynomial fuzzy LSTM</strong> handles servo-level tracking. For nonholonomic delivery and inspection robots, the <strong>adaptive fixed-time sliding-mode trajectory following controller with adaptive sliding-mode observers</strong> guarantees bounded settling time regardless of initial conditions — important for safety-critical service robotics.</p>
 
-                    <p>None of these controllers stay in simulation. They are validated on the <strong>extrusion barrel</strong> and <strong>semiconductor heating oven</strong> at our lab, and on the mobile fleet — <strong>A100-WMR</strong>, <strong>omnidirectional AMR</strong>, and <strong>outdoor inspection robot</strong>. See the <a href="#platforms">Experimental Platforms</a> section below for the full hardware lineup.</p>
+                    <p>None of these controllers stay in simulation. They are validated on various <a href="#platforms">Experimental Platforms</a>.</p>
                 </div>
 
                 <div class="key-topics">
@@ -427,10 +427,6 @@
                         <span class="topic-tag">Intelligent Control</span>
                         <span class="topic-tag">Adaptive Control</span>
                         <span class="topic-tag">Intelligent Adaptive Control</span>
-                        <span class="topic-tag">MIMO Setpoint Tracking</span>
-                        <span class="topic-tag">Fractional-Order PID</span>
-                        <span class="topic-tag">Sliding-Mode Control</span>
-                        <span class="topic-tag">Fixed-Time Convergence</span>
                         <span class="topic-tag">Industrial Extrusion Barrel</span>
                         <span class="topic-tag">Semiconductor Heating Ovens</span>
                         <span class="topic-tag">Nonholonomic Mobile Robots</span>
@@ -443,10 +439,6 @@
                         <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Two-Layer Intelligent Learning Control Using Output Recurrent Fuzzy Neural Long Short-Term Memory Broad Learning System With RMSprop," <em>IEEE Access</em>, vol. 13, 2025. <span class="badge-small">Q1</span> &nbsp;<em style="color:#777; font-size:0.85rem;">— intelligent adaptive control</em></li>
                         <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Output Recurrent Fuzzy Broad Learning Systems for Adaptive MIMO PID Control: Theory, Simulations, and Application," <em>IEEE Access</em>, vol. 12, 2024. <span class="badge-small">Q1</span> &nbsp;<em style="color:#777; font-size:0.85rem;">— adaptive control</em></li>
                         <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Intelligent MIMO ORFBLS-Based Setpoint Tracking Control with Application to Industrial Extrusion Barrel," <em>Int. J. Fuzzy Systems</em>, vol. 27, 2025. <span class="badge-small">Q1</span> &nbsp;<em style="color:#777; font-size:0.85rem;">— intelligent control</em></li>
-                        <li>C. C. Tsai, C. H. Li, A. Rospawan, Z. H. Wu, "Adaptive Fixed-Time Sliding-Mode Trajectory Following Control of Nonholonomic AMRs with Adaptive Sliding-Mode Observers," <em>Asian J. Control</em>, 2026. <span class="badge-small">Q1</span></li>
-                        <li>A. Rospawan et al., "Adaptive Nonlinear PID Control of DC Motor Position Using a Polynomial Fuzzy LSTM Neural Network," <em>Int. J. Automotive and Mechanical Eng.</em>, vol. 22, 2025. <span class="badge-small">Q2</span></li>
-                        <li>A. Rospawan et al., "Direct Control Strategy using Polynomial Fuzzy-Based Adaptive Fractional Order PID Controller," <em>Makara J. of Technology</em>, vol. 29, 2025.</li>
-                        <li>A. Rospawan, C. C. Tsai, F. C. Tai, "Intelligent PID Temperature Control Using Output Recurrent Fuzzy Broad Learning System," <em>ICSSE 2022</em>, Taichung, Taiwan.</li>
                     </ul>
                     <a href="publications.html" class="pub-link">See Full Publications List ➜</a>
                 </div>
@@ -608,7 +600,7 @@
         <div class="platforms-section" id="platforms">
             <h2 class="section-title">Experimental Platforms</h2>
             <p class="section-intro">
-                My research is validated on real industrial and robotic hardware — not simulation alone. Below are the testbeds I use at the <strong>RACS Lab, NCHU Department of Electrical Engineering</strong>, together with platforms provided through industrial collaborations.
+                Below are the testbeds used at the <strong>Advanced Electrical Control Lab (AECL), Department of Electrical Engineering, National Chung Hsing University</strong>.
             </p>
 
             <div class="platforms-grid">
@@ -619,7 +611,7 @@
                         <img src="images/research/heating_oven.jpg" alt="Semiconductor Heating Oven" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
                     </div>
                     <h3 class="platform-name">Semiconductor Heating Oven</h3>
-                    <p class="platform-desc">Lab-scale industrial heating chamber at the NCHU EE Lab. Used as the primary testbed for validating fuzzy-BLS and adaptive PID temperature controllers on a nonlinear time-delay thermal process.</p>
+                    <p class="platform-desc">Lab-scale industrial heating chamber at the AECL Lab, NCHU. Used as the primary testbed for validating adaptive and intelligent temperature control on a nonlinear time-delay dynamics thermal process.</p>
                 </div>
 
                 <!-- ===== Extrusion Barrel ===== -->
@@ -627,8 +619,8 @@
                     <div class="platform-img-wrapper" data-fallback-icon="🏭">
                         <img src="images/research/extrusion_barrel.jpg" alt="Injection Molding Extrusion Barrel" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
                     </div>
-                    <h3 class="platform-name">Injection Molding Extrusion Barrel</h3>
-                    <p class="platform-desc">Multi-zone industrial extrusion barrel testbed at the NCHU EE Lab. Used to validate MIMO setpoint tracking control with ORFBLS for plastic-injection temperature profiles across coupled heating zones.</p>
+                    <h3 class="platform-name">Plastic Injection Molding Extrusion Barrel</h3>
+                    <p class="platform-desc">Multi-zone industrial extrusion barrel testbed at the AECL Lab, NCHU. Used to validate MIMO setpoint tracking control of temperature profiles across coupled heating zones.</p>
                 </div>
 
                 <!-- ===== Omnidirectional AMR ===== -->
@@ -637,7 +629,7 @@
                         <img src="images/research/omnidirectional_amr.jpg" alt="Omnidirectional Autonomous Mobile Robot" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
                     </div>
                     <h3 class="platform-name">Omnidirectional Mobile Robot</h3>
-                    <p class="platform-desc">Omni-wheeled autonomous mobile robot used as the main hardware for testing Fuzzy TD3 + GRU-Attention steering, and for validating Fuzzy DDEKF + BLS cooperative localization across swarmed teams.</p>
+                    <p class="platform-desc">Omni-wheeled autonomous mobile robot used as the main hardware for testing adaptive and intelligent algorithms for trajectory tracking and cooperative localization across swarmed teams.</p>
                 </div>
 
                 <!-- ===== A100-WMR ===== -->
@@ -646,7 +638,7 @@
                         <img src="images/research/a100_wmr.jpg" alt="A100-WMR Nonholonomic Delivery Robot" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
                     </div>
                     <h3 class="platform-name">A100-WMR Delivery Robot</h3>
-                    <p class="platform-desc">Round-body nonholonomic wheeled mobile robot in the form factor of a service-delivery robot. Used to validate adaptive fixed-time sliding-mode trajectory tracking for meal-delivery and hospital-delivery scenarios.</p>
+                    <p class="platform-desc">Round-body nonholonomic wheeled mobile robot in the form factor of a service-delivery robot. Used to validate adaptive and intelligent trajectory tracking for meal-delivery and hospital-delivery scenarios.</p>
                 </div>
 
                 <!-- ===== 4-Wheeled Outdoor Inspection Robot ===== -->
@@ -664,7 +656,7 @@
                         <img src="images/research/turtlebot3_waffle.jpg" alt="TurtleBot3 Waffle" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
                     </div>
                     <h3 class="platform-name">TurtleBot3 Waffle</h3>
-                    <p class="platform-desc">Standard ROS-based research platform equipped with 360° LiDAR. Used together with the TurtleBot3 Burger as a multi-robot testbed for cooperative localization and distributed estimation algorithms.</p>
+                    <p class="platform-desc">Standard ROS-based research platform equipped with 360° LiDAR for autonomous navigation, cooperative localization, and distributed estimation algorithms.</p>
                 </div>
 
                 <!-- ===== TurtleBot3 Burger ===== -->
@@ -673,7 +665,7 @@
                         <img src="images/research/turtlebot3_burger.jpg" alt="TurtleBot3 Burger" onerror="handlePlatformImgError(this)" onclick="openLightbox(this.src)">
                     </div>
                     <h3 class="platform-name">TurtleBot3 Burger</h3>
-                    <p class="platform-desc">Compact ROS-based research platform with 360° LiDAR. Paired with the Waffle to form swarmed multi-robot teams for validating Fuzzy DDEKF + BLS cooperative localization under sensor uncertainty.</p>
+                    <p class="platform-desc">Compact ROS-based research platform with 360° LiDAR for autonomous navigation, cooperative localization, and distributed estimation algorithms.</p>
                 </div>
 
             </div>
