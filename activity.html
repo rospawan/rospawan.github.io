@@ -470,11 +470,10 @@
                 <span class="category-badge badge-training">Training · Certified</span>
                 <h3>First Aid Training: CPR + AED Hands-on Course</h3>
                 <div class="activity-location">📍 Taichung, Taiwan</div>
-                <p class="activity-description">Completed a hands-on first-aid course covering cardiopulmonary resuscitation (CPR) and Automated External Defibrillator (AED) operation, including emergency response procedures for cardiac arrest.</p>
+                <div class="activity-detail">Course: First-Aid Training: cardiopulmonary resuscitation (CPR) and Automated External Defibrillator (AED).</div>
                 <button class="activity-photos-toggle" onclick="togglePhotos(this)">View Certificate 📸</button>
                 <div class="activity-gallery">
-                    <img src="images/activities/2026-cpr-aed-1.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="CPR + AED Certificate">
-                    <img src="images/activities/2026-cpr-aed-2.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="CPR + AED Training">
+                    <img src="images/activities/2026-cpr-aed.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="CPR + AED Certificate">
                 </div>
             </div>
         </div>
@@ -978,6 +977,35 @@
                 });
             });
         });
+
+        // === Photo gallery toggle + lightbox (for training certificates etc.) ===
+        function togglePhotos(btn) {
+            const gallery = btn.nextElementSibling;
+            if (!gallery || gallery.children.length === 0) {
+                alert("Photos will be added soon!");
+                return;
+            }
+            gallery.classList.toggle('expanded');
+            btn.classList.toggle('active');
+            if (gallery.classList.contains('expanded')) {
+                if (!btn.hasAttribute('data-original-text')) {
+                    btn.setAttribute('data-original-text', btn.innerHTML);
+                }
+                btn.innerHTML = 'Close Photos ✖';
+            } else {
+                btn.innerHTML = btn.getAttribute('data-original-text');
+            }
+        }
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
     </script>
 </body>
 </html>
