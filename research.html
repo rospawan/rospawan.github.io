@@ -392,7 +392,7 @@
     <div class="container">
         <h2 class="section-title">Research Interests</h2>
         <p class="section-intro">
-            Hybrid AI controllers — designed for <strong>real-world industrial and robotic systems</strong>, validated on <a href="#platforms" style="color: var(--accent-gold); font-weight: 600; text-decoration: none;">experimental platforms</a> at the bottom.
+            Hybrid AI controllers designed for <strong>real-world industrial and robotic systems</strong>, validated on <a href="#platforms" style="color: var(--accent-gold); font-weight: 600; text-decoration: none;">experimental platforms</a>.
         </p>
         
         <!-- ============================== -->
@@ -414,11 +414,7 @@
 
                     <p><strong>Adaptive control</strong>, keeping a familiar PID structure or other well-known standard methods but letting its gain parameters tune themselves online. When the plant structure is approximately known but its parameters drift, the right strategy is to preserve the controller form and adapt only the gains.</p>
 
-                    <p><strong>Intelligent adaptive control</strong>, the union of both. The most powerful family is also the most demanding to design: a controller that <em>learns</em> the plant dynamics AND <em>adapts</em> its parameters in real time. My most recent flagship is the <strong>Two-Layer Intelligent Learning Controller using ORFNL-LSTM-BLS with RMSprop</strong> (IEEE Access, 2025). The first layer learns the plant dynamics from data, the second layer adapts the controller gains online via RMSprop optimization, and the LSTM cells handle long-horizon temporal dependencies that flat BLS cannot. This combination achieves both fast convergence and stability under nonlinear time-delay conditions where pure intelligent or pure adaptive methods each fall short.</p>
-
-                    <p>The same taxonomy carries over to <strong>mobile robotics</strong>. For DC motor positioning on wheeled platforms, the adaptive nonlinear PID controller with <strong>polynomial fuzzy LSTM</strong> handles servo-level tracking. For nonholonomic delivery and inspection robots, the <strong>adaptive fixed-time sliding-mode trajectory following controller with adaptive sliding-mode observers</strong> guarantees bounded settling time regardless of initial conditions — important for safety-critical service robotics.</p>
-
-                    <p>None of these controllers stay in simulation. They are validated on various <a href="#platforms">Experimental Platforms</a>.</p>
+                    <p><strong>Intelligent adaptive control</strong>, the union of both. The most powerful family is also the most demanding to design, as the main controller acts as the intelligent controller with the addition of adaptive system identification that <em>learns</em> the plant dynamics AND <em>adapts</em> its parameters in real time. </p>
                 </div>
 
                 <div class="key-topics">
@@ -427,9 +423,6 @@
                         <span class="topic-tag">Intelligent Control</span>
                         <span class="topic-tag">Adaptive Control</span>
                         <span class="topic-tag">Intelligent Adaptive Control</span>
-                        <span class="topic-tag">Industrial Extrusion Barrel</span>
-                        <span class="topic-tag">Semiconductor Heating Ovens</span>
-                        <span class="topic-tag">Nonholonomic Mobile Robots</span>
                     </div>
                 </div>
 
@@ -458,19 +451,17 @@
             </div>
             <div class="card-details">
                 <div class="details-text">
-                    <p>Modern control problems demand learning architectures that adapt online, run in real time on embedded hardware, and remain interpretable enough for engineers to trust. No single AI method satisfies all three constraints — deep networks are expensive, fuzzy systems lack scale, vanilla RL is sample-hungry, and evolutionary search is offline by nature. My research treats these methods as <strong>complementary building blocks</strong> and engineers hybrid architectures that combine their strengths.</p>
+                    <p>Modern control problems demand learning architectures that adapt online, run in real time on embedded hardware, and remain interpretable enough for engineers to trust. No single AI method satisfies all three constraints, as deep networks are expensive, fuzzy systems lack scalability, vanilla RL is sample-hungry, and evolutionary search is offline by nature. My research treats these methods as <strong>complementary building blocks</strong> and engineers hybrid architectures that combine their strengths.</p>
 
-                    <p><strong>Fuzzy Neural + Broad Learning hybrids.</strong> <strong>Broad Learning Systems (BLS)</strong> offer a flat, incrementally trainable alternative to deep networks, with closed-form solutions and a fraction of the training cost. My <strong>Output Recurrent Fuzzy Broad Learning System (ORFBLS)</strong> injects output recurrence and fuzzy membership functions into BLS, giving it the dynamic memory needed for time-delay systems while preserving fast online adaptation. I have extended this further with <strong>polynomial fuzzy</strong> consequents and <strong>RMSprop-based</strong> online optimization, producing a two-layer learning controller that combines stability with rapid convergence.</p>
+                    <p><strong>Fuzzy Neural + Broad Learning Systems (BLS) hybrids.</strong> My <strong>Output Recurrent Fuzzy Broad Learning System (ORFBLS)</strong> injects output recurrence and fuzzy membership functions into BLS, giving it the dynamic memory needed for time-delay systems while preserving fast online adaptation. I have extended this further with <strong>polynomial fuzzy</strong> consequents and <strong>RMSprop-based</strong> online optimization, producing a two-layer learning controller that combines stability with rapid convergence.</p>
 
-                    <p><strong>Fuzzy + LSTM + BLS — temporal hybrids.</strong> A complementary line integrates <strong>LSTM cells</strong> directly into the fuzzy-BLS pipeline, yielding the ORFNL-LSTM-BLS controller that handles long-horizon temporal dependencies in nonlinear digital time-delay dynamic systems. I have also explored <strong>recurrent polynomial-based FBLS</strong> for adaptive predictive PID control, with comparative studies showing favorable trade-offs in control performance versus computational time complexity.</p>
+                    <p><strong>Fuzzy + LSTM + BLS.</strong> A complementary line integrates <strong>LSTM cells</strong> directly into the fuzzy-BLS pipeline, yielding the ORFNL-LSTM-BLS controller that handles long-horizon temporal dependencies in nonlinear digital time-delay dynamic systems.</p>
 
-                    <p><strong>Fuzzy + Reinforcement Learning.</strong> For control problems where dynamics are too complex to derive a model — for example, an omnidirectional AMR navigating among moving obstacles — I co-developed an autonomous steering system using <strong>Fuzzy TD3 with GRU-Attention</strong>. Fuzzy TD3 is a fuzzy-augmented variant of Twin Delayed DDPG: the fuzzy front-end provides structural priors and interpretability while the actor-critic RL backbone handles continuous action spaces in cluttered, dynamic environments. The GRU-attention module gives the agent a sense of recent history needed to anticipate moving obstacles.</p>
+                    <p><strong>Fuzzy + Reinforcement Learning.</strong> For control problems where dynamics are too complex to derive a model; for example, an omnidirectional AMR navigating among moving obstacles, we developed an autonomous steering system using <strong>Fuzzy TD3 with GRU-Attention</strong>.</p>
 
-                    <p><strong>Fuzzy + Bayesian filtering + BLS — for multi-robot systems.</strong> My collaborators and I developed a <strong>Global Cooperative Localization method using Fuzzy DDEKF</strong> (Discrete-time Distributed Extended Kalman Filter) augmented with Broad Learning Systems, for swarmed omnidirectional mobile robots operating under sensor and motion uncertainties. The BLS component compensates for the nonlinear bias terms that vanilla EKF approaches typically struggle with — a clean example of why hybridization wins over any single method in isolation.</p>
+                    <p><strong>Fuzzy + Bayesian filtering + BLS for multi-robot systems.</strong> We developed a <strong>Global Cooperative Localization method using Fuzzy DDEKF</strong> augmented with BLS for swarmed omnidirectional mobile robots operating under sensor and motion uncertainties. The BLS component compensates for the nonlinear bias terms that vanilla EKF approaches typically struggle with, a clean example of why hybridization wins over any single method in isolation.</p>
 
-                    <p><strong>Evolutionary algorithms — ongoing direction.</strong> I am currently exploring <strong>Genetic Algorithms (GA)</strong> and <strong>Particle Swarm Optimization (PSO)</strong> as complementary tools for hyperparameter tuning, controller structure search, and offline pretraining of the fuzzy-neural and BLS hybrids described above. This direction has not yet produced a published paper, but it is an active research thread I expect to formalize in future work.</p>
-
-                    <p>This thrust earned the <strong>1st place Best Student Paper Award at IEEE SMC 2024</strong> in Kuching, Malaysia, and the <strong>1st place Best Master Thesis Award from TFSA</strong>.</p>
+                    <p><strong>Evolutionary algorithms.</strong> We explore the <strong>Genetic Algorithms (GA)</strong> and <strong>Particle Swarm Optimization (PSO)</strong> as complementary tools for hyperparameter tuning, controller structure search, and offline pretraining of the fuzzy-neural and BLS hybrids described above.</p>
                 </div>
 
                 <div class="key-topics">
