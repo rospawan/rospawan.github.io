@@ -445,7 +445,7 @@
             <div class="card-summary">
                 <div class="research-content">
                     <h3>Artificial Intelligence for Control & Robotics</h3>
-                    <p>Building the algorithmic engine behind my adaptive controllers across four AI families — <strong>fuzzy neural networks</strong>, <strong>broad learning systems</strong>, <strong>evolutionary algorithms</strong>, and <strong>reinforcement learning</strong>. The signature of this thrust is not any single method, but the systematic <em>hybridization</em> of these methods to meet the dual demands of fast online adaptation and real-time deployment on control hardware.</p>
+                    <p>Building the algorithmic engine behind my adaptive controllers across four AI families of <strong>fuzzy neural networks</strong>, <strong>broad learning systems</strong>, <strong>evolutionary algorithms</strong>, and <strong>reinforcement learning</strong>. The signature of this thrust is not any single method, but the systematic <em>hybridization</em> of these methods to meet the dual demands of fast online adaptation and real-time deployment on control hardware.</p>
                     <button class="read-more-btn" onclick="toggleDetails(this)">Read More ➜</button>
                 </div>
             </div>
@@ -472,12 +472,6 @@
                         <span class="topic-tag">Reinforcement Learning</span>
                         <span class="topic-tag">Evolutionary Algorithms</span>
                         <span class="topic-tag">Hybrid AI Architectures</span>
-                        <span class="topic-tag">ORFBLS</span>
-                        <span class="topic-tag">Fuzzy TD3</span>
-                        <span class="topic-tag">LSTM-BLS</span>
-                        <span class="topic-tag">Fuzzy DDEKF</span>
-                        <span class="topic-tag">GA & PSO</span>
-                        <span class="topic-tag">Online Learning</span>
                     </div>
                 </div>
 
@@ -486,9 +480,6 @@
                     <ul>
                         <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Two-Layer Intelligent Learning Control Using ORFNL-LSTM Broad Learning System With RMSprop," <em>IEEE Access</em>, vol. 13, 2025. <span class="badge-small">Q1</span></li>
                         <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Output Recurrent Fuzzy Broad Learning Systems for Adaptive MIMO PID Control," <em>IEEE Access</em>, vol. 12, 2024. <span class="badge-small">Q1</span></li>
-                        <li>A. Rospawan, C. C. Tsai, "Recurrent Polynomial-Based FBLS for Adaptive Predictive PID Control of Nonlinear Discrete-Time Systems," <em>IEEE SMC 2024</em>, Kuching, Malaysia. <span class="badge-small">🏆 BEST PAPER</span></li>
-                        <li>A. Rospawan, C. C. Tsai, C. C. Hung, "Output Recurrent Fuzzy Neural LSTM-BLS Controller for Nonlinear Digital Time-Delay Systems," <em>IEEE SMC 2023</em>, Honolulu.</li>
-                        <li>A. Rospawan et al., "Recurrent Fuzzy Broad Learning Controller for MIMO Nonlinear Time-Delay Systems," <em>IFSA 2023</em>, Daegu, Korea.</li>
                         <li>C. C. Tsai, H. S. Wu, L. H. Chen, A. Rospawan, et al., "Autonomous Steering System Using Fuzzy TD3 and GRU-Attention for Omnidirectional AMRs," <em>Int. J. Fuzzy Systems</em>, 2026. <span class="badge-small">Q1</span></li>
                         <li>C. C. Tsai, G. H. Yang, S. C. Chen, A. Rospawan, H. Y. Zheng, "Global Cooperative Localization Using Fuzzy DDEKF and BLS for Swarmed Omnidirectional Mobile Robots," <em>Int. J. Fuzzy Systems</em>, 2026. <span class="badge-small">Q1</span></li>
                     </ul>
@@ -504,16 +495,16 @@
             <div class="card-summary">
                 <div class="research-content">
                     <h3>Autonomous Mobile Robots & Cooperative Localization</h3>
-                    <p>Bringing fuzzy and broad learning ideas into mobile robotics — autonomous steering for omnidirectional AMRs in dynamic environments, fixed-time trajectory tracking for nonholonomic platforms, and cooperative localization for swarmed robot teams operating under uncertainty.</p>
+                    <p>Bringing fuzzy, BLS, and other AI ideas into mobile robotics to develop an autonomous steering of AMRs in dynamic environments, and cooperative localization.</p>
                     <button class="read-more-btn" onclick="toggleDetails(this)">Read More ➜</button>
                 </div>
             </div>
             <div class="card-details">
                 <div class="details-text">
                     <p>Autonomous Mobile Robots (AMRs) face two persistent challenges in industrial deployment: <strong>safe navigation in dynamic environments</strong> and <strong>accurate localization when GPS or fiducials are unavailable</strong>. My work attacks both problems by transplanting the control and learning techniques developed in industrial settings into mobile robotic contexts.</p>
-                    <p>For steering, I co-developed an <strong>autonomous steering system using Fuzzy TD3 and GRU-Attention</strong> for omnidirectional AMRs. Fuzzy TD3 — a fuzzy-augmented variant of the Twin Delayed DDPG reinforcement learning algorithm — handles continuous action spaces in cluttered, dynamic environments, while the GRU-attention module gives the agent a sense of recent history needed to anticipate moving obstacles.</p>
-                    <p>For trajectory tracking on nonholonomic AMRs, I extend my fixed-time sliding-mode work with <strong>adaptive sliding-mode observers</strong> that estimate unmeasured velocities and disturbances in real time, achieving robust trajectory following with guaranteed settling times.</p>
-                    <p>For multi-robot systems, my collaborators and I developed a <strong>Global Cooperative Localization method using Fuzzy DDEKF</strong> (Discrete-time Distributed Extended Kalman Filter) and Broad Learning Systems for swarmed omnidirectional mobile robots operating under sensor and motion uncertainties — the BLS component compensates for the nonlinear bias terms that vanilla EKF approaches typically struggle with.</p>
+                    <p>For steering, we developed an <strong>autonomous steering system using Fuzzy TD3 and GRU-Attention</strong> for omnidirectional AMRs. Fuzzy TD3, a fuzzy-augmented variant of the Twin Delayed DDPG reinforcement learning algorithm, handles continuous action spaces in cluttered, dynamic environments, while the GRU-attention module gives the agent a sense of recent history needed to anticipate moving obstacles.</p>
+                    <p>For trajectory tracking on nonholonomic AMRs, we extend the fixed-time sliding-mode work with <strong>adaptive sliding-mode observers</strong> that estimate unmeasured velocities and disturbances in real time, achieving robust trajectory following with guaranteed settling times.</p>
+                    <p>For multi-robot systems, we developed a <strong>Global Cooperative Localization method using Fuzzy DDEKF</strong> and BLS for swarmed omnidirectional mobile robots operating under sensor and motion uncertainties.</p>
                 </div>
 
                 <div class="key-topics">
@@ -521,10 +512,6 @@
                     <div class="topic-tags">
                         <span class="topic-tag">Omnidirectional AMRs</span>
                         <span class="topic-tag">Nonholonomic Robots</span>
-                        <span class="topic-tag">Fuzzy TD3 RL</span>
-                        <span class="topic-tag">GRU-Attention</span>
-                        <span class="topic-tag">Fixed-Time Sliding Mode</span>
-                        <span class="topic-tag">Fuzzy DDEKF</span>
                         <span class="topic-tag">Cooperative Localization</span>
                         <span class="topic-tag">Swarm Robotics</span>
                     </div>
@@ -555,10 +542,10 @@
             </div>
             <div class="card-details">
                 <div class="details-text">
-                    <p>Visual SLAM (Simultaneous Localization And Mapping) is the foundation of any robot that needs to know where it is and what's around it. Classical RGB-D SLAM pipelines, however, often suffer in scenes with <strong>dynamic objects, weak features, or poorly chosen keyframes</strong>. My recent work proposes an <strong>Enhanced RGB-D Visual SLAM</strong> framework that addresses these issues on two fronts.</p>
-                    <p>First, a <strong>photogrammetric keyframe selection method</strong> chooses keyframes based on principles drawn from photogrammetry — geometric configuration quality and parallax — rather than purely heuristic distance or frame-count thresholds. This produces a more stable backbone for the SLAM graph and reduces drift over long trajectories.</p>
-                    <p>Second, a <strong>static conditional probability model</strong> reasons about which pixels in a scene are likely to belong to static structure versus moving objects. Pixels flagged as dynamic are downweighted in pose estimation, making the system robust in environments with pedestrians, vehicles, or other moving entities — settings where vanilla ORB-SLAM-style methods often fail.</p>
-                    <p>Complementing this academic work, my <strong>AI System Development internship at the Industrial Technology Research Institute (ITRI)</strong> in Taiwan focused on the practical side: developing a complete vision pipeline that converts RGB images into <strong>dense depth maps and 3D point clouds</strong> for automotive and robotic sensing applications — bridging research-grade algorithms with deployable, latency-sensitive systems.</p>
+                    <p>Visual SLAM (Simultaneous Localization And Mapping) is the foundation of any robot that needs to know where it is and what's around it. Classical RGB-D SLAM pipelines, however, often suffer in scenes with <strong>dynamic objects, weak features, or poorly chosen keyframes</strong>. Our recent work proposes an <strong>Enhanced RGB-D Visual SLAM</strong> framework that addresses these issues on two fronts.</p>
+                    <p>First, a <strong>photogrammetric keyframe selection method</strong> chooses keyframes based on principles drawn from photogrammetry, a geometric configuration quality, and parallax, rather than purely heuristic distance or frame-count thresholds.</p>
+                    <p>Second, a <strong>static conditional probability model</strong> reasons about which pixels in a scene are likely to belong to static structure versus moving objects.</p>
+                    <p>Complementing this academic work, my <strong>AI System Development internship at the Industrial Technology Research Institute (ITRI)</strong> in Taiwan focused on the practical side: developing a complete vision pipeline that converts RGB images into <strong>dense depth maps and 3D point clouds</strong> for automotive and robotic sensing applications.</p>
                 </div>
 
                 <div class="key-topics">
@@ -566,11 +553,9 @@
                     <div class="topic-tags">
                         <span class="topic-tag">RGB-D Visual SLAM</span>
                         <span class="topic-tag">Photogrammetric Keyframe Selection</span>
-                        <span class="topic-tag">Dynamic Object Handling</span>
                         <span class="topic-tag">Static Conditional Probability</span>
                         <span class="topic-tag">Depth Estimation</span>
                         <span class="topic-tag">3D Point Clouds</span>
-                        <span class="topic-tag">Automotive Sensing</span>
                     </div>
                 </div>
 
