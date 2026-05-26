@@ -291,6 +291,59 @@
             color: var(--accent-gold);
         }
 
+        /* ================= Photo Gallery (for training/event certificates) ================= */
+        .activity-photos-toggle {
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: var(--secondary-color);
+            background: transparent;
+            border: 1px solid #E5E7EB;
+            padding: 4px 12px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            align-self: flex-start;
+        }
+        .activity-photos-toggle:hover,
+        .activity-photos-toggle.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+        .activity-gallery {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 0;
+        }
+        .activity-gallery.expanded {
+            max-height: 500px;
+            margin-top: 14px;
+        }
+        .gallery-img {
+            height: 110px;
+            width: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            cursor: zoom-in;
+            border: 1px solid #F3F4F6;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+        }
+        /* Lightbox */
+        #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: zoom-out; backdrop-filter: blur(5px); }
+        #lightbox img { max-width: 90%; max-height: 90%; border-radius: 4px; box-shadow: 0 0 40px rgba(0,0,0,0.5); object-fit: contain; }
+        .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 50px; cursor: pointer; transition: 0.3s; }
+        .close-lightbox:hover { transform: scale(1.1); color: #E5E7EB; }
+        
+
         /* ================= Footer ================= */
         footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #DCC9E0; font-size: 0.95rem; }
         footer a { color: #fff; text-decoration: none; }
@@ -375,6 +428,11 @@
         </nav>
     </header>
 
+    <div id="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged Photo">
+    </div>
+
     <div class="container">
         <h2 class="section-title">Activities</h2>
         <p class="section-intro">
@@ -400,6 +458,25 @@
         <div class="year-divider">
             <span class="year">2026</span>
             <span class="line"></span>
+        </div>
+
+        <!-- ===== First Aid Training: CPR + AED ===== -->
+        <div class="activity-card compact" data-category="training">
+            <div class="activity-date-strip">
+                <div class="month">Apr 17</div>
+                <div class="day">2026</div>
+            </div>
+            <div class="activity-content">
+                <span class="category-badge badge-training">Training · Certified</span>
+                <h3>First Aid Training: CPR + AED Hands-on Course</h3>
+                <div class="activity-location">📍 Taichung, Taiwan</div>
+                <p class="activity-description">Completed a hands-on first-aid course covering cardiopulmonary resuscitation (CPR) and Automated External Defibrillator (AED) operation, including emergency response procedures for cardiac arrest.</p>
+                <button class="activity-photos-toggle" onclick="togglePhotos(this)">View Certificate 📸</button>
+                <div class="activity-gallery">
+                    <img src="images/activities/2026-cpr-aed-1.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="CPR + AED Certificate">
+                    <img src="images/activities/2026-cpr-aed-2.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="CPR + AED Training">
+                </div>
+            </div>
         </div>
 
         <!-- ===== Politeknik · 2025/2026 Genap (Current) ===== -->
