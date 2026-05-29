@@ -448,18 +448,20 @@
             .welcome-tagline { font-size: 0.92rem; }
             .welcome-intro { font-size: 0.95rem; }
 
-            .stats-banner { padding: 14px 10px; gap: 0; }
-            .stats-banner .stat {
-                min-width: 50%;
-                flex: 0 0 50%;
-                padding: 12px 8px;
-                border-right: 1px solid rgba(255,255,255,0.18);
-                border-bottom: 1px solid rgba(255,255,255,0.18);
+            .stats-banner {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                padding: 14px 10px;
             }
-            .stats-banner .stat:nth-child(2n) { border-right: none; }
-            .stats-banner .stat:nth-last-child(-n+2) { border-bottom: none; }
-            .stats-banner .stat-num { font-size: 1.6rem; }
-            .stats-banner .stat-label { font-size: 0.62rem; letter-spacing: 0.5px; }
+            .stats-banner .stat {
+                min-width: 0;
+                padding: 12px 8px;
+                border-right: none;
+                border-bottom: none;
+            }
+            .stats-banner .stat-num { font-size: 1.7rem; }
+            .stats-banner .stat-label { font-size: 0.64rem; letter-spacing: 0.5px; }
 
             .pubs-grid { grid-template-columns: 1fr; gap: 14px; }
             .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
