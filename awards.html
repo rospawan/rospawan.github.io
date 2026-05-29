@@ -28,7 +28,6 @@
             --bg-color: #F5F4F0; 
             --primary-color: #4A2545; 
             --secondary-color: #6B2D5C;
-            --accent-gold: #B8860B;
             --text-color: #333333; 
             --card-bg: #FFFFFF;
             --tier-gold: #D4A017;
@@ -151,6 +150,15 @@
             height: 3px;
             background: linear-gradient(to right, var(--primary-color), transparent);
         }
+
+        /* ================= Awards Grid (two-column) ================= */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .awards-grid .award-card { margin-bottom: 0; }
 
         /* ================= Award Card (compact) ================= */
         .award-card {
@@ -331,9 +339,7 @@
                 font-size: 0.95rem;
             }
             nav a:last-child { border-bottom: none; }
-        }
 
-        @media (max-width: 768px) {
             .container { margin-top: 25px; padding: 0 15px; }
             h2.section-title { font-size: 1.8rem; }
             .section-subtitle { font-size: 0.98rem; }
@@ -348,6 +354,8 @@
             .awards-stats .stat-label { font-size: 0.65rem; letter-spacing: 0.4px; margin-top: 4px; }
 
             .year-divider .year { font-size: 1.7rem; }
+
+            .awards-grid { grid-template-columns: 1fr; gap: 12px; }
 
             .award-card { grid-template-columns: 1fr; }
             .award-tier-strip {
@@ -427,6 +435,7 @@
             <span class="line"></span>
         </div>
 
+        <div class="awards-grid">
         <!-- ===== iFUZZY 2025 (Silver) ===== -->
         <div class="award-card silver">
             <div class="award-tier-strip">
@@ -486,6 +495,7 @@
                 <div class="award-venue">Held by <span class="institution">IEEE SMC Society</span> at Swinburne University of Technology, Hawthorn VIC 3122, Australia</div>
             </div>
         </div>
+        </div>
 
 
         <!-- ================================================ -->
@@ -496,6 +506,7 @@
             <span class="line"></span>
         </div>
 
+        <div class="awards-grid">
         <!-- ===== IEEE SMC 2024 (Gold) - HAS PHOTOS ===== -->
         <div class="award-card gold">
             <div class="award-tier-strip">
@@ -536,6 +547,7 @@
                 <div class="award-venue"><span class="institution">FUZZY 2024 Conference</span> · Nangan Township, Taiwan</div>
             </div>
         </div>
+        </div>
 
 
         <!-- ================================================ -->
@@ -546,6 +558,7 @@
             <span class="line"></span>
         </div>
 
+        <div class="awards-grid">
         <!-- ===== TFSA Master Thesis (Gold) ===== -->
         <div class="award-card gold">
             <div class="award-tier-strip">
@@ -569,6 +582,7 @@
                 <div class="award-venue"><span class="institution">iFUZZY 2023</span> — Int. Conf. on Fuzzy Theory and Its Applications</div>
             </div>
         </div>
+        </div>
 
 
         <!-- ================================================ -->
@@ -579,6 +593,7 @@
             <span class="line"></span>
         </div>
 
+        <div class="awards-grid">
         <!-- ===== WCE 2022 (Gold) ===== -->
         <div class="award-card gold">
             <div class="award-tier-strip">
@@ -601,6 +616,7 @@
                 <div class="award-title">Best Conference Paper Award</div>
                 <div class="award-venue"><span class="institution">ARIS 2022</span> — Int. Conf. on Advanced Robotics and Intelligent Systems</div>
             </div>
+        </div>
         </div>
 
     </div>
