@@ -371,6 +371,37 @@
             .award-content { padding: 14px 18px; }
             .award-title { font-size: 1rem; }
         }
+
+        /* ================= Back to Top Button ================= */
+        #backToTop {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 46px;
+            height: 46px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: #fff;
+            font-size: 21px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 14px rgba(74,37,69,0.35);
+            transition: background 0.25s ease, transform 0.2s ease;
+            border: 2px solid var(--accent-gold);
+        }
+        #backToTop:hover {
+            background: var(--secondary-color);
+            color: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+        @media (max-width: 767px) {
+            #backToTop { bottom: 18px; right: 18px; width: 42px; height: 42px; font-size: 19px; }
+        }
+        
     </style>
 </head>
 <body>
@@ -632,6 +663,8 @@
         <p style="margin-top: 30px; opacity: 0.5; font-size: 0.8rem;">© 2026 Ali Rospawan. All rights reserved.</p>
     </footer>
 
+    <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
     <script>
         function togglePhotos(btn) {
             const gallery = btn.nextElementSibling;
@@ -664,6 +697,18 @@
             document.getElementById('lightbox').style.display = 'none';
             document.body.style.overflow = 'auto'; 
         }
+
+        // ---------- 6. Back-to-top button ----------
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            });
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    
     </script>
 </body>
 </html>
