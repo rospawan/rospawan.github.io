@@ -439,19 +439,8 @@
             }
             nav a:last-child { border-bottom: none; }
         }
-        
-        @media (max-width: 900px) {
-            .container { margin-top: 25px; padding: 0 15px; }
-            .two-col-grid { grid-template-columns: 1fr; gap: 20px; }
-            
-            .bento-item { padding: 25px 22px; border-radius: 12px; margin-bottom: 20px; }
-            .bento-title { font-size: 1.3rem; margin-bottom: 16px; }
-            
-            .welcome-photo { width: 150px; height: 150px; }
-            .welcome-name { font-size: 1.7rem; }
-            .welcome-tagline { font-size: 0.92rem; }
-            .welcome-intro { font-size: 0.95rem; }
 
+        @media (max-width: 600px) {
             .stats-banner {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -466,6 +455,19 @@
             }
             .stats-banner .stat-num { font-size: 1.7rem; }
             .stats-banner .stat-label { font-size: 0.64rem; letter-spacing: 0.5px; }
+        }
+        
+        @media (max-width: 900px) {
+            .container { margin-top: 25px; padding: 0 15px; }
+            .two-col-grid { grid-template-columns: 1fr; gap: 20px; }
+            
+            .bento-item { padding: 25px 22px; border-radius: 12px; margin-bottom: 20px; }
+            .bento-title { font-size: 1.3rem; margin-bottom: 16px; }
+            
+            .welcome-photo { width: 150px; height: 150px; }
+            .welcome-name { font-size: 1.7rem; }
+            .welcome-tagline { font-size: 0.92rem; }
+            .welcome-intro { font-size: 0.95rem; }
 
             .pubs-grid { grid-template-columns: 1fr; gap: 14px; }
             .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
