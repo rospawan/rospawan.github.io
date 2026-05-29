@@ -158,7 +158,9 @@
         .activity-grid .activity-card { margin-bottom: 0; }
         .activity-grid .activity-card.compact { margin-bottom: 0; }
 
-        /* ================= Activity Card (FULL) ================= */
+        /* ============ Activity Card (shared base styles) ============ */
+        /* All live cards use .compact; these are the shared base that  */
+        /* .compact builds on and that the template example relies on.  */
         .activity-card {
             background: #fff;
             border-radius: 12px;
@@ -166,8 +168,6 @@
             box-shadow: 0 3px 12px rgba(0,0,0,0.04);
             transition: all 0.3s ease;
             overflow: hidden;
-            display: grid;
-            grid-template-columns: 180px 1fr;
         }
         .activity-card:hover {
             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
@@ -175,43 +175,36 @@
         }
         .activity-card.hidden { display: none; }
 
-        .activity-date-strip {
-            background: #FAF7FA;
-            padding: 25px 20px;
-            border-right: 1px solid #F0F0F0;
+        .card-head {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
         }
-        .activity-date-strip .month {
-            font-size: 0.82rem;
+        .card-head .category-badge,
+        .card-head .badge-row,
+        .activity-card.compact .card-head .category-badge,
+        .activity-card.compact .card-head .badge-row { margin-bottom: 0; }
+        .card-date {
+            flex-shrink: 0;
+            font-size: 0.78rem;
             color: var(--accent-gold);
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-        }
-        .activity-date-strip .day {
-            font-size: 1.05rem;
-            color: #555;
-            font-weight: 600;
-            margin-top: 4px;
         }
 
         .activity-content { padding: 25px 30px; }
 
         .category-badge {
             display: inline-block;
-            align-self: flex-start;
-            width: fit-content;
             font-size: 0.72rem;
             font-weight: 700;
             color: #fff;
             padding: 4px 12px;
             border-radius: 20px;
             letter-spacing: 1px;
-            margin-bottom: 10px;
             text-transform: uppercase;
         }
         .badge-row {
@@ -244,12 +237,6 @@
             font-weight: 600;
             margin-bottom: 12px;
         }
-        .activity-description {
-            color: #555;
-            font-size: 1rem;
-            line-height: 1.65;
-            margin: 0 0 14px 0;
-        }
         .activity-highlights {
             background: #FAF7FA;
             border-left: 3px solid var(--primary-color);
@@ -260,34 +247,10 @@
             color: #444;
         }
         .activity-highlights strong { color: var(--primary-color); }
-        .activity-tags {
-            margin-top: 14px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        .tag-chip {
-            background: #EDE7F0;
-            color: var(--primary-color);
-            font-size: 0.78rem;
-            padding: 3px 10px;
-            border-radius: 10px;
-            font-weight: 600;
-        }
 
         /* ================= Compact Card ================= */
         .activity-card.compact {
-            grid-template-columns: 130px 1fr;
-            margin-bottom: 10px;
-        }
-        .activity-card.compact .activity-date-strip {
-            padding: 14px 12px;
-        }
-        .activity-card.compact .activity-date-strip .month {
-            font-size: 0.75rem;
-        }
-        .activity-card.compact .activity-date-strip .day {
-            font-size: 0.9rem;
+            margin-bottom: 0;
         }
         .activity-card.compact .activity-content {
             padding: 14px 22px;
@@ -434,16 +397,6 @@
 
             .activity-grid { grid-template-columns: 1fr; gap: 12px; }
 
-            .activity-card,
-            .activity-card.compact { grid-template-columns: 1fr; }
-            .activity-date-strip { 
-                padding: 14px 20px; 
-                border-right: none; 
-                border-bottom: 1px solid #F0F0F0;
-                flex-direction: row; 
-                gap: 12px;
-                justify-content: flex-start;
-            }
             .activity-content { padding: 20px; }
             .activity-content h3 { font-size: 1.1rem; }
             .activity-card.compact .activity-content { padding: 14px 20px; }
@@ -505,12 +458,11 @@
 
         <!-- ===== First Aid Training: CPR + AED ===== -->
         <div class="activity-card compact" data-category="training">
-            <div class="activity-date-strip">
-                <div class="month">Apr 17</div>
-                <div class="day">2026</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-training">Training · Certified</span>
+                <div class="card-head">
+                    <span class="category-badge badge-training">Training · Certified</span>
+                    <span class="card-date">Apr 17</span>
+                </div>
                 <h3>First Aid Training: CPR + AED Hands-on Course</h3>
                 <div class="activity-location">📍 Taichung, Taiwan</div>
                 <div class="activity-detail">Course: First-Aid Training: cardiopulmonary resuscitation (CPR) and Automated External Defibrillator (AED).</div>
@@ -523,12 +475,11 @@
 
         <!-- ===== Politeknik · 2025/2026 Genap (Current) ===== -->
         <div class="activity-card compact" data-category="teaching">
-            <div class="activity-date-strip">
-                <div class="month">Feb – Jul</div>
-                <div class="day">2026</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                    <span class="card-date">Feb – Jul</span>
+                </div>
                 <h3>Lecturer · 2025/2026 Genap Semester (Current)</h3>
                 <div class="activity-location">📍 Politeknik Manufaktur Negeri Bangka Belitung · Indonesia</div>
                 <div class="activity-detail">Courses: Artificial Intelligence · Electronic Circuit Applications</div>
@@ -537,12 +488,11 @@
 
         <!-- ===== NCHU TA 2026 (Current) ===== -->
         <div class="activity-card compact" data-category="teaching">
-            <div class="activity-date-strip">
-                <div class="month">Feb – Aug</div>
-                <div class="day">2026</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-teaching">Teaching · TA</span>
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · TA</span>
+                    <span class="card-date">Feb – Aug</span>
+                </div>
                 <h3>Teaching Assistant · Summer 114–2 (Current)</h3>
                 <div class="activity-location">📍 Dept. Elect. Eng., National Chung Hsing University · Taichung, Taiwan</div>
                 <div class="activity-detail">Course: Automatic Control Practice (自動控制實驗)</div>
@@ -562,12 +512,11 @@
 
         <!-- ===== ITRI Internship ===== -->
         <div class="activity-card compact" data-category="internship">
-            <div class="activity-date-strip">
-                <div class="month">Jul – Nov</div>
-                <div class="day">2025</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-internship">Internship</span>
+                <div class="card-head">
+                    <span class="category-badge badge-internship">Internship</span>
+                    <span class="card-date">Jul – Nov</span>
+                </div>
                 <h3>AI System Development in Automotive & Robotic Sensing</h3>
                 <div class="activity-location">📍 Industrial Technology Research Institute (ITRI) · Hsinchu, Taiwan</div>
             </div>
@@ -575,12 +524,11 @@
 
         <!-- ===== IEEE AISS Australia ===== -->
         <div class="activity-card compact" data-category="program">
-            <div class="activity-date-strip">
-                <div class="month">Nov</div>
-                <div class="day">2025</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-program">Program · Scholarship</span>
+                <div class="card-head">
+                    <span class="category-badge badge-program">Program · Scholarship</span>
+                    <span class="card-date">Nov</span>
+                </div>
                 <h3>IEEE Academia-Industry Summer School (AISS)</h3>
                 <div class="activity-location">📍 Swinburne University of Technology · Hawthorn, Australia</div>
                 <div class="activity-highlights"><strong>🎓 Full Scholarship Recipient</strong> — IEEE SMC Society</div>
@@ -589,12 +537,11 @@
 
         <!-- ===== ICSSE 2025 Chiang Mai ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">Aug</div>
-                <div class="day">2025</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                    <span class="card-date">Aug</span>
+                </div>
                 <h3>ICSSE 2025 — Int. Conf. on System Science and Engineering</h3>
                 <div class="activity-location">📍 Chiang Mai, Thailand</div>
                 <div class="activity-highlights"><strong>🎖 Session 4 Best Presentation Award</strong></div>
@@ -603,12 +550,11 @@
 
         <!-- ===== ARIS 2025 Taichung (committee + presenter) ===== -->
         <div class="activity-card compact" data-category="committee conference">
-            <div class="activity-date-strip">
-                <div class="month">Aug</div>
-                <div class="day">2025</div>
-            </div>
             <div class="activity-content">
-                <span class="badge-row"><span class="category-badge badge-committee">Local Committee</span><span class="category-badge badge-conference">Presenter</span></span>
+                <div class="card-head">
+                    <span class="badge-row"><span class="category-badge badge-committee">Local Committee</span><span class="category-badge badge-conference">Presenter</span></span>
+                    <span class="card-date">Aug</span>
+                </div>
                 <h3>ARIS 2025 — Int. Conf. on Advanced Robotics and Intelligent Systems</h3>
                 <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
                 <div class="activity-highlights"><strong>🎖 Honorary Mention — Best Presentation Award</strong></div>
@@ -617,12 +563,10 @@
 
         <!-- ===== iFUZZY 2025 Hsinchu ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">2025</div>
-                <div class="day">Conference</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
                 <h3>iFUZZY 2025 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
                 <div class="activity-location">📍 Hsinchu, Taiwan</div>
                 <div class="activity-highlights"><strong>🥈 Best Student Paper Award · 2nd Place</strong></div>
@@ -631,12 +575,10 @@
 
         <!-- ===== NSSSE 2025 Taichung (committee) ===== -->
         <div class="activity-card compact" data-category="committee">
-            <div class="activity-date-strip">
-                <div class="month">2025</div>
-                <div class="day">Conference</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-committee">Local Committee</span>
+                <div class="card-head">
+                    <span class="category-badge badge-committee">Local Committee</span>
+                </div>
                 <h3>NSSSE 2025 — National Symposium on System Science and Engineering</h3>
                 <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
                 <div class="activity-detail">Co-authored lab paper on autonomous path-following navigation of differential-driving AMRs.</div>
@@ -645,12 +587,10 @@
 
         <!-- ===== NCHU Scientific Paper Competition 2025 ===== -->
         <div class="activity-card compact" data-category="competition">
-            <div class="activity-date-strip">
-                <div class="month">2025</div>
-                <div class="day">Competition</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-competition">Competition</span>
+                <div class="card-head">
+                    <span class="category-badge badge-competition">Competition</span>
+                </div>
                 <h3>NCHU Scientific Paper Competition · Semiconductor Technology Field</h3>
                 <div class="activity-location">📍 National Chung Hsing University · Taichung, Taiwan</div>
                 <div class="activity-highlights"><strong>🥉 3rd Place — Semiconductor Technology Research Field</strong></div>
@@ -659,12 +599,11 @@
 
         <!-- ===== Politeknik · 2025/2026 Ganjil ===== -->
         <div class="activity-card compact" data-category="teaching">
-            <div class="activity-date-strip">
-                <div class="month">Aug 2025</div>
-                <div class="day">– Jan 2026</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                    <span class="card-date">Aug – Jan</span>
+                </div>
                 <h3>Lecturer · 2025/2026 Ganjil Semester</h3>
                 <div class="activity-location">📍 Politeknik Manufaktur Negeri Bangka Belitung · Indonesia</div>
                 <div class="activity-detail">Course: Robotics</div>
@@ -673,12 +612,11 @@
 
         <!-- ===== Politeknik · 2024/2025 Genap ===== -->
         <div class="activity-card compact" data-category="teaching">
-            <div class="activity-date-strip">
-                <div class="month">Feb – Jul</div>
-                <div class="day">2025</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                    <span class="card-date">Feb – Jul</span>
+                </div>
                 <h3>Lecturer · 2024/2025 Genap Semester</h3>
                 <div class="activity-location">📍 Politeknik Manufaktur Negeri Bangka Belitung · Indonesia</div>
                 <div class="activity-detail">Course: Electronic Circuit Applications</div>
@@ -687,12 +625,11 @@
 
         <!-- ===== NCHU TA 2025 ===== -->
         <div class="activity-card compact" data-category="teaching">
-            <div class="activity-date-strip">
-                <div class="month">Feb – Aug</div>
-                <div class="day">2025</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-teaching">Teaching · TA</span>
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · TA</span>
+                    <span class="card-date">Feb – Aug</span>
+                </div>
                 <h3>Teaching Assistant · Summer 113–2</h3>
                 <div class="activity-location">📍 Dept. Elect. Eng., National Chung Hsing University · Taichung, Taiwan</div>
                 <div class="activity-detail">Course: Automatic Control Practice (自動控制實驗)</div>
@@ -712,12 +649,10 @@
 
         <!-- ===== IEEE SMC 2024 Kuching ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">2024</div>
-                <div class="day">Conference</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
                 <h3>🏆 IEEE SMC 2024 — Int. Conf. on Systems, Man, and Cybernetics</h3>
                 <div class="activity-location">📍 Kuching, Malaysia</div>
                 <div class="activity-highlights"><strong>🏆 Best Student Paper Award · 1st Place</strong></div>
@@ -726,12 +661,10 @@
 
         <!-- ===== Fuzzy 2024 Nangan ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">2024</div>
-                <div class="day">Conference</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
                 <h3>Fuzzy 2024 — 32nd Conference on Fuzzy Theory and Its Applications</h3>
                 <div class="activity-location">📍 Nangan Township, Taiwan</div>
                 <div class="activity-highlights"><strong>🥉 Best Paper Award · 3rd Place</strong></div>
@@ -740,12 +673,10 @@
 
         <!-- ===== NCHU Scientific Paper Competition 2024 ===== -->
         <div class="activity-card compact" data-category="competition">
-            <div class="activity-date-strip">
-                <div class="month">2024</div>
-                <div class="day">Competition</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-competition">Competition</span>
+                <div class="card-head">
+                    <span class="category-badge badge-competition">Competition</span>
+                </div>
                 <h3>NCHU Scientific Paper Competition · Engineering Technology Field</h3>
                 <div class="activity-location">📍 National Chung Hsing University · Taichung, Taiwan</div>
                 <div class="activity-highlights"><strong>🥇 1st Place — Engineering Technology Research Field</strong></div>
@@ -755,12 +686,11 @@
 
         <!-- ===== NCHU TA 2024 ===== -->
         <div class="activity-card compact" data-category="teaching">
-            <div class="activity-date-strip">
-                <div class="month">Feb – Aug</div>
-                <div class="day">2024</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-teaching">Teaching · TA</span>
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · TA</span>
+                    <span class="card-date">Feb – Aug</span>
+                </div>
                 <h3>Teaching Assistant · Summer 112–2</h3>
                 <div class="activity-location">📍 Dept. Elect. Eng., National Chung Hsing University · Taichung, Taiwan</div>
                 <div class="activity-detail">Course: Automatic Control Practice (自動控制實驗)</div>
@@ -780,12 +710,10 @@
 
         <!-- ===== IEEE SMC 2023 Honolulu ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">2023</div>
-                <div class="day">Conference</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
                 <h3>IEEE SMC 2023 — Int. Conf. on Systems, Man, and Cybernetics</h3>
                 <div class="activity-location">📍 Honolulu, Hawaii, USA</div>
             </div>
@@ -793,12 +721,10 @@
 
         <!-- ===== iFUZZY 2023 Penghu ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">2023</div>
-                <div class="day">Conference</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
                 <h3>iFUZZY 2023 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
                 <div class="activity-location">📍 Penghu, Taiwan</div>
                 <div class="activity-highlights"><strong>🥈 Best Student Paper Award · 2nd Place</strong></div>
@@ -807,12 +733,11 @@
 
         <!-- ===== IFSA 2023 Daegu (compact) ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">Aug 2023</div>
-                <div class="day">Conference</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                    <span class="card-date">Aug</span>
+                </div>
                 <h3>IFSA 2023 — 20th World Congress of the Int. Fuzzy Systems Association</h3>
                 <div class="activity-location">📍 EXCO · Daegu, Korea</div>
             </div>
@@ -820,12 +745,10 @@
 
         <!-- ===== ICSSE 2023 Ho Chi Minh (compact) ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">2023</div>
-                <div class="day">Conference</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
                 <h3>ICSSE 2023 — Int. Conf. on System Science and Engineering</h3>
                 <div class="activity-location">📍 Ho Chi Minh City, Vietnam</div>
             </div>
@@ -834,12 +757,11 @@
 
         <!-- ===== NCHU TA 2023 ===== -->
         <div class="activity-card compact" data-category="teaching">
-            <div class="activity-date-strip">
-                <div class="month">Feb – Aug</div>
-                <div class="day">2023</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-teaching">Teaching · TA</span>
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · TA</span>
+                    <span class="card-date">Feb – Aug</span>
+                </div>
                 <h3>Teaching Assistant · Summer 111–2</h3>
                 <div class="activity-location">📍 Dept. Elect. Eng., National Chung Hsing University · Taichung, Taiwan</div>
                 <div class="activity-detail">Course: Automatic Control Practice (自動控制實驗)</div>
@@ -859,12 +781,11 @@
 
         <!-- ===== ICSSE 2022 Taichung (first committee + first paper) ===== -->
         <div class="activity-card compact" data-category="committee conference">
-            <div class="activity-date-strip">
-                <div class="month">May</div>
-                <div class="day">2022</div>
-            </div>
             <div class="activity-content">
-                <span class="badge-row"><span class="category-badge badge-committee">Local Committee</span><span class="category-badge badge-conference">Presenter</span></span>
+                <div class="card-head">
+                    <span class="badge-row"><span class="category-badge badge-committee">Local Committee</span><span class="category-badge badge-conference">Presenter</span></span>
+                    <span class="card-date">May</span>
+                </div>
                 <h3>ICSSE 2022 — Int. Conf. on System Science and Engineering</h3>
                 <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
             </div>
@@ -872,12 +793,11 @@
 
         <!-- ===== ARIS 2022 Taipei ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">Aug</div>
-                <div class="day">2022</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                    <span class="card-date">Aug</span>
+                </div>
                 <h3>ARIS 2022 — Int. Conf. on Advanced Robotics and Intelligent Systems</h3>
                 <div class="activity-location">📍 Taipei Nangang Exhibition Center · Taipei, Taiwan</div>
                 <div class="activity-highlights"><strong>🎖 Best Conference Paper Award — Honorable Mention</strong></div>
@@ -886,12 +806,10 @@
 
         <!-- ===== WCE 2022 Huwei ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">2022</div>
-                <div class="day">Conference</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
                 <h3>Workshop on Consumer Electronics 2022 (第二十三屆民生電子研討會)</h3>
                 <div class="activity-location">📍 Huwei Township, Taiwan</div>
                 <div class="activity-highlights"><strong>🏆 Best Paper Award</strong></div>
@@ -900,12 +818,10 @@
 
         <!-- ===== iFUZZY 2022 Kaohsiung (compact) ===== -->
         <div class="activity-card compact" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">2022</div>
-                <div class="day">Conference</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
                 <h3>iFUZZY 2022 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
                 <div class="activity-location">📍 Kaohsiung, Taiwan</div>
             </div>
@@ -914,12 +830,11 @@
 
         <!-- ===== NCHU TA 2022 ===== -->
         <div class="activity-card compact" data-category="teaching">
-            <div class="activity-date-strip">
-                <div class="month">Feb – Aug</div>
-                <div class="day">2022</div>
-            </div>
             <div class="activity-content">
-                <span class="category-badge badge-teaching">Teaching · TA</span>
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · TA</span>
+                    <span class="card-date">Feb – Aug</span>
+                </div>
                 <h3>Teaching Assistant · Summer 110–2</h3>
                 <div class="activity-location">📍 Dept. Elect. Eng., National Chung Hsing University · Taichung, Taiwan</div>
                 <div class="activity-detail">Course: Automatic Control Practice (自動控制實驗)</div>
@@ -942,22 +857,22 @@
         <!-- under the correct year.                         -->
         <!-- ============================================== -->
         <!--
-        <div class="activity-card" data-category="conference">
-            <div class="activity-date-strip">
-                <div class="month">Month</div>
-                <div class="day">Year</div>
-            </div>
+        <div class="activity-card compact" data-category="conference">
             <div class="activity-content">
-                <span class="category-badge badge-conference">Presenter</span>
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                    <span class="card-date">Aug</span>
+                </div>
                 <h3>Activity Title</h3>
                 <div class="activity-location">📍 Location</div>
-                <p class="activity-description">Description...</p>
-                <div class="activity-highlights"><strong>Optional highlight</strong></div>
-                <div class="activity-tags">
-                    <span class="tag-chip">Tag</span>
-                </div>
+                <div class="activity-highlights"><strong>Optional award</strong></div>
             </div>
         </div>
+        Notes:
+        - card-date: MONTH or month-range only (e.g. "Aug", "Feb – Jul"). No year — the
+          year divider above already shows it. Omit the whole card-date line if unknown.
+        - For two separate roles at one event, use:
+          <span class="badge-row"><span class="category-badge badge-committee">Local Committee</span><span class="category-badge badge-conference">Presenter</span></span>
         -->
 
     </div>
