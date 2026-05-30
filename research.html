@@ -8,6 +8,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="canonical" href="https://rospawan.github.io/research.html">
+    <link rel="stylesheet" href="style.css">
     
     <meta name="description" content="Research thrusts of Ali Rospawan — intelligent adaptive control for industrial and robotic systems, hybrid AI architectures (fuzzy neural, broad learning, evolutionary, reinforcement learning), autonomous mobile robots, and visual SLAM. Hardware-validated on real industrial and mobile platforms.">
 
@@ -24,63 +26,27 @@
         
     <style>
         /* ================= Base ================= */
-        :root { 
-            --bg-color: #F5F4F0; 
-            --primary-color: #4A2545; 
-            --secondary-color: #6B2D5C;
-            --accent-gold: #B8860B;
-            --text-color: #2D1B2E; 
+        :root {
             --link-blue: #D97706;
         }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        
         
         /* ================= Header / Nav ================= */
-        header { background-color: var(--primary-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .logo { 
-            font-size: 1.8rem; 
-            font-weight: 900; 
-            font-style: italic; 
-            color: #FFFFFF; 
-            text-decoration: none; 
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .logo-img {
-            height: 48px;
-            width: auto;
-            display: block;
-        }
-        nav { display: flex; gap: 20px; }
-        nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding-bottom: 5px; transition: 0.3s;}
-        nav a:hover, .nav-active { border-bottom: 2px solid #FFFFFF; }
+        
+        
+        
+        
+        
+        
 
-        .menu-toggle {
-            display: none;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 6px 8px;
-            width: 44px;
-            height: 44px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-        }
-        .menu-toggle span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: #FFFFFF;
-            transition: transform 0.25s ease, opacity 0.25s ease;
-        }
-        .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .menu-toggle.open span:nth-child(2) { opacity: 0; }
-        .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        
+        
+        
+        
+        
         
         /* ================= Layout ================= */
-        .container { max-width: 1050px; margin: 50px auto; padding: 0 20px; }
+        
         h2.section-title { color: var(--primary-color); text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 15px; margin-bottom: 16px; font-size: 2.2rem; }
         .section-intro { text-align: center; color: #555; max-width: 720px; margin: 0 auto 50px; font-size: 1.05rem; line-height: 1.7; }
 
@@ -107,7 +73,7 @@
             position: relative;
         }
         .research-img-wrapper::after {
-            content: '';
+            content: "";
             position: absolute;
             inset: 0;
             background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 50%),
@@ -222,11 +188,11 @@
         #lightbox img { max-width: 90%; max-height: 90%; border: 3px solid #fff; border-radius: 5px; box-shadow: 0 0 30px rgba(0,0,0,0.5); object-fit: contain; }
         .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 50px; cursor: pointer; }
 
-        footer { background-color: var(--primary-color); padding: 40px 20px 20px; text-align: center; color: #DCC9E0; font-size: 0.95rem; margin-top: 50px;}
-        footer a { color: #fff; text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-        .footer-links { margin-top: 18px; display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; }
-        .footer-links a { font-size: 0.95rem; opacity: 0.9; }
+        
+        
+        
+        
+        
 
         /* ================= Experimental Platforms Section ================= */
         .platforms-section { 
@@ -265,7 +231,7 @@
             position: relative;
         }
         .platform-img-wrapper::after {
-            content: '';
+            content: "";
             position: absolute;
             inset: 0;
             background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 50%),
@@ -317,35 +283,7 @@
         .ptag-service { background: #FCE4EC; color: #AD1457; }
 
         /* Mobile */
-        @media (max-width: 768px) {
-            header { padding: 10px 16px; }
-            .logo { font-size: 1.4rem; gap: 8px; }
-            .logo-img { height: 36px; }
         
-            .menu-toggle { display: flex; }
-        
-            nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--primary-color);
-                flex-direction: column;
-                gap: 0;
-                padding: 8px 0;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-                max-height: calc(100vh - 70px);
-                overflow-y: auto;
-            }
-            nav.open { display: flex; }
-            nav a {
-                padding: 14px 24px;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
-                font-size: 0.95rem;
-            }
-            nav a:last-child { border-bottom: none; }
-        }
 
         @media (max-width: 850px) {
             .container { margin-top: 30px; padding: 0 15px; }
@@ -407,23 +345,7 @@
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="logo">
-            <img src="images/logo.svg" alt="RACS Lab logo" class="logo-img">
-            <span>RACS Lab</span>
-        </a>
-        <button class="menu-toggle" aria-label="Toggle navigation" onclick="const n=this.parentElement.querySelector('nav');n.classList.toggle('open');this.classList.toggle('open');">
-            <span></span><span></span><span></span>
-        </button>
-        <nav>
-            <a href="index.html">HOME</a> 
-            <a href="about.html">ABOUT ME</a>
-            <a href="publications.html">PUBLICATIONS</a> 
-            <a href="research.html" class="nav-active">RESEARCH</a>
-            <a href="awards.html">AWARDS</a>
-            <a href="activity.html">ACTIVITY</a>
-        </nav>
-    </header>
+    <header></header>
 
     <div id="lightbox" onclick="closeLightbox()">
         <span class="close-lightbox">&times;</span>
@@ -690,16 +612,7 @@
 
     </div>
 
-    <footer>
-        <h3 style="color: #fff; margin-top: 0; font-size: 1.0rem;">Rospawan Advanced Control and Systems Lab</h3>
-        <div class="footer-links">
-            <a href="https://scholar.google.com/citations?user=oFUWGWoAAAAJ" target="_blank">Google Scholar</a>
-            <a href="https://www.researchgate.net/profile/Ali-Rospawan" target="_blank">ResearchGate</a>
-            <a href="https://www.linkedin.com/in/alirospawan/" target="_blank">LinkedIn</a>
-            <a href="https://orcid.org/0000-0001-5667-2269" target="_blank">ORCID</a>
-        </div>
-        <p style="margin-top: 30px; opacity: 0.5; font-size: 0.8rem;">© 2026 Ali Rospawan. All rights reserved.</p>
-    </footer>
+    <footer></footer>
 
     <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
 
@@ -728,17 +641,7 @@
             wrapper.innerHTML = '<span class="platform-fallback-icon">' + icon + '</span>';
         }
 
-        // ---------- 6. Back-to-top button ----------
-        const backToTop = document.getElementById('backToTop');
-        if (backToTop) {
-            window.addEventListener('scroll', () => {
-                backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
-            });
-            backToTop.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-    
     </script>
+    <script src="assets.js"></script>
 </body>
 </html>

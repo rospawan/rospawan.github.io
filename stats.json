@@ -1,0 +1,8 @@
+{
+  "_comment": "Fallback values for the homepage stats banner. assets.js prefers LIVE counts from publications.html and awards.html; these numbers are used only if those pages can't be fetched. Keep them roughly in sync as a safety net.",
+  "publications": 38,
+  "q1": 7,
+  "awards": 12,
+  "firstplace": 4,
+  "updated": "2026-05"
+}
