@@ -54,6 +54,36 @@
         /* ================= Layout ================= */
         
         h2.section-title { color: var(--primary-color); text-align: center; font-size: 2.4rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; }
+
+        /* ================= Download section ================= */
+        .download-section {
+            margin-top: 50px;
+            padding: 32px 28px;
+            background: #FAF7FA;
+            border: 1px solid #EAEAEA;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .download-section h3 { margin: 0 0 6px; font-size: 1.2rem; color: var(--primary-color); }
+        .download-section .download-sub { margin: 0 0 22px; font-size: 0.9rem; color: #666; }
+        .btn-dl {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-family: inherit;
+            background: var(--primary-color);
+            color: #fff;
+            border: 1.5px solid var(--primary-color);
+        }
+        .btn-dl svg { width: 15px; height: 15px; flex: 0 0 auto; }
+        .btn-dl:hover { background: transparent; color: var(--primary-color); }
         .section-subtitle { text-align: center; color: #6B7280; font-size: 1.05rem; margin: 0 auto 35px; max-width: 640px; line-height: 1.7; }
 
         /* ================= Stats Banner ================= */
@@ -570,6 +600,17 @@
 
     </div>
 
+    <div class="container" style="margin-top:0;">
+        <section class="download-section">
+            <h3>Download Awards</h3>
+            <p class="download-sub">Download the full list of honors and awards as a text file (.txt).</p>
+            <button id="dlAwards" class="btn-dl" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download all awards
+            </button>
+        </section>
+    </div>
+
     <footer></footer>
 
     <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
@@ -618,6 +659,60 @@
                 const el = document.querySelector('[data-award-stat="' + tier + '"]');
                 if (el) el.textContent = n;
             });
+        })();
+
+        // ---------- Export awards as a .txt file ----------
+        // Grouped by year, one line per award: Tier — Title, Venue.
+        // Reads the live page, so new awards are included automatically.
+        (function () {
+            function cleanText(s) {
+                return s.replace(/\s+/g, ' ').trim().replace(/\s+([,.;:])/g, '$1');
+            }
+            function cardLine(card, i) {
+                var tierEl = card.querySelector('.tier-label');
+                var titleEl = card.querySelector('.award-title');
+                var venEl = card.querySelector('.award-venue');
+                var tier = tierEl ? cleanText(tierEl.textContent) : '';
+                var title = titleEl ? cleanText(titleEl.textContent) : '';
+                var venue = venEl ? cleanText(venEl.textContent) : '';
+                var head = tier ? (tier + ' \u2014 ' + title) : title;
+                return '[' + (i + 1) + '] ' + head + (venue ? ', ' + venue : '') + '.';
+            }
+            function buildAwardsText() {
+                var out = ['Honors & Awards \u2014 Ali Rospawan',
+                           'Source: https://rospawan.github.io/awards.html',
+                           'Exported: ' + new Date().toISOString().slice(0, 10),
+                           '='.repeat(60), ''];
+                var idx = 0;
+                // Walk the page in order: each year-divider, then the grid that follows it.
+                document.querySelectorAll('.year-divider').forEach(function (divider) {
+                    var yearEl = divider.querySelector('.year');
+                    var year = yearEl ? cleanText(yearEl.textContent) : '';
+                    var grid = divider.nextElementSibling;
+                    while (grid && !grid.classList.contains('awards-grid')) {
+                        grid = grid.nextElementSibling;
+                    }
+                    if (!grid) return;
+                    var cards = grid.querySelectorAll('.award-card');
+                    if (!cards.length) return;
+                    out.push('## ' + year + ' (' + cards.length + ')');
+                    out.push('');
+                    cards.forEach(function (card) { out.push(cardLine(card, idx++)); });
+                    out.push('');
+                });
+                return out.join('\n');
+            }
+            var btn = document.getElementById('dlAwards');
+            if (btn) {
+                btn.addEventListener('click', function () {
+                    var blob = new Blob([buildAwardsText()], { type: 'text/plain;charset=utf-8' });
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement('a');
+                    a.href = url; a.download = 'rospawan-awards.txt';
+                    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            }
         })();
 
         // Note: back-to-top is now handled globally in assets.js.
