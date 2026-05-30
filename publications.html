@@ -215,7 +215,7 @@
         .pub-item:hover::before { height: calc(100% - 50px); }
         .pub-item:hover .pub-title { color: var(--primary-color); }
         
-        @media (max-width: 768px) {
+        @media (min-width: 900px) {
         .pub-item { display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 30px; }
         .pub-content { flex: 1; min-width: 0; }
         .pub-actions { flex: 0 0 auto; }
@@ -250,6 +250,61 @@
             white-space: nowrap;
         }
         .btn-read:hover { background-color: var(--primary-color); color: #fff; transform: translateX(3px); }
+
+        /* ================= Download section ================= */
+        .download-section {
+            margin-top: 50px;
+            padding: 32px 28px;
+            background: #FAF7FA;
+            border: 1px solid #EAEAEA;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .download-section h3 {
+            margin: 0 0 6px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        .download-section .download-sub {
+            margin: 0 0 22px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .download-all-wrap { margin-bottom: 20px; }
+        .download-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .btn-dl {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+        .btn-dl svg { width: 15px; height: 15px; flex: 0 0 auto; }
+        .btn-dl-primary {
+            background: var(--primary-color);
+            color: #fff;
+            border: 1.5px solid var(--primary-color);
+        }
+        .btn-dl-primary:hover { background: transparent; color: var(--primary-color); }
+        .btn-dl-section {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1.5px solid var(--primary-color);
+            font-size: 0.78rem;
+            padding: 7px 13px;
+        }
+        .btn-dl-section:hover { background: var(--primary-color); color: #fff; }
 
         /* ================= Badges ================= */
         .badge { 
@@ -776,6 +831,20 @@
 
     </div>
 
+    <div class="container" style="margin-top:0;">
+        <section class="download-section">
+            <h3>Download Publications</h3>
+            <p class="download-sub">Plain-text (.txt) list for CVs, reports, or reference — grab everything or a single category.</p>
+            <div class="download-all-wrap">
+                <button id="dlAll" class="btn-dl btn-dl-primary" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download all publications
+                </button>
+            </div>
+            <div class="download-grid" id="dlSections"></div>
+        </section>
+    </div>
+
     <footer></footer>
 
     <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
@@ -890,6 +959,93 @@
 
             // Initial result-count text
             applyFilter('all');
+
+            // ---------- Export publications as a .txt file ----------
+            // One line per publication: Authors, "Title," Venue.
+            // Builds from the live page so it stays current automatically.
+            function cleanText(s) {
+                return s.replace(/\s+/g, ' ').trim().replace(/\s+([,.;:])/g, '$1');
+            }
+            function sectionTitle(section) {
+                var el = section.querySelector('.category-title');
+                if (!el) return 'Publications';
+                var c = el.cloneNode(true);
+                c.querySelectorAll('button').forEach(function (b) { b.remove(); });
+                return cleanText(c.textContent);
+            }
+            function entryLine(item, i) {
+                var titleEl = item.querySelector('.pub-title');
+                var title = '';
+                if (titleEl) {
+                    var clone = titleEl.cloneNode(true);
+                    clone.querySelectorAll('.badge, .pub-number').forEach(function (b) { b.remove(); });
+                    title = cleanText(clone.textContent);
+                }
+                var authEl = item.querySelector('.pub-authors');
+                var venEl = item.querySelector('.pub-venue');
+                var authors = authEl ? cleanText(authEl.textContent) : '';
+                var venue = venEl ? cleanText(venEl.textContent) : '';
+                // Join into a single line: Authors, "Title," Venue.
+                var parts = [];
+                if (authors) parts.push(authors);
+                if (title) parts.push('"' + title + ',"');
+                if (venue) parts.push(venue);
+                return '[' + (i + 1) + '] ' + parts.join(' ');
+            }
+            function formatSection(section) {
+                var pubs = section.querySelectorAll('.pub-item');
+                if (!pubs.length) return '';
+                var out = ['## ' + sectionTitle(section) + ' (' + pubs.length + ')', ''];
+                pubs.forEach(function (item, i) { out.push(entryLine(item, i)); });
+                out.push('');
+                return out.join('\n');
+            }
+            function exportHeader() {
+                return ['Publications \u2014 Ali Rospawan',
+                        'Source: https://rospawan.github.io/publications.html',
+                        'Exported: ' + new Date().toISOString().slice(0, 10),
+                        '='.repeat(60), ''].join('\n');
+            }
+            function slugify(s) {
+                return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            }
+            function downloadText(text, filename) {
+                var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url; a.download = filename;
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+            var allSections = document.querySelectorAll('.pub-section');
+
+            var dlAll = document.getElementById('dlAll');
+            if (dlAll) {
+                dlAll.addEventListener('click', function () {
+                    var parts = [exportHeader()];
+                    allSections.forEach(function (s) { var t = formatSection(s); if (t) parts.push(t); });
+                    downloadText(parts.join('\n'), 'rospawan-publications.txt');
+                });
+            }
+
+            // Generate one button per section into the download grid.
+            var grid = document.getElementById('dlSections');
+            if (grid) {
+                allSections.forEach(function (section) {
+                    var pubs = section.querySelectorAll('.pub-item');
+                    if (!pubs.length) return;
+                    var title = sectionTitle(section);
+                    var btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'btn-dl btn-dl-section';
+                    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>' + title + ' (' + pubs.length + ')';
+                    btn.addEventListener('click', function () {
+                        downloadText(exportHeader() + formatSection(section), 'rospawan-' + slugify(title) + '.txt');
+                    });
+                    grid.appendChild(btn);
+                });
+            }
+            
         })();
     </script>
     <script src="assets.js"></script>
