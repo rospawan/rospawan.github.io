@@ -63,6 +63,36 @@
         /* ================= Layout ================= */
         
         h2.section-title { color: var(--primary-color); text-align: center; font-size: 2.4rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase;}
+
+        /* ================= Download section ================= */
+        .download-section {
+            margin-top: 50px;
+            padding: 32px 28px;
+            background: #FAF7FA;
+            border: 1px solid #EAEAEA;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .download-section h3 { margin: 0 0 6px; font-size: 1.2rem; color: var(--primary-color); }
+        .download-section .download-sub { margin: 0 0 22px; font-size: 0.9rem; color: #666; }
+        .btn-dl {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-family: inherit;
+            background: var(--primary-color);
+            color: #fff;
+            border: 1.5px solid var(--primary-color);
+        }
+        .btn-dl svg { width: 15px; height: 15px; flex: 0 0 auto; }
+        .btn-dl:hover { background: transparent; color: var(--primary-color); }
         .section-intro { text-align: center; color: #555; max-width: 720px; margin: 0 auto 40px; font-size: 1.05rem; line-height: 1.7;}
 
         /* ================= Filter Tabs ================= */
@@ -826,6 +856,17 @@
 
     </div>
 
+    <div class="container" style="margin-top:0;">
+        <section class="download-section">
+            <h3>Download Activities</h3>
+            <p class="download-sub">A plain-text (.txt) list of all activities, grouped by year — ready to copy into a CV.</p>
+            <button id="dlActivities" class="btn-dl" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download all activities
+            </button>
+        </section>
+    </div>
+
     <footer></footer>
 
     <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
@@ -917,6 +958,67 @@
             document.getElementById('lightbox').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
+
+        // ---------- Export activities as a .txt file ----------
+        // Grouped by year, one line per activity: Category — Title (Date), Location.
+        // Reads the live page, so new activities are included automatically.
+        (function () {
+            function cleanText(s) {
+                return s.replace(/\s+/g, ' ').trim().replace(/\s+([,.;:])/g, '$1');
+            }
+            function cardLine(card, i) {
+                var badges = Array.prototype.map.call(
+                    card.querySelectorAll('.category-badge'),
+                    function (b) { return cleanText(b.textContent); }
+                ).filter(Boolean).join(' / ');
+                var titleEl = card.querySelector('h3');
+                var dateEl = card.querySelector('.card-date');
+                var locEl = card.querySelector('.activity-location');
+                var title = titleEl ? cleanText(titleEl.textContent) : '';
+                var date = dateEl ? cleanText(dateEl.textContent) : '';
+                var loc = locEl ? cleanText(locEl.textContent.replace(/^\s*📍\s*/, '')) : '';
+                var line = '[' + (i + 1) + '] ';
+                if (badges) line += badges + ' \u2014 ';
+                line += title;
+                if (date) line += ' (' + date + ')';
+                if (loc) line += ', ' + loc;
+                return line + '.';
+            }
+            function buildActivitiesText() {
+                var out = ['Activities \u2014 Ali Rospawan',
+                           'Source: https://rospawan.github.io/activity.html',
+                           'Exported: ' + new Date().toISOString().slice(0, 10),
+                           '='.repeat(60), ''];
+                var idx = 0;
+                document.querySelectorAll('.year-divider').forEach(function (divider) {
+                    var yearEl = divider.querySelector('.year');
+                    var year = yearEl ? cleanText(yearEl.textContent) : '';
+                    var grid = divider.nextElementSibling;
+                    while (grid && !grid.classList.contains('activity-grid')) {
+                        grid = grid.nextElementSibling;
+                    }
+                    if (!grid) return;
+                    var cards = grid.querySelectorAll('.activity-card');
+                    if (!cards.length) return;
+                    out.push('## ' + year + ' (' + cards.length + ')');
+                    out.push('');
+                    cards.forEach(function (card) { out.push(cardLine(card, idx++)); });
+                    out.push('');
+                });
+                return out.join('\n');
+            }
+            var btn = document.getElementById('dlActivities');
+            if (btn) {
+                btn.addEventListener('click', function () {
+                    var blob = new Blob([buildActivitiesText()], { type: 'text/plain;charset=utf-8' });
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement('a');
+                    a.href = url; a.download = 'rospawan-activities.txt';
+                    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            }
+        })();
         
     </script>
     <script src="assets.js"></script>
