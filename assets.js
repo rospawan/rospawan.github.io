@@ -155,7 +155,7 @@
   // SETUP: replace YOURCODE below with the code you chose at signup, e.g.
   //   var GOATCOUNTER_CODE = "rospawan";
   // Leave it as the placeholder to disable analytics (the script no-ops).
-  var GOATCOUNTER_CODE = "YOURCODE";
+  var GOATCOUNTER_CODE = "rospawan";
 
   function loadAnalytics() {
     if (!GOATCOUNTER_CODE || GOATCOUNTER_CODE === "YOURCODE") return; // not configured yet
