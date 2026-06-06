@@ -1,5 +1,5 @@
 /* =====================================================================
-   RACS Lab — Shared site script
+   Ali Rospawan sites — Shared site script
    - Injects the canonical header + footer (edit them ONCE, here).
    - Auto-highlights the current page's nav link.
    - Wires the mobile menu toggle and back-to-top button.
@@ -33,8 +33,8 @@
 
     return '' +
       '<a href="index.html" class="logo">' +
-      '<img src="images/logo.svg" alt="RACS Lab logo" class="logo-img">' +
-      '<span>RACS Lab</span>' +
+      '<img src="images/logo.svg" alt="AR" class="logo-img">' +
+      '<span>Ali Rospawan</span>' +
       '</a>' +
       '<button class="menu-toggle" aria-label="Toggle navigation">' +
       '<span></span><span></span><span></span>' +
@@ -44,7 +44,7 @@
 
   function buildFooter() {
     return '' +
-      '<h3 style="color:#fff;margin-top:0;font-size:1.0rem;">Rospawan Advanced Control and Systems Lab</h3>' +
+      '<h3 style="color:#fff;margin-top:0;font-size:1.0rem;">Ali Rospawan | PhD Researcher & Lecturer</h3>' +
       '<div class="footer-links">' +
       '<a href="https://scholar.google.com/citations?user=oFUWGWoAAAAJ" target="_blank">Google Scholar</a>' +
       '<a href="https://www.researchgate.net/profile/Ali-Rospawan" target="_blank">ResearchGate</a>' +
