@@ -410,22 +410,6 @@
             margin: 0;
             flex: 1;
         }
-        @media (max-width: 1024px) {
-            .explore-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        }
-        @media (max-width: 700px) {
-            .explore-grid { grid-template-columns: 1fr; gap: 8px; }
-            .explore-card {
-                flex-direction: row;
-                align-items: center;
-                text-align: left;
-                padding: 12px 14px;
-                gap: 10px;
-            }
-            .explore-text { min-width: 0; }
-            .explore-title { margin-bottom: 2px; }
-            .explore-brief { flex: none; }
-        }
         
         /* ================= Footer ================= */
         
@@ -452,6 +436,7 @@
             }
             .stats-banner .stat-num { font-size: 1.7rem; }
             .stats-banner .stat-label { font-size: 0.64rem; letter-spacing: 0.5px; }
+            .explore-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
         }
         
         @media (max-width: 900px) {
