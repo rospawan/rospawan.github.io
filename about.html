@@ -172,6 +172,7 @@
         /* ================= Contact ================= */
         .contact-row {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             gap: 12px;
             padding: 10px 0;
@@ -182,14 +183,15 @@
         .contact-row:last-child { border-bottom: none; }
         .contact-row strong {
             color: var(--primary-color);
-            min-width: 110px;
             font-size: 0.95rem;
+            flex-shrink: 0;
         }
         .contact-row a {
             color: var(--accent-gold);
             text-decoration: none;
             font-weight: 500;
             word-break: break-all;
+            text-align: right;
         }
         .contact-row a:hover { text-decoration: underline; }
 
@@ -443,8 +445,8 @@
             .mentor-photo { width: 70px; height: 70px; }
             .mentor-photo-fallback { font-size: 1.3rem; }
 
-            .contact-row { flex-direction: column; align-items: flex-start; gap: 4px; }
-            .contact-row strong { min-width: auto; }
+            .contact-row { font-size: 0.95rem; }
+            .contact-row strong { flex-shrink: 0; }
         }
 
         /* ================= Back to Top Button ================= */
