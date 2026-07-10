@@ -61,10 +61,6 @@
         /* =================stat-banner ===================*/
         
 
-        /* ================= Two-col layout ================= */
-        .two-col-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 28px; margin-bottom: 0; }
-        .two-col-grid > .bento-item { margin-bottom: 0; }
-
         /* ================= Hero Card ================= */
         .welcome-hero {
             display: flex;
@@ -126,29 +122,6 @@
             padding: 8px 18px;
         }
         .btn-secondary:hover { background: var(--primary-color); color: #fff; transform: translateY(-2px); }
-
-        /* ================= News List (compact, scrollable) ================= */
-        .news-wrapper {
-            max-height: 445px;
-            overflow-y: auto;
-            padding-right: 12px;
-            margin-bottom: 6px;
-        }
-        .news-wrapper::-webkit-scrollbar { width: 6px; }
-        .news-wrapper::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
-        .news-wrapper::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
-        .news-wrapper::-webkit-scrollbar-thumb:hover { background: #aaa; }
-        .news-list { list-style: none; padding: 0; margin: 0; }
-        .news-item { border-bottom: 1px dashed #E0E0E0; padding: 13px 0; }
-        .news-item:first-child { padding-top: 4px; }
-        .news-item:last-child { border-bottom: none; padding-bottom: 0; }
-        .news-date { color: var(--accent-gold); font-size: 0.82rem; font-weight: 700; margin-bottom: 3px; }
-        .news-text { font-size: 0.95rem; color: #333; line-height: 1.55; }
-        .highlight-award { color: #A93226; font-weight: bold; }
-        .journal-link { color: #0056b3; text-decoration: none; font-weight: 600; }
-        .journal-link:hover { text-decoration: underline; }
-        .news-see-all { display: inline-block; margin-top: 16px; color: var(--accent-gold); font-weight: 600; text-decoration: none; font-size: 0.88rem; }
-        .news-see-all:hover { text-decoration: underline; }
 
         /* ================= Stats Banner ================= */
         .stats-banner {
@@ -271,61 +244,20 @@
             text-align: right;
         }
 
-        /* ================= Featured Publications ================= */
-        .pubs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 18px;
-            margin-top: 4px;
+        /* ================= Publications (embedded from publications.html) ================= */
+        /* The content inside #publications-embed is fetched live from
+           publications.html at page load, so you only ever edit that file.
+           Its own <style> block is imported along with it. */
+        .pub-embed-loading {
+            color: #999;
+            font-style: italic;
+            font-size: 0.95rem;
+            margin: 6px 0;
         }
-        .pub-card {
-            background: #FAF7FA;
-            border: 1px solid #E5E7EB;
-            border-left: 4px solid var(--primary-color);
-            border-radius: 10px;
-            padding: 22px 20px;
-            transition: all 0.25s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .pub-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.06);
-            border-left-color: var(--accent-gold);
-        }
-        .pub-badge {
-            display: inline-block;
-            background: #FFF8E7;
-            color: #B7950B;
-            font-size: 0.68rem;
-            font-weight: 800;
-            padding: 3px 9px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 12px;
-            align-self: flex-start;
-        }
-        .pub-card .pub-title {
-            font-size: 0.98rem;
-            font-weight: 700;
-            color: #111;
-            line-height: 1.4;
-            margin: 0 0 12px 0;
-            flex: 1;
-        }
-        .pub-card .pub-venue {
-            font-size: 0.85rem;
-            color: #4B5563;
-            margin-bottom: 6px;
-            line-height: 1.45;
-            font-weight: 500;
-        }
-        .pub-card .pub-year {
-            font-size: 0.8rem;
-            color: var(--accent-gold);
-            font-weight: 700;
-        }
+        /* Uncomment the next rule if you want to hide the big "Publications"
+           page title inside the homepage card (the card already has a tag):
+        #publications-embed h2.section-title { display: none; }
+        */
 
         /* ================= Research Pillars ================= */
         .pillars-grid {
@@ -441,7 +373,6 @@
         
         @media (max-width: 900px) {
             .container { margin-top: 25px; padding: 0 15px; }
-            .two-col-grid { grid-template-columns: 1fr; gap: 20px; }
             
             .bento-item { padding: 25px 22px; border-radius: 12px; margin-bottom: 20px; }
             .bento-title { font-size: 1.3rem; margin-bottom: 16px; }
@@ -451,12 +382,10 @@
             .welcome-tagline { font-size: 0.92rem; }
             .welcome-intro { font-size: 0.95rem; }
 
-            .pubs-grid { grid-template-columns: 1fr; gap: 14px; }
             .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .pillar-card { padding: 18px 14px; }
 
             .profiles-grid { grid-template-columns: 1fr; gap: 12px; }
-            .news-wrapper { max-height: 360px; }
         }
 
         /* ================= Back to Top Button ================= */
@@ -495,65 +424,21 @@
 
     <div class="container">
         
-        <!-- ============ ROW 1: HERO + WHAT'S NEW ============ -->
-        <div class="two-col-grid">
-            
-            <!-- ===== Welcome Hero ===== -->
-            <div class="bento-item">
-                <span class="tag" style="background: #EDE7F0; color: var(--primary-color);">Welcome</span>                
-                <div class="welcome-hero">
-                    <img src="images/about/profile.jpeg" alt="Ali Rospawan" class="welcome-photo">
-                    <h1 class="welcome-name">Ali Rospawan</h1>
-                    <div class="welcome-tagline">PhD Researcher · Electrical Engineer · Lecturer · Lifelong Learner</div>
-                    <p class="welcome-intro">
-                        I'm a PhD researcher at <strong>National Chung Hsing University, Taiwan</strong>, working at the intersection of <strong>intelligent control</strong>, <strong>fuzzy neural networks</strong>, and <strong>autonomous mobile robots</strong>. With six years in industry before academia, I'm drawn to control problems with real industrial impact.
-                    </p>
-                    <div class="welcome-cta">
-                        <a href="about.html" class="btn-primary">About Me ➜</a>
-                        <a href="research.html" class="btn-secondary">My Research</a>
-                    </div>
+        <!-- ============ WELCOME HERO ============ -->
+        <div class="bento-item">
+            <span class="tag" style="background: #EDE7F0; color: var(--primary-color);">Welcome</span>                
+            <div class="welcome-hero">
+                <img src="images/about/profile.jpeg" alt="Ali Rospawan" class="welcome-photo">
+                <h1 class="welcome-name">Ali Rospawan</h1>
+                <div class="welcome-tagline">PhD Researcher · Electrical Engineer · Lecturer · Lifelong Learner</div>
+                <p class="welcome-intro">
+                    I'm a PhD researcher at <strong>National Chung Hsing University, Taiwan</strong>, working at the intersection of <strong>intelligent control</strong>, <strong>fuzzy neural networks</strong>, and <strong>autonomous mobile robots</strong>. With six years in industry before academia, I'm drawn to control problems with real industrial impact.
+                </p>
+                <div class="welcome-cta">
+                    <a href="about.html" class="btn-primary">About Me ➜</a>
+                    <a href="research.html" class="btn-secondary">My Research</a>
                 </div>
             </div>
-
-            <!-- ===== What's New ===== -->
-            <div class="bento-item" style="background: #FAF7FA; border: 1px solid #EAEAEA;"> 
-                <span class="tag" style="background: #EDE7F0; color: var(--primary-color);">What's New</span>
-                <div class="news-wrapper">
-                    <ul class="news-list">
-                    <li class="news-item">
-                        <div class="news-date">2026</div>
-                        <div class="news-text">New paper in <a href="publications.html" class="journal-link">IEEE Sensors Journal</a> (Q1) on Enhanced RGB-D Visual SLAM.</div>
-                    </li>
-                    <li class="news-item">
-                        <div class="news-date">2026</div>
-                        <div class="news-text">Two new papers in <a href="publications.html" class="journal-link">Int. Journal of Fuzzy Systems</a> (Q1) on Autonomous Steering for AMRs &amp; Global Cooperative Localization.</div>
-                    </li>
-                    <li class="news-item">
-                        <div class="news-date">Nov 2025</div>
-                        <div class="news-text">🎓 Awarded <span class="highlight-award">IEEE AISS Full Scholarship</span> — attended the IEEE Academia-Industry Summer School at Swinburne University, Australia.</div>
-                    </li>
-                    <li class="news-item">
-                        <div class="news-date">2025</div>
-                        <div class="news-text">🥈 <span class="highlight-award">2nd Place Best Student Paper Award</span> at iFUZZY 2025, Hsinchu.</div>
-                    </li>
-                    <li class="news-item">
-                        <div class="news-date">2025</div>
-                        <div class="news-text">🎓 Started as <strong>Lecturer</strong> at Politeknik Manufaktur Negeri Bangka Belitung, teaching AI, Electronic Circuit Applications, and Robotics.</div>
-                    </li>
-                    <li class="news-item">
-                        <div class="news-date">2025</div>
-                        <div class="news-text">Completed an AI System Development internship at <strong>ITRI Taiwan</strong> — developing vision pipelines from RGB → depth maps → 3D point clouds.</div>
-                    </li>
-                    <li class="news-item">
-                        <div class="news-date">2024</div>
-                        <div class="news-text">🏆 Won <span class="highlight-award">Best Student Paper · 1st Place</span> at IEEE SMC 2024, Kuching — a flagship IEEE international conference.</div>
-                    </li>
-                    </ul>
-                </div>
-
-                <a href="activity.html" class="news-see-all">See full activity timeline ➜</a>
-            </div>
-
         </div>
 
         <!-- ============ STATS BANNER ============ -->
@@ -647,36 +532,18 @@
             <p class="profiles-note">Stats last updated: May 2026</p>
         </div>
 
-        <!-- ============ FEATURED PUBLICATIONS ============ -->
+        <!-- ============ PUBLICATIONS (auto-loaded from publications.html) ============ -->
+        <!-- Everything below the tag is fetched live from publications.html
+             (excluding its "Download Publications" section). To update the
+             homepage, just edit publications.html — nothing to change here. -->
         <div class="bento-item">
-            <span class="tag" style="background: #EDE7F0; color: var(--primary-color);">Featured Publications</span>
-            
-            <div class="pubs-grid">
+            <span class="tag" style="background: #EDE7F0; color: var(--primary-color);">Publications</span>
 
-                <div class="pub-card">
-                    <span class="pub-badge">Scopus Q1 · 2026</span>
-                    <h3 class="pub-title">Enhanced RGB-D Visual SLAM Using Photogrammetric Keyframe Selection &amp; Static Conditional Probability Model</h3>
-                    <div class="pub-venue">IEEE Sensors Journal · vol. 26, no. 9</div>
-                    <div class="pub-year">Visual SLAM · Dynamic Scene Handling</div>
-                </div>
-
-                <div class="pub-card">
-                    <span class="pub-badge">Scopus Q1 · 2025</span>
-                    <h3 class="pub-title">Two-Layer Intelligent Learning Control Using ORFNL-LSTM Broad Learning System With RMSprop</h3>
-                    <div class="pub-venue">IEEE Access · vol. 13</div>
-                    <div class="pub-year">Fuzzy Neural · Broad Learning</div>
-                </div>
-
-                <div class="pub-card">
-                    <span class="pub-badge">Scopus Q1 · 2025</span>
-                    <h3 class="pub-title">Intelligent MIMO ORFBLS-Based Setpoint Tracking Control for Industrial Extrusion Barrels</h3>
-                    <div class="pub-venue">Int. Journal of Fuzzy Systems · vol. 27</div>
-                    <div class="pub-year">Industrial Control · Temperature</div>
-                </div>
-
+            <div id="publications-embed">
+                <p class="pub-embed-loading">Loading publications…</p>
             </div>
 
-            <a href="publications.html" class="pillar-link" style="margin-top: 22px; align-self: flex-start;">View All Publications ➜</a>
+            <a href="publications.html" class="pillar-link" style="margin-top: 22px; align-self: flex-start;">Open Full Publications Page ➜</a>
         </div>
 
         <!-- ============ RESEARCH PILLARS ============ -->
@@ -760,6 +627,66 @@
 
     <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
 
+    <script>
+        /* =====================================================================
+           Live publications embed
+           Fetches publications.html and injects its main content here, so the
+           homepage always mirrors the publications page automatically.
+           - Imports the page's <style> block (badges, filter, list styling).
+           - Copies only the FIRST .container (intro, stats bar, year filter,
+             and every publication section). The "Download Publications"
+             section lives in a second container, so it is never copied.
+           - Re-runs the publications page's inline script to enable the year
+             filter, auto-numbering, and auto-calculated stats. Its download
+             logic safely no-ops here because #dlAll / #dlSections don't exist.
+           ===================================================================== */
+        (function () {
+            var target = document.getElementById('publications-embed');
+            if (!target) return;
+
+            fetch('publications.html', { cache: 'no-cache' })
+                .then(function (res) {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    return res.text();
+                })
+                .then(function (html) {
+                    var doc = new DOMParser().parseFromString(html, 'text/html');
+
+                    // 1. Import the publications page's styles.
+                    doc.querySelectorAll('head style').forEach(function (styleEl) {
+                        var s = document.createElement('style');
+                        s.textContent = styleEl.textContent;
+                        document.head.appendChild(s);
+                    });
+
+                    // 2. Inject the main publications container's content
+                    //    (the download section is in a separate container
+                    //    and is intentionally excluded).
+                    var source = doc.querySelector('.container');
+                    if (!source) throw new Error('No publications content found');
+
+                    var frag = document.createDocumentFragment();
+                    Array.prototype.forEach.call(source.children, function (child) {
+                        frag.appendChild(document.importNode(child, true));
+                    });
+                    target.innerHTML = '';
+                    target.appendChild(frag);
+
+                    // 3. Re-run the publications page's inline script
+                    //    (filter buttons, #N numbering, stats bar counts).
+                    doc.querySelectorAll('body script:not([src])').forEach(function (orig) {
+                        var s = document.createElement('script');
+                        s.textContent = orig.textContent;
+                        document.body.appendChild(s);
+                    });
+                })
+                .catch(function () {
+                    target.innerHTML =
+                        '<p style="color:#777;">Couldn\'t load the publications list. ' +
+                        '<a href="publications.html" style="color:var(--accent-gold);font-weight:600;text-decoration:none;">Open the publications page ➜</a></p>';
+                });
+        })();
+    </script>
     <script src="assets.js"></script>
 
 </body>
