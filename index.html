@@ -197,9 +197,9 @@
 
         /* ================= Publications embed extras ================= */
         /* Uncomment the next rule if you want to hide the big "Publications"
-           page title inside the homepage card (the card already has a tag): */
+           page title inside the homepage card (the card already has a tag):
         #publications-embed h2.section-title { display: none; }
-        
+        */
 
         /* ================= Research Pillars ================= */
         .pillars-grid {
@@ -474,6 +474,21 @@
             <a href="publications.html" class="pillar-link" style="margin-top: 22px; align-self: flex-start;">Open Full Publications Page ➜</a>
         </div>
 
+        <!-- ============ AWARDS (auto-loaded from awards.html) ============ -->
+        <!-- Injects the full Honors & Awards page content: tier stats, year
+             dividers, and every award card (with working photo galleries and
+             lightbox). The "Download Awards" section is excluded. To update,
+             just edit awards.html — nothing to change here. -->
+        <div class="bento-item">
+            <span class="tag" style="background: #EDE7F0; color: var(--primary-color);">Honors &amp; Awards</span>
+
+            <div id="awards-embed">
+                <p class="embed-loading">Loading awards…</p>
+            </div>
+
+            <a href="awards.html" class="pillar-link" style="margin-top: 22px; align-self: flex-start;">Open Full Awards Page ➜</a>
+        </div>
+
         <!-- ============ ABOUT · PART 2 (auto-loaded from about.html) ============ -->
         <!-- Injects everything from "Service & Professional Memberships"
              onward: Credentials, Teaching Experience, Scholarships, both
@@ -725,6 +740,38 @@
                     });
                 }).catch(function () {
                     showError(pubTarget, 'publications.html', 'publications');
+                });
+            }
+
+            /* ---------------- awards.html → one embed ---------------- */
+            var awardsTarget = document.getElementById('awards-embed');
+            if (awardsTarget) {
+                fetchDoc('awards.html').then(function (doc) {
+                    var source = doc.querySelector('.container');
+                    if (!source) throw new Error('No awards content found');
+
+                    importStyles(doc, '#awards-embed');
+
+                    // Copy the main container's children PLUS the lightbox
+                    // overlay, which lives outside the container on the awards
+                    // page. It's position:fixed, so it works from inside the
+                    // embed too (and the scoped CSS then applies to it).
+                    var nodes = Array.prototype.slice.call(source.children);
+                    var lightbox = doc.getElementById('lightbox');
+                    if (lightbox && !document.getElementById('lightbox')) nodes.push(lightbox);
+                    inject(awardsTarget, nodes);
+
+                    // Re-run the awards page's inline script: defines the global
+                    // togglePhotos/openLightbox/closeLightbox used by the cards'
+                    // onclick handlers, and auto-counts the tier stats. Its
+                    // download logic no-ops here because #dlAwards doesn't exist.
+                    doc.querySelectorAll('body script:not([src])').forEach(function (orig) {
+                        var s = document.createElement('script');
+                        s.textContent = orig.textContent;
+                        document.body.appendChild(s);
+                    });
+                }).catch(function () {
+                    showError(awardsTarget, 'awards.html', 'awards');
                 });
             }
 
