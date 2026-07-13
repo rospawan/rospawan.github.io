@@ -205,14 +205,14 @@
         .pub-item::before {
             content: "";
             position: absolute;
-            top: 30px;
+            top: 10px;
             left: 0;
             width: 4px;
             height: 0;
             background: var(--primary-color);
             transition: height 0.3s ease;
         }
-        .pub-item:hover::before { height: calc(100% - 50px); }
+        .pub-item:hover::before { height: calc(100% - 20px); }
         .pub-item:hover .pub-title { color: var(--primary-color); }
         
         @media (min-width: 900px) {
