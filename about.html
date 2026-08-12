@@ -91,6 +91,66 @@
         }
         .profile-info p:last-child { margin-bottom: 0; }
 
+        /* ---- Download section (styled to match the Publications page) ---- */
+        .download-section {
+            margin-top: 50px;
+            padding: 32px 28px;
+            background: #FAF7FA;
+            border: 1px solid #EAEAEA;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .download-section h3 {
+            margin: 0 0 6px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        .download-section .download-sub {
+            margin: 0 auto 22px;
+            font-size: 0.9rem;
+            color: #666;
+            max-width: 640px;
+            line-height: 1.6;
+        }
+        .download-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .btn-dl {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+        .btn-dl svg { width: 15px; height: 15px; flex: 0 0 auto; }
+        .btn-dl[disabled] { opacity: 0.6; cursor: wait; }
+        .btn-dl-primary {
+            background: var(--primary-color);
+            color: #fff;
+            border: 1.5px solid var(--primary-color);
+        }
+        .btn-dl-primary:hover { background: transparent; color: var(--primary-color); }
+        .btn-dl-section {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1.5px solid var(--primary-color);
+        }
+        .btn-dl-section:hover { background: var(--primary-color); color: #fff; }
+        .download-status {
+            margin: 14px 0 0;
+            font-size: 0.82rem;
+            color: #A05A00;
+        }
+
         /* ================= Bento Cards ================= */
         .bento-grid {
             display: grid;
@@ -938,11 +998,46 @@
 
     </div>
 
+    <!-- ============ DOWNLOAD SECTION ============
+         Nothing is pre-generated: sitedoc.js reads the content of this page at
+         click time and builds the file in the visitor's browser, just like the
+         .txt export on the publications page. This section lives in its own
+         second .container (same pattern as publications.html) so the homepage
+         embed — which mirrors only the FIRST .container — does not import it. -->
+    <div class="container" style="margin-top:0;">
+        <section class="download-section">
+            <h3>Download This Page's Content</h3>
+            <p class="download-sub"><strong>Please note:</strong> this is <strong>not a formal CV</strong>. It is a Word file generated automatically, right in your browser, from the content currently written on this page &mdash; so it always matches what you see here. The website itself holds the most current information.</p>
+            <div class="download-actions">
+                <button id="dlDocx" class="btn-dl btn-dl-primary" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span class="btn-dl-label">Download as Word (.docx)</span>
+                </button>
+                <button id="dlTxt" class="btn-dl btn-dl-section" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Plain text (.txt)
+                </button>
+            </div>
+            <p id="dlStatus" class="download-status" hidden></p>
+        </section>
+    </div>
+
     <footer></footer>
 
     <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
 
     <script src="assets.js"></script>
+
+    <script src="sitedoc.js"></script>
+    <script>
+        SiteDoc.init({
+            baseName: 'rospawan-about-content',
+            docTitle: 'About Page Content',
+            note: 'Please note: this is NOT a formal CV. It is a document generated ' +
+                  'automatically in your browser from the content currently written on ' +
+                  'the About page of rospawan.github.io, provided for convenient offline reading.'
+        });
+    </script>
 
 </body>
 </html>
