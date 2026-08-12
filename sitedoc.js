@@ -180,13 +180,18 @@
                 var titleEl = el.querySelector('.pub-title');
                 var badges = [], bs = el.querySelectorAll('.pub-title .badge');
                 for (var b = 0; b < bs.length; b++) badges.push(txt(bs[b]));
+                // The page script injects "#N" as a <span class="pub-number">
+                // glued directly to the title (spacing is CSS-only), so read
+                // it separately and strip it from the title text.
+                var num = txt(el.querySelector('.pub-title .pub-number'));
                 var linkEl = el.querySelector('.pub-actions a');
                 var href = linkEl ? (linkEl.getAttribute('href') || '') : '';
                 if (href && href.charAt(0) !== '#' && !/^https?:\/\//i.test(href)) {
                     href = 'https://rospawan.github.io/' + href.replace(/^\.?\//, '');
                 }
                 blocks.push({ t: 'pub',
-                    title: titleEl ? txtWithout(titleEl, '.badge') : '',
+                    num: num,
+                    title: titleEl ? txtWithout(titleEl, '.badge, .pub-number') : '',
                     badges: badges,
                     authors: txt(el.querySelector('.pub-authors')),
                     venue: txt(el.querySelector('.pub-venue')),
@@ -246,7 +251,8 @@
                     if (bl.sub2) L.push('      ' + bl.sub2);
                     break;
                 case 'pub':
-                    L.push('  ' + bl.title + (bl.badges.length ? '  [' + bl.badges.join('] [') + ']' : ''));
+                    L.push('  ' + (bl.num ? bl.num + ' ' : '') + bl.title +
+                        (bl.badges.length ? '  [' + bl.badges.join('] [') + ']' : ''));
                     if (bl.authors) L.push('      ' + bl.authors);
                     if (bl.venue) L.push('      ' + bl.venue);
                     if (bl.link) L.push('      ' + bl.link);
@@ -311,7 +317,9 @@
                         children: [run(bl.sub2, { size: 18, color: GREY })] }));
                     break;
                 case 'pub':
-                    var tl = [run(bl.title, { bold: true, size: 18 })];
+                    var tl = [];
+                    if (bl.num) tl.push(run(bl.num + '  ', { bold: true, size: 16, color: PLUM2 }));
+                    tl.push(run(bl.title, { bold: true, size: 18 }));
                     bl.badges.forEach(function (b) {
                         tl.push(run('  [' + b + ']', { bold: true, size: 15, color: GOLD }));
                     });
