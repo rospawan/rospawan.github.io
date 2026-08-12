@@ -149,7 +149,12 @@
                 continue;
             }
             if (el.matches('.review-row')) {
-                blocks.push({ t: 'item', title: txt(el.querySelector('strong')),
+                // "#N" is a <span class="item-number"> glued to the text
+                // (the gap on screen is CSS margin only) — read it separately.
+                var strongEl = el.querySelector('strong');
+                blocks.push({ t: 'item',
+                    num: txt(el.querySelector('.item-number')),
+                    title: strongEl ? txtWithout(strongEl, '.item-number') : '',
                     sub: txt(el.querySelector('.sub')) });
                 continue;
             }
@@ -239,14 +244,22 @@
                     bl.paras.forEach(function (p) { L.push(p); L.push(''); });
                     break;
                 case 'h1':
-                    L.push(''); L.push(bl.text.toUpperCase());
-                    L.push('-----------------------------------------------------');
+                    L.push(''); L.push('');
+                    L.push('=====================================================');
+                    L.push(bl.text.toUpperCase());
+                    L.push('=====================================================');
                     break;
                 case 'h2':
-                    L.push(''); L.push('  ' + bl.text); L.push('');
+                    var bar = ''; for (var d2 = 0; d2 < bl.text.length + 8; d2++) bar += '-';
+                    L.push('');
+                    L.push('  ' + bar);
+                    L.push('  --- ' + bl.text + ' ---');
+                    L.push('  ' + bar);
+                    L.push('');
                     break;
                 case 'item':
-                    L.push('  ' + (bl.date ? '[' + bl.date + '] ' : '') + (bl.title || ''));
+                    L.push('  ' + (bl.num ? bl.num + ' ' : '') +
+                           (bl.date ? '[' + bl.date + '] ' : '') + (bl.title || ''));
                     if (bl.sub) L.push('      ' + bl.sub);
                     if (bl.sub2) L.push('      ' + bl.sub2);
                     break;
@@ -303,11 +316,19 @@
                         children: [run(bl.text.toUpperCase(), { bold: true, size: 24, color: PLUM })] }));
                     break;
                 case 'h2':
-                    kids.push(para({ spacing: { before: 160, after: 80 },
-                        children: [run(bl.text, { bold: true, size: 20, color: PLUM2 })] }));
+                    // Shaded band (same light-plum as the site's section chips)
+                    // so category and year separators stand out from the items.
+                    kids.push(para({ spacing: { before: 220, after: 100 },
+                        shading: { type: D.ShadingType.CLEAR, fill: 'EDE7F0' },
+                        border: { left: { style: D.BorderStyle.SINGLE, size: 18,
+                                          color: PLUM2, space: 4 } },
+                        indent: { left: 60 },
+                        children: [run('  ' + bl.text + '  ',
+                            { bold: true, size: 20, color: PLUM })] }));
                     break;
                 case 'item':
                     var line = [];
+                    if (bl.num) line.push(run(bl.num + '  ', { bold: true, size: 16, color: PLUM2 }));
                     if (bl.date) line.push(run(bl.date + '   ', { bold: true, size: 17, color: GOLD }));
                     line.push(run(bl.title || '', { bold: true }));
                     kids.push(para({ spacing: { before: 60, after: 10 }, children: line }));
