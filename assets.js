@@ -202,13 +202,12 @@
     document.body.appendChild(s);
   }
 
-  /* ---------- 7. Count-up animation on the stats banner ---------- */
-  // Numbers count from 0 to their value the first time the banner is seen.
-  // Skipped for visitors who prefer reduced motion.
+   /* ---------- 7. Count-up animation on the stats banner ---------- */
+  // Numbers count from 0 to their value the first time the banner is
+  // mostly on screen. Slow ease-out so the final numbers settle gently.
   function wireCountUp() {
     var banner = document.querySelector(".stats-banner");
     if (!banner || !("IntersectionObserver" in window)) return;
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     var nums = Array.prototype.slice.call(banner.querySelectorAll("[data-banner]"));
     var targets = nums.map(function (el) { return parseInt(el.textContent, 10) || 0; });
@@ -222,52 +221,23 @@
     var io = new IntersectionObserver(function (entries) {
       if (!entries[0].isIntersecting) return;
       io.disconnect();
-      var start = null, duration = 1200;
+      var start = null, duration = 2200, delay = 250;
       function step(ts) {
         if (done) return;
-        if (start === null) start = ts;
-        var t = Math.min(1, (ts - start) / duration);
-        var eased = 1 - Math.pow(1 - t, 3);           // ease-out
+        if (start === null) start = ts + delay;
+        var t = Math.max(0, Math.min(1, (ts - start) / duration));
+        var eased = 1 - Math.pow(1 - t, 4);           // slow, gentle finish
         nums.forEach(function (el, i) { el.textContent = Math.round(targets[i] * eased); });
         if (t < 1) window.requestAnimationFrame(step); else finish();
       }
       window.requestAnimationFrame(step);
-    }, { threshold: 0.4 });
+    }, { threshold: 0.7 });
     io.observe(banner);
 
-    // Safety: if someone downloads the page before seeing the banner,
-    // show the real numbers first so the Word/txt file is correct.
+    // Safety: show real numbers before a Word/txt download
     document.addEventListener("click", function (e) {
       if (e.target.closest("#dlDocx, #dlTxt")) { io.disconnect(); finish(); }
     }, true);
-  }
-
-  /* ---------- 8. Gentle fade-in as you scroll ---------- */
-  // Cards fade up slightly when they enter the screen. Once shown, the
-  // helper classes are removed so hover effects behave exactly as before.
-  function wireReveal() {
-    if (!("IntersectionObserver" in window)) return;
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    var els = document.querySelectorAll(
-      ".section-heading, .bento-item, .stats-banner, .awards-stats, .year-divider, " +
-      ".awards-grid, .stats-bar, .pub-search, .year-filter, .pub-section, " +
-      ".download-section, .research-card, .platform-card"
-    );
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var el = entry.target;
-        io.unobserve(el);
-        el.classList.add("is-visible");
-        setTimeout(function () { el.classList.remove("reveal", "is-visible"); }, 700);
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
-
-    Array.prototype.forEach.call(els, function (el) {
-      el.classList.add("reveal");
-      io.observe(el);
-    });
   }
   
   /* ---------- Init ---------- */
