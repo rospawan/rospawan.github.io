@@ -248,7 +248,6 @@
     wireBackToTop();
     updateBanner();
     wireCountUp();     // must run after updateBanner (reads the final numbers)
-    wireReveal();
     loadAnalytics();
   }
   if (document.readyState === "loading") {
