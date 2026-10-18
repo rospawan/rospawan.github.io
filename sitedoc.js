@@ -65,7 +65,8 @@
     }
 
     function extract(doc, cfg) {
-        var root = doc.querySelector('body > div.container') ||
+        var root = doc.querySelector('main.container') ||
+                   doc.querySelector('body > div.container') ||
                    doc.querySelector('.container');
         var blocks = [];
         if (!root) return blocks;
