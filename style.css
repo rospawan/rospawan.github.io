@@ -173,19 +173,3 @@ footer a:hover { text-decoration: underline; }
     transform-origin: left center;
     pointer-events: none;
 }
-
-/* ================= Gentle fade-in on scroll ================= */
-/* "body" raises priority so page styles can't cancel the animation */
-body .reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-body .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-}
-/* Never hide anything when printing */
-@media print {
-    body .reveal { opacity: 1 !important; transform: none !important; }
-}
