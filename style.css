@@ -166,8 +166,9 @@ footer a:hover { text-decoration: underline; }
     left: 0;
     right: 0;
     bottom: 0;
-    height: 3px;
-    background: var(--accent-gold);
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent-gold), var(--tier-gold));
+    box-shadow: 0 0 8px rgba(212, 160, 23, 0.6);
     transform: scaleX(0);
     transform-origin: left center;
     pointer-events: none;
