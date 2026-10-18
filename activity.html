@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="nFqt45vue7JBKna_SRcPy05QilAkL_-ptFDk2j-80wI" />
+    
+    <title>Activities | Ali Rospawan</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="canonical" href="https://rospawan.github.io/activity.html">
+    <link rel="stylesheet" href="style.css">
+    
+    <meta name="description" content="Activities of Ali Rospawan — internships, conferences, professional service, teaching, and training.">
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ali Rospawan">
+    <meta property="og:title" content="Activities | Ali Rospawan">
+    <meta property="og:description" content="Activities of Ali Rospawan — internships, conferences, professional service, teaching, and training.">
+    <meta property="og:url" content="https://rospawan.github.io/activity.html">
+    <meta property="og:image" content="https://rospawan.github.io/images/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <style>
+        /* ================= Base ================= */
+        :root {
+            --cat-internship: #2E86AB;
+            --cat-conference: #6B2D5C;
+            --cat-committee: #4A2545;
+            --cat-program: #6A4C93;
+            --cat-teaching: #8B5A2B;
+            --cat-competition: #C2185B;
+            --cat-training: #6B7280;
+            --cat-internship-2: #3AA0C5;
+            --cat-conference-2: #8A3A75;
+            --cat-committee-2: #5E3158;
+            --cat-program-2: #8460B5;
+            --cat-teaching-2: #A87038;
+            --cat-competition-2: #E0356F;
+            --cat-training-2: #838B98;
+        }
+
+        /* ================= Layout ================= */
+        h2.section-title { color: var(--primary-color); text-align: center; font-size: 2.4rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase;}
+
+        /* ================= Download section ================= */
+        .download-section {
+            margin-top: 50px;
+            padding: 32px 28px;
+            background: #FAF7FA;
+            border: 1px solid #EAEAEA;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .download-section h3 { margin: 0 0 6px; font-size: 1.0rem; color: var(--primary-color); }
+        .download-section .download-sub { margin: 0 0 22px; font-size: 0.9rem; color: #666; }
+        .btn-dl {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-family: inherit;
+            background: var(--primary-color);
+            color: #fff;
+            border: 1.5px solid var(--primary-color);
+        }
+        .btn-dl svg { width: 15px; height: 15px; flex: 0 0 auto; }
+        .btn-dl:hover { background: transparent; color: var(--primary-color); }
+        .section-intro { text-align: center; color: #555; max-width: 720px; margin: 0 auto 40px; font-size: 1.0rem; line-height: 1.7;}
+
+        /* ================= Filter Tabs ================= */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+            padding: 0 10px;
+        }
+        .filter-btn {
+            background: #fff;
+            border: 2px solid #E0E0E0;
+            color: #555;
+            padding: 9px 20px;
+            border-radius: 24px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .filter-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+        .filter-btn.active { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+        .filter-btn .count {
+            display: inline-block;
+            margin-left: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 1px 8px;
+            font-size: 0.78rem;
+        }
+        .filter-btn:not(.active) .count { background: #F0F0F0; color: #888; }
+
+        /* ================= Year Divider ================= */
+        .year-divider {
+            display: flex;
+            align-items: center;
+            margin: 40px 0 25px;
+            color: var(--primary-color);
+        }
+        .year-divider .year {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            padding-right: 18px;
+        }
+        .year-divider .line {
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), transparent);
+        }
+
+        /* ================= Activity Grid (two-column) ================= */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            align-items: start;
+        }
+        .activity-grid .activity-card { margin-bottom: 0; }
+        .activity-grid .activity-card.compact { margin-bottom: 0; }
+
+        /* ============ Activity Card (shared base styles) ============ */
+        .activity-card {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .activity-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transform: translateY(-3px);
+        }
+        .activity-card.hidden { display: none; }
+
+        .card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .card-head .category-badge,
+        .card-head .badge-row,
+        .activity-card.compact .card-head .category-badge,
+        .activity-card.compact .card-head .badge-row { margin-bottom: 0; }
+        .card-date {
+            flex-shrink: 0;
+            font-size: 0.78rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .activity-content { padding: 25px 30px; }
+
+        .category-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .badge-row .category-badge { margin-bottom: 0; }
+        .activity-card.compact .badge-row { margin-bottom: 6px; }
+
+        .badge-internship { background: linear-gradient(135deg, var(--cat-internship-2), var(--cat-internship)); }
+        .badge-conference { background: linear-gradient(135deg, var(--cat-conference-2), var(--cat-conference)); }
+        .badge-committee { background: linear-gradient(135deg, var(--cat-committee-2), var(--cat-committee)); }
+        .badge-program { background: linear-gradient(135deg, var(--cat-program-2), var(--cat-program)); }
+        .badge-teaching { background: linear-gradient(135deg, var(--cat-teaching-2), var(--cat-teaching)); }
+        .badge-competition { background: linear-gradient(135deg, var(--cat-competition-2), var(--cat-competition)); }
+        .badge-training { background: linear-gradient(135deg, var(--cat-training-2), var(--cat-training)); }
+
+        .activity-content h3 {
+            margin: 0 0 8px 0;
+            font-size: 0.98rem;
+            color: #111;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+        .activity-location {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .activity-highlights {
+            background: #FAF7FA;
+            border-left: 3px solid var(--primary-color);
+            padding: 10px 14px;
+            margin: 12px 0 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.93rem;
+            color: #444;
+        }
+        .activity-highlights strong { color: var(--primary-color); }
+
+        /* ================= Compact Card ================= */
+        .activity-card.compact {
+            margin-bottom: 0;
+        }
+        .activity-card.compact .activity-content {
+            padding: 14px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .activity-card.compact .category-badge {
+            margin-bottom: 6px;
+            font-size: 0.65rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        .activity-card.compact h3 {
+            font-size: 0.98rem;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .activity-card.compact .activity-location {
+            font-size: 0.86rem;
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+        .activity-card.compact .activity-detail {
+            color: #666;
+            font-size: 0.82rem;
+            font-style: italic;
+            margin-top: 4px;
+            line-height: 1.45;
+        }
+        .activity-card.compact .activity-highlights {
+            background: #FFF8E7;
+            border-left: 3px solid var(--accent-gold);
+            padding: 5px 10px;
+            margin: 6px 0 0;
+            font-size: 0.82rem;
+            border-radius: 0 4px 4px 0;
+            color: #444;
+        }
+        .activity-card.compact .activity-highlights strong {
+            color: var(--accent-gold);
+        }
+
+        /* ================= Photo Gallery (for training/event certificates) ================= */
+        .activity-photos-toggle {
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: var(--secondary-color);
+            background: transparent;
+            border: 1px solid #E5E7EB;
+            padding: 4px 12px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            align-self: flex-start;
+        }
+        .activity-photos-toggle:hover,
+        .activity-photos-toggle.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+        .activity-gallery {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 0;
+        }
+        .activity-gallery.expanded {
+            max-height: 500px;
+            margin-top: 14px;
+        }
+        .gallery-img {
+            height: 110px;
+            width: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            cursor: zoom-in;
+            border: 1px solid #F3F4F6;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+        }
+        /* Lightbox */
+        #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: zoom-out; backdrop-filter: blur(5px); }
+        #lightbox img { max-width: 90%; max-height: 90%; border-radius: 4px; box-shadow: 0 0 40px rgba(0,0,0,0.5); object-fit: contain; }
+        .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 50px; cursor: pointer; transition: 0.3s; }
+        .close-lightbox:hover { transform: scale(1.1); color: #E5E7EB; }
+
+        /* ================= Mobile ================= */
+        @media (max-width: 768px) {
+        h2.section-title { font-size: 1.6rem; }
+        .section-intro { font-size: 0.95rem; }
+        .filter-tabs { gap: 8px; margin-bottom: 30px; }
+        .filter-btn { padding: 7px 14px; font-size: 0.85rem;}
+        .year-divider .year { font-size: 1.4rem; }
+        .activity-grid { grid-template-columns: 1fr; gap: 12px; }
+        .activity-content { padding: 20px; }
+        .activity-content h3 { font-size: 1.0rem; }
+        .activity-card.compact .activity-content { padding: 14px 20px; }
+        }
+
+        /* ================= Back to Top Button ================= */
+        #backToTop {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 46px;
+            height: 46px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: #fff;
+            font-size: 21px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 14px rgba(74,37,69,0.35);
+            transition: background 0.25s ease, transform 0.2s ease;
+            border: 2px solid var(--accent-gold);
+        }
+        #backToTop:hover {
+            background: var(--secondary-color);
+            color: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+        @media (max-width: 767px) {
+            #backToTop { bottom: 18px; right: 18px; width: 42px; height: 42px; font-size: 19px; }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header></header>
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged Photo">
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Activities</h2>
+        <p class="section-intro">
+            A timeline of internships, conferences, teaching, competitions, and programs that shape my research and professional journey. Paper details are available in the <a href="index.html#publications" style="color: var(--primary-color); font-weight: 600;">Publications</a> section.
+        </p>
+
+        <!-- ============ FILTER TABS ============ -->
+        <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="internship">Internships</button>
+            <button class="filter-btn" data-filter="program">Programs</button>
+            <button class="filter-btn" data-filter="conference">Conferences</button>
+            <button class="filter-btn" data-filter="committee">Committee</button>
+            <button class="filter-btn" data-filter="teaching">Teaching</button>
+            <button class="filter-btn" data-filter="competition">Competitions</button>
+            <button class="filter-btn" data-filter="training">Training</button>
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2026 ===================== -->
+        <!-- ================================================ -->
+        <div class="year-divider">
+            <span class="year">2026</span>
+            <span class="line"></span>
+        </div>
+        <div class="activity-grid">
+
+        <!-- ===== iFUZZY 2026 (webmaster + local committee) ===== -->
+        <div class="activity-card compact" data-category="committee">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="badge-row"><span class="category-badge badge-committee">Webmaster</span><span class="category-badge badge-committee">Local Committee</span></span>
+                    <span class="card-date">Nov 20 – 22</span>
+                </div>
+                <h3>iFUZZY 2026 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
+                <div class="activity-location">📍 College of EECS, National Chung Hsing University · Taichung, Taiwan</div>
+            </div>
+        </div>
+
+        <!-- ===== Fuzzy 2026 (webmaster + local committee) ===== -->
+        <div class="activity-card compact" data-category="committee">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="badge-row"><span class="category-badge badge-committee">Webmaster</span><span class="category-badge badge-committee">Local Committee</span></span>
+                    <span class="card-date">Nov 20 – 22</span>
+                </div>
+                <h3>Fuzzy 2026 — 2026模糊理論及其應用研討會</h3>
+                <div class="activity-location">📍 College of EECS, National Chung Hsing University · Taichung, Taiwan</div>
+            </div>
+        </div>
+
+        <!-- ===== First Aid Training: CPR + AED ===== -->
+        <div class="activity-card compact" data-category="training">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-training">Training · Certified</span>
+                    <span class="card-date">Apr 17</span>
+                </div>
+                <h3>First Aid Training: CPR + AED Hands-on</h3>
+                <div class="activity-location">📍 Taichung, Taiwan</div>
+                <div class="activity-detail">Course: Cardiopulmonary Resuscitation (CPR) and Automated External Defibrillator (AED).</div>
+                <button class="activity-photos-toggle" onclick="togglePhotos(this)">View Certificate 📸</button>
+                <div class="activity-gallery">
+                    <img src="images/activity/2026-cpr-aed.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="CPR + AED Certificate">
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Politeknik · 2025/2026 Genap (Current) ===== -->
+        <div class="activity-card compact" data-category="teaching">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                    <span class="card-date">Feb – Jul</span>
+                </div>
+                <h3>Lecturer · 2025/2026 Genap Semester</h3>
+                <div class="activity-location">📍 Politeknik Manufaktur Negeri Bangka Belitung · Indonesia</div>
+                <div class="activity-detail">Courses: Artificial Intelligence · Electronic Circuit Applications</div>
+            </div>
+        </div>
+
+        <!-- ===== NCHU TA 2026 (Current) ===== -->
+        <div class="activity-card compact" data-category="teaching">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · TA</span>
+                    <span class="card-date">Feb – Aug</span>
+                </div>
+                <h3>Teaching Assistant · Summer 114–2 (Current)</h3>
+                <div class="activity-location">📍 Dept. Elect. Eng., National Chung Hsing University · Taichung, Taiwan</div>
+                <div class="activity-detail">Course: Lab in Automatic Control (自動控制實驗)</div>
+            </div>
+        </div>
+
+        <!-- ===== GPM AI Competition 2026 ===== -->
+        <div class="activity-card compact" data-category="competition">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-competition">Competition</span>
+                </div>
+                <h3>第十五屆全國大專院校AI智動化設備創作獎</h3>
+                <div class="activity-location">📍 Gallant Micro Machining Co., Ltd · Taichung, Taiwan</div>
+                <div class="activity-detail">GPM AI Competition</div>
+            </div>
+        </div>
+
+        <!-- ===== NCHU Scientific Paper Competition 2026 ===== -->
+        <div class="activity-card compact" data-category="competition">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-competition">Competition</span>
+                </div>
+                <h3>NCHU Scientific Paper Competition · Engineering Technology Field</h3>
+                <div class="activity-location">📍 National Chung Hsing University · Taichung, Taiwan</div>
+            </div>
+        </div>
+
+        <!-- ===== Politeknik · 2026/2027 Ganjil ===== -->
+        <div class="activity-card compact" data-category="teaching">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                    <span class="card-date">Aug – Jan</span>
+                </div>
+                <h3>Lecturer · 2026/2027 Ganjil Semester</h3>
+                <div class="activity-location">📍 Politeknik Manufaktur Negeri Bangka Belitung · Indonesia</div>
+                <div class="activity-detail">Courses: Microcontroller </div>
+            </div>
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2025 ===================== -->
+        <!-- ================================================ -->
+        </div>
+        <div class="year-divider">
+            <span class="year">2025</span>
+            <span class="line"></span>
+        </div>
+        <div class="activity-grid">
+
+        <!-- ===== ITRI Internship ===== -->
+        <div class="activity-card compact" data-category="internship">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-internship">Internship</span>
+                    <span class="card-date">Jul – Nov</span>
+                </div>
+                <h3>AI System Development in Automotive & Robotic Sensing</h3>
+                <div class="activity-location">📍 Industrial Technology Research Institute (ITRI) · Hsinchu, Taiwan</div>
+                <div class="activity-detail">Information and Communications Research Laboratories</div>
+            </div>
+        </div>
+
+        <!-- ===== IEEE AISS Australia ===== -->
+        <div class="activity-card compact" data-category="program">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-program">Program · Scholarship</span>
+                    <span class="card-date">Nov</span>
+                </div>
+                <h3>IEEE Academia-Industry Summer School (AISS)</h3>
+                <div class="activity-location">📍 Swinburne University of Technology · Hawthorn, Australia</div>
+                <div class="activity-highlights"><strong>🎓 Full Scholarship</strong> — IEEE SMC Society</div>
+            </div>
+        </div>
+
+        <!-- ===== ICSSE 2025 Chiang Mai ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                    <span class="card-date">Aug</span>
+                </div>
+                <h3>ICSSE 2025 — Int. Conf. on System Science and Engineering</h3>
+                <div class="activity-location">📍 Chiang Mai, Thailand</div>
+                <div class="activity-highlights"><strong>🎖 Session 4 Best Presentation Award</strong></div>
+            </div>
+        </div>
+
+        <!-- ===== ARIS 2025 Taichung (committee + presenter) ===== -->
+        <div class="activity-card compact" data-category="committee conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="badge-row"><span class="category-badge badge-committee">Local Committee</span><span class="category-badge badge-conference">Presenter</span></span>
+                    <span class="card-date">Aug</span>
+                </div>
+                <h3>ARIS 2025 — Int. Conf. on Advanced Robotics and Intelligent Systems</h3>
+                <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
+                <div class="activity-highlights"><strong>🎖 Honorary Mention — Best Presentation Award</strong></div>
+            </div>
+        </div>
+
+        <!-- ===== iFUZZY 2025 Hsinchu ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
+                <h3>iFUZZY 2025 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
+                <div class="activity-location">📍 Hsinchu, Taiwan</div>
+                <div class="activity-highlights"><strong>🥈 Best Student Paper Award · 2nd Place</strong></div>
+            </div>
+        </div>
+
+        <!-- ===== NSSSE 2025 Taichung (committee) ===== -->
+        <div class="activity-card compact" data-category="committee">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-committee">Local Committee</span>
+                </div>
+                <h3>NSSSE 2025 — National Symposium on System Science and Engineering</h3>
+                <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
+                <div class="activity-detail">Co-authored lab paper on AMRs autonomous navigation.</div>
+            </div>
+        </div>
+
+        <!-- ===== NCHU Scientific Paper Competition 2025 ===== -->
+        <div class="activity-card compact" data-category="competition">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-competition">Competition</span>
+                </div>
+                <h3>NCHU Scientific Paper Competition · Semiconductor Technology Field</h3>
+                <div class="activity-location">📍 National Chung Hsing University · Taichung, Taiwan</div>
+                <div class="activity-highlights"><strong>🥉 3rd Place — Semiconductor Technology</strong></div>
+            </div>
+        </div>
+
+        <!-- ===== Politeknik · 2025/2026 Ganjil ===== -->
+        <div class="activity-card compact" data-category="teaching">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                    <span class="card-date">Aug – Jan</span>
+                </div>
+                <h3>Lecturer · 2025/2026 Ganjil Semester</h3>
+                <div class="activity-location">📍 Politeknik Manufaktur Negeri Bangka Belitung · Indonesia</div>
+                <div class="activity-detail">Course: Robotics</div>
+            </div>
+        </div>
+
+        <!-- ===== Politeknik · 2024/2025 Genap ===== -->
+        <div class="activity-card compact" data-category="teaching">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · Lecturer</span>
+                    <span class="card-date">Feb – Jul</span>
+                </div>
+                <h3>Lecturer · 2024/2025 Genap Semester</h3>
+                <div class="activity-location">📍 Politeknik Manufaktur Negeri Bangka Belitung · Indonesia</div>
+                <div class="activity-detail">Course: Electronic Circuit Applications</div>
+            </div>
+        </div>
+
+        <!-- ===== NCHU TA 2025 ===== -->
+        <div class="activity-card compact" data-category="teaching">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · TA</span>
+                    <span class="card-date">Feb – Aug</span>
+                </div>
+                <h3>Teaching Assistant · Summer 113–2</h3>
+                <div class="activity-location">📍 Dept. Elect. Eng., National Chung Hsing University · Taichung, Taiwan</div>
+                <div class="activity-detail">Course: Lab in Automatic Control (自動控制實驗)</div>
+            </div>
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2024 ===================== -->
+        <!-- ================================================ -->
+        </div>
+        <div class="year-divider">
+            <span class="year">2024</span>
+            <span class="line"></span>
+        </div>
+        <div class="activity-grid">
+
+        <!-- ===== IEEE SMC 2024 Kuching ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
+                <h3>🏆 IEEE SMC 2024 — Int. Conf. on Systems, Man, and Cybernetics</h3>
+                <div class="activity-location">📍 Kuching, Malaysia</div>
+                <div class="activity-highlights"><strong>🏆 Best Student Paper Award · 1st Place</strong></div>
+            </div>
+        </div>
+
+        <!-- ===== Fuzzy 2024 Nangan ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
+                <h3>Fuzzy 2024 — 32nd Conference on Fuzzy Theory and Its Applications</h3>
+                <div class="activity-location">📍 Nangan Township, Taiwan</div>
+                <div class="activity-highlights"><strong>🥉 Best Paper Award · 3rd Place</strong></div>
+            </div>
+        </div>
+
+        <!-- ===== NCHU Scientific Paper Competition 2024 ===== -->
+        <div class="activity-card compact" data-category="competition">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-competition">Competition</span>
+                </div>
+                <h3>NCHU Scientific Paper Competition · Engineering Technology Field</h3>
+                <div class="activity-location">📍 National Chung Hsing University · Taichung, Taiwan</div>
+                <div class="activity-highlights"><strong>🥇 1st Place — Engineering Technology</strong></div>
+            </div>
+        </div>
+
+
+        <!-- ===== NCHU TA 2024 ===== -->
+        <div class="activity-card compact" data-category="teaching">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · TA</span>
+                    <span class="card-date">Feb – Aug</span>
+                </div>
+                <h3>Teaching Assistant · Summer 112–2</h3>
+                <div class="activity-location">📍 Dept. Elect. Eng., National Chung Hsing University · Taichung, Taiwan</div>
+                <div class="activity-detail">Course: Lab in Automatic Control (自動控制實驗)</div>
+            </div>
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2023 ===================== -->
+        <!-- ================================================ -->
+        </div>
+        <div class="year-divider">
+            <span class="year">2023</span>
+            <span class="line"></span>
+        </div>
+        <div class="activity-grid">
+
+        <!-- ===== IEEE SMC 2023 Honolulu ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
+                <h3>IEEE SMC 2023 — Int. Conf. on Systems, Man, and Cybernetics</h3>
+                <div class="activity-location">📍 Honolulu, Hawaii, USA</div>
+            </div>
+        </div>
+
+        <!-- ===== iFUZZY 2023 Penghu ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
+                <h3>iFUZZY 2023 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
+                <div class="activity-location">📍 Penghu, Taiwan</div>
+                <div class="activity-highlights"><strong>🥈 Best Student Paper Award · 2nd Place</strong></div>
+            </div>
+        </div>
+
+        <!-- ===== IFSA 2023 Daegu (compact) ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                    <span class="card-date">Aug</span>
+                </div>
+                <h3>IFSA 2023 — 20th World Congress of the Int. Fuzzy Systems Association</h3>
+                <div class="activity-location">📍 EXCO · Daegu, Korea</div>
+            </div>
+        </div>
+
+        <!-- ===== ICSSE 2023 Ho Chi Minh (compact) ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
+                <h3>ICSSE 2023 — Int. Conf. on System Science and Engineering</h3>
+                <div class="activity-location">📍 Ho Chi Minh City, Vietnam</div>
+            </div>
+        </div>
+
+
+        <!-- ===== NCHU TA 2023 ===== -->
+        <div class="activity-card compact" data-category="teaching">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · TA</span>
+                    <span class="card-date">Feb – Aug</span>
+                </div>
+                <h3>Teaching Assistant · Summer 111–2</h3>
+                <div class="activity-location">📍 Dept. Elect. Eng., National Chung Hsing University · Taichung, Taiwan</div>
+                <div class="activity-detail">Course: Lab in Automatic Control (自動控制實驗)</div>
+            </div>
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- ====================== 2022 ===================== -->
+        <!-- ================================================ -->
+        </div>
+        <div class="year-divider">
+            <span class="year">2022</span>
+            <span class="line"></span>
+        </div>
+        <div class="activity-grid">
+
+        <!-- ===== ICSSE 2022 Taichung (first committee + first paper) ===== -->
+        <div class="activity-card compact" data-category="committee conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="badge-row"><span class="category-badge badge-committee">Local Committee</span><span class="category-badge badge-conference">Presenter</span></span>
+                    <span class="card-date">May</span>
+                </div>
+                <h3>ICSSE 2022 — Int. Conf. on System Science and Engineering</h3>
+                <div class="activity-location">📍 Taichung, Taiwan · Hosted by NCHU</div>
+            </div>
+        </div>
+
+        <!-- ===== ARIS 2022 Taipei ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                    <span class="card-date">Aug</span>
+                </div>
+                <h3>ARIS 2022 — Int. Conf. on Advanced Robotics and Intelligent Systems</h3>
+                <div class="activity-location">📍 Taipei Nangang Exhibition Center · Taipei, Taiwan</div>
+                <div class="activity-highlights"><strong>🎖 Best Conference Paper Award — Honorable Mention</strong></div>
+            </div>
+        </div>
+
+        <!-- ===== WCE 2022 Huwei ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
+                <h3>Workshop on Consumer Electronics 2022 (第二十三屆民生電子研討會)</h3>
+                <div class="activity-location">📍 Huwei Township, Taiwan</div>
+                <div class="activity-highlights"><strong>🏆 Best Paper Award</strong></div>
+            </div>
+        </div>
+
+        <!-- ===== iFUZZY 2022 Kaohsiung (compact) ===== -->
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                </div>
+                <h3>iFUZZY 2022 — Int. Conf. on Fuzzy Theory and Its Applications</h3>
+                <div class="activity-location">📍 Kaohsiung, Taiwan</div>
+            </div>
+        </div>
+
+
+        <!-- ===== NCHU TA 2022 ===== -->
+        <div class="activity-card compact" data-category="teaching">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-teaching">Teaching · TA</span>
+                    <span class="card-date">Feb – Aug</span>
+                </div>
+                <h3>Teaching Assistant · Summer 110–2</h3>
+                <div class="activity-location">📍 Dept. Elect. Eng., National Chung Hsing University · Taichung, Taiwan</div>
+                <div class="activity-detail">Course: Lab in Automatic Control (自動控制實驗)</div>
+            </div>
+        </div>
+
+
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TEMPLATE: copy and edit this block to add more -->
+        <!-- data-category values:                          -->
+        <!--   internship · conference · committee ·        -->
+        <!--   program · teaching · competition · training  -->
+        <!--   (space-separate to tag a card as several,    -->
+        <!--    e.g. data-category="committee conference")   -->
+        <!-- Place new cards INSIDE a .activity-grid wrapper -->
+        <!-- under the correct year.                         -->
+        <!-- Remember: committee roles also go in the        -->
+        <!-- Service section of index.html (committee-row).  -->
+        <!-- ============================================== -->
+        <!--
+        <div class="activity-card compact" data-category="conference">
+            <div class="activity-content">
+                <div class="card-head">
+                    <span class="category-badge badge-conference">Presenter</span>
+                    <span class="card-date">Aug</span>
+                </div>
+                <h3>Activity Title</h3>
+                <div class="activity-location">📍 Location</div>
+                <div class="activity-highlights"><strong>Optional award</strong></div>
+            </div>
+        </div>
+        Notes:
+        - card-date: MONTH or month-range only (e.g. "Aug", "Feb – Jul"). No year — the
+          year divider above already shows it. Omit the whole card-date line if unknown.
+        - For two separate roles at one event, use:
+          <span class="badge-row"><span class="category-badge badge-committee">Local Committee</span><span class="category-badge badge-conference">Presenter</span></span>
+        -->
+
+    </div>
+
+    <div class="container" style="margin-top:0;">
+        <section class="download-section">
+            <h3>Download Activities</h3>
+            <p class="download-sub">A plain-text (.txt) list of all activities, grouped by year.</p>
+            <button id="dlActivities" class="btn-dl" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download all activities
+            </button>
+        </section>
+    </div>
+
+    <footer></footer>
+
+    <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
+    <script>
+        // Filter activities by category
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const activityCards = document.querySelectorAll('.activity-card');
+        const yearDividers = document.querySelectorAll('.year-divider');
+
+        // Add count badges to filter buttons
+        function updateCounts() {
+            filterBtns.forEach(btn => {
+                const filter = btn.getAttribute('data-filter');
+                let count;
+                if (filter === 'all') {
+                    count = activityCards.length;
+                } else {
+                    count = Array.from(activityCards).filter(c =>
+                        (c.getAttribute('data-category') || '').split(' ').includes(filter)
+                    ).length;
+                }
+                const existingCount = btn.querySelector('.count');
+                if (existingCount) existingCount.remove();
+                if (count > 0) {
+                    const span = document.createElement('span');
+                    span.className = 'count';
+                    span.textContent = count;
+                    btn.appendChild(span);
+                }
+            });
+        }
+        updateCounts();
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                activityCards.forEach(card => {
+                    const cats = (card.getAttribute('data-category') || '').split(' ');
+                    if (filter === 'all' || cats.includes(filter)) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // Hide year dividers (and their grid) when no card is visible
+                yearDividers.forEach(divider => {
+                    const grid = divider.nextElementSibling;
+                    if (!grid || !grid.classList.contains('activity-grid')) return;
+                    const visibleCards = grid.querySelectorAll('.activity-card:not(.hidden)');
+                    const hasVisibleCard = visibleCards.length > 0;
+                    divider.style.display = hasVisibleCard ? 'flex' : 'none';
+                    grid.style.display = hasVisibleCard ? 'grid' : 'none';
+                });
+            });
+        });
+
+        // === Photo gallery toggle + lightbox (for training certificates etc.) ===
+        function togglePhotos(btn) {
+            const gallery = btn.nextElementSibling;
+            if (!gallery || gallery.children.length === 0) {
+                alert("Photos will be added soon!");
+                return;
+            }
+            gallery.classList.toggle('expanded');
+            btn.classList.toggle('active');
+            if (gallery.classList.contains('expanded')) {
+                if (!btn.hasAttribute('data-original-text')) {
+                    btn.setAttribute('data-original-text', btn.innerHTML);
+                }
+                btn.innerHTML = 'Close Photos ✖';
+            } else {
+                btn.innerHTML = btn.getAttribute('data-original-text');
+            }
+        }
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // ---------- Export activities as a .txt file ----------
+        (function () {
+            function cleanText(s) {
+                return s.replace(/\s+/g, ' ').trim().replace(/\s+([,.;:])/g, '$1');
+            }
+            function cardLine(card, i) {
+                var badges = Array.prototype.map.call(
+                    card.querySelectorAll('.category-badge'),
+                    function (b) { return cleanText(b.textContent); }
+                ).filter(Boolean).join(' / ');
+                var titleEl = card.querySelector('h3');
+                var dateEl = card.querySelector('.card-date');
+                var locEl = card.querySelector('.activity-location');
+                var title = titleEl ? cleanText(titleEl.textContent) : '';
+                var date = dateEl ? cleanText(dateEl.textContent) : '';
+                var loc = locEl ? cleanText(locEl.textContent.replace(/^\s*📍\s*/, '')) : '';
+                var line = '[' + (i + 1) + '] ';
+                if (badges) line += badges + ' \u2014 ';
+                line += title;
+                if (date) line += ' (' + date + ')';
+                if (loc) line += ', ' + loc;
+                return line + '.';
+            }
+            function buildActivitiesText() {
+                var out = ['Activities \u2014 Ali Rospawan',
+                           'Source: https://rospawan.github.io/activity.html',
+                           'Exported: ' + new Date().toISOString().slice(0, 10),
+                           '='.repeat(60), ''];
+                var idx = 0;
+                document.querySelectorAll('.year-divider').forEach(function (divider) {
+                    var yearEl = divider.querySelector('.year');
+                    var year = yearEl ? cleanText(yearEl.textContent) : '';
+                    var grid = divider.nextElementSibling;
+                    while (grid && !grid.classList.contains('activity-grid')) {
+                        grid = grid.nextElementSibling;
+                    }
+                    if (!grid) return;
+                    var cards = grid.querySelectorAll('.activity-card');
+                    if (!cards.length) return;
+                    out.push('## ' + year + ' (' + cards.length + ')');
+                    out.push('');
+                    cards.forEach(function (card) { out.push(cardLine(card, idx++)); });
+                    out.push('');
+                });
+                return out.join('\n');
+            }
+            var btn = document.getElementById('dlActivities');
+            if (btn) {
+                btn.addEventListener('click', function () {
+                    var blob = new Blob([buildActivitiesText()], { type: 'text/plain;charset=utf-8' });
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement('a');
+                    a.href = url; a.download = 'rospawan-activities.txt';
+                    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            }
+        })();
+        
+    </script>
+    <script src="assets.js"></script>
+</body>
+</html>
